@@ -1,0 +1,82 @@
+body, #root, #canvas-wrapper {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background-color: black;
+}
+
+#canvas-wrapper {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.home-cta-wrapper {
+  position: relative;
+  height: 1300px;
+}
+
+.home-content {
+  background-color: #fcfcfc;
+  position: relative;
+}
+
+.home-cta {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.home-cta:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url('/assets/home-header-cta.png') bottom left no-repeat;
+  background-size: 100%;
+}
+
+.home-cta:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url('/assets/home-header-break.png') bottom right no-repeat;
+  background-size: 100%;
+}
+
+.home-content {
+  height: 1000px;
+}
+
+.what-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  max-width: 1440px;
+}
+
+h2.title {
+  margin: 0;
+  letter-spacing: 8px;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.arvo {
+  font-family: 'Arvo', serif;
+}
+
+.black {
+  color: rgba(0, 0, 0, .87);
+}
+
+.green {
+  color: #20b789;
+}

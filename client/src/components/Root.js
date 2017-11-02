@@ -1,6 +1,8 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
+import Router from '../components/Router'
 // We should probably check prop types
 // const propTypes = {
 //
@@ -19,15 +21,19 @@ class Root extends Component {
     if(wpInfo && wpInfo.loading) {
       return 'Loading...';
     } else {
-      return wpInfo.data.title;
+      return wpInfo.data.name;
     }
   }
 
   render() {
     return (
-      <div>
-        <p>{ this.renderInfo() }</p>
-      </div>
+      <BrowserRouter>
+        <div>
+
+          <Router {...this.props} />
+
+        </div>
+      </BrowserRouter>
     );
   }
 }

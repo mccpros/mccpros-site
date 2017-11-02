@@ -1,6 +1,10 @@
 import * as types from '../constants/ActionTypes';
 import axios from 'axios';
 
+function url(path) {
+  return `http://localhost:8080${path}`
+}
+
 export function fetchingInfo(data) {
   return { type: types.FETCHING_INFO }; // Send 'Loading'
 }
@@ -14,8 +18,12 @@ export function fetchInfo(data) {
     dispatch(fetchingInfo()); // 'Loading...'
 
     // API Call
-    setTimeout(() => {
-      dispatch(receiveInfo({ title: 'Yo' })); // Got em
-    }, 2000);
+    axios.get(url('/wp-json'))
+      .then(res => {
+        dispatch(receiveInfo(res.data)); // Got em
+      })
+      .catch(err => {
+        console.log('err', err);
+      })
   };
 }
