@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes';
 import axios from 'axios';
 
 function url(path) {
-  return `http://localhost:8080${path}`
+  return `http://localhost:8080/wp-json${path}`
 }
 
 export function fetchingInfo(data) {
@@ -13,14 +13,37 @@ export function receiveInfo(data) {
   return { type: types.RECEIVE_INFO, info: data }; // Send info
 }
 
+export function fetchingHome(data) {
+  return { type: types.FETCHING_HOME }; // Send 'Loading'
+}
+
+export function receiveHome(data) {
+  return { type: types.RECEIVE_HOME, home: data }; // Send info
+}
+
 export function fetchInfo(data) {
   return dispatch => {
     dispatch(fetchingInfo()); // 'Loading...'
 
     // API Call
-    axios.get(url('/wp-json'))
+    axios.get(url('/'))
       .then(res => {
         dispatch(receiveInfo(res.data)); // Got em
+      })
+      .catch(err => {
+        console.log('err', err);
+      })
+  };
+}
+
+export function fetchHome(data) {
+  return dispatch => {
+    dispatch(fetchingHome()); // 'Loading...'
+
+    // API Call
+    axios.get(url('/wp/v2/home'))
+      .then(res => {
+        dispatch(receiveHome(res.data[0])); // Got em
       })
       .catch(err => {
         console.log('err', err);

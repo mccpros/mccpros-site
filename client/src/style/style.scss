@@ -1,0 +1,35 @@
+@import './home.scss';
+@import './bootstrap.min.scss';
+@import './fontello.scss';
+
+h2.title {
+  margin: 0;
+  letter-spacing: 10px;
+  font-weight: 100;
+  font-size: 1.8em;
+  text-transform: uppercase;
+}
+
+.arvo {
+  font-family: 'Arvo', serif;
+}
+
+.lato {
+  font-family: 'Lato', sans-serif;
+}
+
+.black {
+  color: rgba(0, 0, 0, .87);
+}
+
+.black-fade {
+  color: rgba(0, 0, 0, .67);
+}
+
+.green {
+  color: #20b789;
+}
+
+.relative {
+  position: relative;
+}

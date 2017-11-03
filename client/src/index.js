@@ -9,7 +9,8 @@ import RootContainer from './containers/RootContainer'; // Where it all begins
 
 import configureStore from './store/configureStore'; // Redux Store
 
-import './style.css';
+// Style
+import './style/style.scss';
 
 const store = configureStore();
 

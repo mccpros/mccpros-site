@@ -3,24 +3,22 @@ import { connect } from 'react-redux';
 
 // Most actions should happen right here
 // Let all the data fall to Child through props
-import { fetchInfo } from '../actions/WPInfoActions';
-import * as routes from '../constants/RouteConstants';
-import Root from '../components/Root';
+import { fetchHome } from '../actions/WPInfoActions';
+import Home from '../components/Home';
 
 // Don't render much in containers
 // But pass the props!
-const RootContainer = props => <Root {...props} />;
+const HomeContainer = props => <Home {...props} />;
 
 // Where store/state becomes our props
 const mapStateToProps = (state) => {
   const { wpInfo } = state; // Pull it out
-
+  //
   return { // Pass it along
-    wpInfo: wpInfo.data,
-    routes
+    home: wpInfo.home,
   };
 };
 
 export default connect(mapStateToProps, {
-  fetchInfo,
-})(RootContainer);
+  fetchHome,
+})(HomeContainer);

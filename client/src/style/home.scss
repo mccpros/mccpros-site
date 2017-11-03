@@ -2,7 +2,7 @@ body, #root, #canvas-wrapper {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
-  background-color: black;
+  background-color: white;
 }
 
 #canvas-wrapper {
@@ -15,11 +15,6 @@ body, #root, #canvas-wrapper {
 .home-cta-wrapper {
   position: relative;
   height: 1300px;
-}
-
-.home-content {
-  background-color: #fcfcfc;
-  position: relative;
 }
 
 .home-cta {
@@ -52,31 +47,37 @@ body, #root, #canvas-wrapper {
 }
 
 .home-content {
-  height: 1000px;
+  background: url('/assets/home-header-continue.png') right top repeat-y;
+  background-size: 100%;
+  position: relative;
+  // height: 1000px;
+  // background-color: #fcfcfc;
+  // position: relative;
+  margin-top: -2em;
 }
 
-.what-container {
-  margin-left: auto;
-  margin-right: auto;
-  width: 75%;
-  max-width: 1440px;
+.what-list {
+  margin: 3em 0 0 4em;
+  font-size: 1.25em;
+  list-style: none;
 }
 
-h2.title {
-  margin: 0;
-  letter-spacing: 8px;
-  font-weight: 100;
-  text-transform: uppercase;
+.what-list li * {
+  display: inline-block;
+  position: relative;
 }
 
-.arvo {
-  font-family: 'Arvo', serif;
-}
-
-.black {
-  color: rgba(0, 0, 0, .87);
-}
-
-.green {
+.what-list li:before {
+  content: "\E801";
+  font-family: fontello;
+  margin-left: -1.3em;
   color: #20b789;
+  position: absolute;
+  left: 0px;
+  top: 11px;
+}
+
+.what-list li p {
+  margin: .65em 0 .65em 0.5em;
+  letter-spacing: 1.5px;
 }

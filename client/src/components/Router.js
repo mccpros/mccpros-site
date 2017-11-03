@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
 
-import Home from './Home';
+import HomeContainer from '../containers/HomeContainer';
 // We should probably check prop types
 // const propTypes = {
 //
@@ -13,7 +13,7 @@ class Router extends Component {
     super(props);
 
     this.state = {
-      home: Home,
+      home: HomeContainer,
     }
   }
 
@@ -33,7 +33,7 @@ class Router extends Component {
           key={idx}
           path={ route.path }
           render={(props) => {
-            return <Component title={route.name} {...props} />;
+            return <Component title={route.name} {...this.props} />;
           }} />
       );
     })
