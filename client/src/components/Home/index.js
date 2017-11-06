@@ -1,7 +1,9 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import HomeCanvas from './HomeCanvas';
+import Canvas from './Canvas';
+import WhatLi from './WhatLi';
+import PieChart from './PieChart';
 // We should probably check prop types
 // const propTypes = {
 //
@@ -16,14 +18,36 @@ class Home extends Component {
   renderWhats(whats) {
     return whats.split('|').map((w, idx) => {
       return (
-        <div className="relative">
-          <li>
-            <p className='black-fade lato' key={idx}>{w}</p>
-          </li>
-        </div>
+        <WhatLi key={idx} name={w} />
       );
     });
   }
+  //
+  // function initPieAnimation(pie) {
+  //   let els = pie.childNodes;
+  //   let segments = [];
+  //   let text = [];
+  //
+  //   for (let key in els) {
+  //     if(els.hasOwnProperty(key)) {
+  //       let className = '';
+  //       if(els[key].getAttribute) className = els[key].getAttribute('class')
+  //
+  //       if(className === 'pie-segment') segments.push(els[key]);
+  //       if(className === 'percent-text') text.push(els[key]);
+  //     }
+  //   }
+  //
+  //   idToClass(segments);
+  //   idToClass(text, 'percent-text show');
+  // }
+  //
+  // function idToClass(arr, className) {
+  //   for(let i = 0; i < arr.length; i++) {
+  //     let id = className || arr[i].getAttribute('id');
+  //     arr[i].setAttribute('class', id);
+  //   }
+  // }
 
   renderHome() {
     let { home } = this.props;
@@ -32,7 +56,7 @@ class Home extends Component {
     return (
       <div className='home-wrapper'>
 
-        <HomeCanvas />
+        <Canvas />
 
         <div className="home-cta-wrapper">
           <div className='home-cta'></div>
@@ -51,6 +75,10 @@ class Home extends Component {
                   { this.renderWhats(home.acf.what_we_do) }
                 </ul>
 
+              </div>
+
+              <div className="col-xs-12 col-md-7">
+                <PieChart />
               </div>
             </div>
           </div>

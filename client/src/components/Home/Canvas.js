@@ -8,7 +8,7 @@ import * as THREE from 'three';
 //
 // };
 
-class HomeCanvas extends Component {
+class Canvas extends Component {
   constructor(props) {
     super(props);
 
@@ -61,6 +61,6 @@ class HomeCanvas extends Component {
   }
 }
 
-// HomeCanvas.propTypes = propTypes;
+// Canvas.propTypes = propTypes;
 
-export default HomeCanvas;
+export default Canvas;

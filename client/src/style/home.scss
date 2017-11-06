@@ -81,3 +81,17 @@ body, #root, #canvas-wrapper {
   margin: .65em 0 .65em 0.5em;
   letter-spacing: 1.5px;
 }
+
+li.mcc-hide {
+  opacity: 0;
+}
+
+li.animate.mcc-show {
+  opacity: 1;
+  animation: show 2.2s ease;
+}
+
+@keyframes show {
+  0%   { opacity: 0 }
+  100% { opacity: 1 }
+}
