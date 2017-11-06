@@ -26,13 +26,13 @@ export function fetchInfo(data) {
     dispatch(fetchingInfo()); // 'Loading...'
 
     // API Call
-    axios.get(url('/'))
-      .then(res => {
-        dispatch(receiveInfo(res.data)); // Got em
-      })
-      .catch(err => {
-        console.log('err', err);
-      })
+    // axios.get(url('/'))
+    //   .then(res => {
+        dispatch(receiveInfo({})); // Got em
+      // })
+      // .catch(err => {
+      //   console.log('err', err);
+      // })
   };
 }
 
@@ -41,12 +41,12 @@ export function fetchHome(data) {
     dispatch(fetchingHome()); // 'Loading...'
 
     // API Call
-    axios.get(url('/wp/v2/home'))
-      .then(res => {
-        dispatch(receiveHome(res.data[0])); // Got em
-      })
-      .catch(err => {
-        console.log('err', err);
-      })
+    // axios.get(url('/wp/v2/home'))
+    //   .then(res => {
+        dispatch(receiveHome({})); // Got em
+      // })
+      // .catch(err => {
+      //   console.log('err', err);
+      // })
   };
 }

@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Canvas from './Canvas';
 import WhatLi from './WhatLi';
 import PieChart from './PieChart';
+import Legend from './Legend';
 // We should probably check prop types
 // const propTypes = {
 //
@@ -22,32 +23,6 @@ class Home extends Component {
       );
     });
   }
-  //
-  // function initPieAnimation(pie) {
-  //   let els = pie.childNodes;
-  //   let segments = [];
-  //   let text = [];
-  //
-  //   for (let key in els) {
-  //     if(els.hasOwnProperty(key)) {
-  //       let className = '';
-  //       if(els[key].getAttribute) className = els[key].getAttribute('class')
-  //
-  //       if(className === 'pie-segment') segments.push(els[key]);
-  //       if(className === 'percent-text') text.push(els[key]);
-  //     }
-  //   }
-  //
-  //   idToClass(segments);
-  //   idToClass(text, 'percent-text show');
-  // }
-  //
-  // function idToClass(arr, className) {
-  //   for(let i = 0; i < arr.length; i++) {
-  //     let id = className || arr[i].getAttribute('id');
-  //     arr[i].setAttribute('class', id);
-  //   }
-  // }
 
   renderHome() {
     let { home } = this.props;
@@ -72,13 +47,23 @@ class Home extends Component {
                 </h2>
 
                 <ul className="what-list">
-                  { this.renderWhats(home.acf.what_we_do) }
+                  { this.renderWhats(/*home.acf.what_we_do*/ 'what we do|we do what|do what we') }
                 </ul>
 
               </div>
 
-              <div className="col-xs-12 col-md-7">
+              <div className='col-xs-12 col-md-7'>
+
+                <h4 className='what-title arvo'>we solve a majority of problems in 15 minutes or less</h4>
+
+              <div className="col-xs-4">
+                <Legend />
+              </div>
+
+              <div className="col-xs-8">
                 <PieChart />
+              </div>
+
               </div>
             </div>
           </div>

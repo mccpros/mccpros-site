@@ -82,16 +82,77 @@ body, #root, #canvas-wrapper {
   letter-spacing: 1.5px;
 }
 
-li.mcc-hide {
+.mcc-hide {
   opacity: 0;
 }
 
-li.animate.mcc-show {
+.animate.mcc-show {
   opacity: 1;
   animation: show 2.2s ease;
+  -o-animation: show 2.2s ease;
+  -moz-animation: show 2.2s ease;
+  -webkit-animation: show 2.2s ease;
 }
 
+text.animate.mcc-show {
+  opacity: 1;
+  animation: show 1s ease;
+  -o-animation: show 1s ease;
+  -moz-animation: show 1s ease;
+  -webkit-animation: show 1s ease;
+}
+
+@-webkit-keyframes show {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes show {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes show {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
 @keyframes show {
-  0%   { opacity: 0 }
-  100% { opacity: 1 }
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.pie-segment {
+  transition: stroke-dasharray 1.5s ease .5s;
+  -o-transition: stroke-dasharray 1.5s ease .5s;
+  -moz-transition: stroke-dasharray 1.5s ease .5s;
+  -webkit-transition: stroke-dasharray 1.5s ease .5s;
+}
+
+h4.what-title {
+  font-size: 3.1em;
+}
+
+.inline-block * {
+  display: inline-block;
+  font-size: 1.5em;
+}
+
+.legend-square {
+  width: 15px;
+  height: 15px;
+  margin-right: 15px;
+}
+
+.legend-square.purp {
+  background-color: #8064a2;
+}
+
+.legend-square.green {
+  background-color: #34cfa9;
+}
+
+.legend-square.red {
+  background-color: #c0504d;
+}
+
+.legend-square.blue {
+  background-color: #4f81bd;
 }

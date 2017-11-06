@@ -9,10 +9,25 @@ import React, { Component } from 'react';
 class Segment extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      dasharray0: 0,
+      dasharray1: 101,
+    }
+
+  }
+
+  componentWillReceiveProps(newProps) {
+    if(newProps.animated) {
+
+      this.setState({ dasharray0: this.props.dasharray0 });
+      this.setState({ dasharray1: this.props.dasharray1 });
+      
+    }
   }
 
   renderDashArray() {
-    let { dasharray0, dasharray1 } = this.props;
+    let { dasharray0, dasharray1 } = this.state;
 
     return `${dasharray0} ${dasharray1}`;
   }
