@@ -27,7 +27,7 @@ class Home extends Component {
 
   renderHome() {
     let { home } = this.props;
-    console.log(home);
+    // console.log(home);
 
     return (
       <div className='home-wrapper'>
@@ -40,26 +40,22 @@ class Home extends Component {
 
         <div className='home-content'>
 
-          <div className='what-container container'>
+          <div className='what-container container-fluid'>
             <div className="row">
-              <div className="col-xs-12 col-md-5">
+              <div className="col-xs-12 col-md-4 col-md-offset-1">
                 <h2 className='arvo title black'>
                   <span className='green'>what</span> we do
                 </h2>
 
                 <ul className="what-list">
-                  { this.renderWhats(/*home.acf.what_we_do*/ 'what we do|we do what|do what we') }
+                  { this.renderWhats(/*home.acf.what_we_do*/ 'what we do|we do what|do what we|what we do|we do what|do what we|what we do|we do what|do what wewhat we do|we do what|do what we|what we do|we do what|do what we') }
                 </ul>
 
               </div>
 
-              <div className='col-xs-12 col-md-7'>
+              <div className='col-xs-12 col-md-5 col-md-offset-1 pie-wrapper'>
 
-                <h4 className='what-title arvo black'>we solve a majority of problems in 15 minutes or less</h4>
-
-                <div className="col-xs-4">
-                  <Legend />
-                </div>
+                <Legend />
 
                 <div className="col-xs-8">
                   <PieChart />
@@ -71,10 +67,12 @@ class Home extends Component {
             </div>
           </div>
 
-          <div className="container-fluid">
-            <div className="row">
+          <div className='container-fluid'>
 
-              <div className="col-xs-9 no-padding">
+            <div className='row'>
+
+              <div className='col-xs-9 offer-container white'>
+                <h2 className='arvo title white'>what we <span className="green">offer</span></h2>
                 <OfferList />
               </div>
 

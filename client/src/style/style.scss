@@ -1,6 +1,6 @@
 @import './home.scss';
-@import './bootstrap.min.scss';
 @import './fontello.scss';
+@import './bootstrap.min.scss';
 
 h2.title {
   margin: 0;
@@ -10,12 +10,24 @@ h2.title {
   text-transform: uppercase;
 }
 
+h3.title {
+  margin: 0;
+  letter-spacing: 8px;
+  font-weight: 100;
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+
 .arvo {
   font-family: 'Arvo', serif;
 }
 
 .lato {
   font-family: 'Lato', sans-serif;
+}
+
+.white {
+  color: #fff;
 }
 
 .black {

@@ -119,6 +119,9 @@ text.animate.mcc-show {
   100% { opacity: 1; }
 }
 
+.pie-wrapper {
+  margin-top: 12em;
+}
 .pie-segment {
   transition: stroke-dasharray 1.5s ease .5s;
   -o-transition: stroke-dasharray 1.5s ease .5s;
@@ -164,4 +167,70 @@ h4.what-title {
 
 .legend-text {
   letter-spacing: 1px;
+}
+
+.offer-container {
+  min-height: 800px;
+  background-color: #07638F;
+  padding: 5em;
+  text-align: center;
+}
+
+.offer-break {
+  background-color: #fff;
+  position: absolute;
+  width: 1px;
+  left: 50%;
+  height: 60%;
+  top: 20%;
+}
+
+ul.offer-includes {
+  list-style: none;
+}
+
+ul.offer-includes li {
+  margin: 1em;
+  letter-spacing: 1px;
+  font-weight: 100;
+  font-size: 1.1em;
+}
+
+.offer-item {
+  padding: 10em 13em !important;
+  transition: opacity .8s ease;
+  -o-transition: opacity .8s ease;
+  -moz-transition: opacity .8s ease;
+  -webkit-transition: opacity .8s ease;
+}
+
+.offer-item p {
+  text-align: left;
+  letter-spacing: 2px;
+  font-weight: 100;
+  font-size: 1.1em;
+}
+
+.offer-item h3 {
+  margin-top: 3em !important;
+}
+
+.offer-button-wrapper {
+  display: inline-block;
+  width: 100%;
+  height: 60px;
+}
+
+.what_we_offer button {
+  background-color: #20b789;
+  font-size: 1.3em;
+  letter-spacing: 2px;
+  border: none;
+  padding: 1em;
+  position: absolute;
+  left: 0;
+  transition: left .8s ease;
+  -o-transition: left .8s ease;
+  -moz-transition: left .8s ease;
+  -webkit-transition: left .8s ease;
 }

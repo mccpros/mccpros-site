@@ -15,20 +15,32 @@ class OfferItem extends Component {
   renderOfferDetails() {
     let { data } = this.props;
 
-    data.details.map(d => {
-      
-    })
+    return data.details.map((d, i) => {
+      return <li className='lato' key={ i }>{ d }</li>;
+    });
   }
 
   render() {
     let { data } = this.props;
 
     return (
-     <div className='offer-item'>
+     <div
+       className='offer-item col-xs-6'
+       style={ {
+         opacity: this.props.oppPosition === this.props.positionName ?
+                  .4 :
+                  1
+       } }>
 
-        <h2>{ data.name }</h2>
+        <h2 className='arvo title'>{ data.name }</h2>
 
-        { this.renderOfferDetails() }
+        <p className='lato'>{ data.desc }</p>
+
+        <h3 className='arvo green title'>includes</h3>
+
+        <ul className="offer-includes no-padding">
+          { this.renderOfferDetails() }
+        </ul>
 
       </div>
     );
