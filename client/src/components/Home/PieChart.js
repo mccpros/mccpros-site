@@ -17,7 +17,7 @@ class PieChart extends Component {
 
   render() {
     return (
-      <svg width='auto' viewBox='125 125 150 150' id='pie-1' className='pie'>
+      <svg width='100%' viewBox='125 125 150 150' id='pie-1' className='pie'>
         <circle className='pie-ring' cx='200' cy='200' r='15.91549430918952' fill='transparent' stroke='#d2d3d4' strokeWidth='100'></circle>
 
         <Segment
@@ -85,7 +85,7 @@ class Text extends Component {
         className={ this.props.animated
                     ? 'percent-text animate mcc-show'
                     : 'percent-text mcc-hide' }
-        fontFamily='Roboto'
+        fontFamily='Lato'
         fontSize='8'
         fontWeight='100'
         fill='#fff'>

@@ -5,6 +5,7 @@ import Canvas from './Canvas';
 import WhatLi from './WhatLi';
 import PieChart from './PieChart';
 import Legend from './Legend';
+import OfferList from './OfferList';
 // We should probably check prop types
 // const propTypes = {
 //
@@ -54,17 +55,29 @@ class Home extends Component {
 
               <div className='col-xs-12 col-md-7'>
 
-                <h4 className='what-title arvo'>we solve a majority of problems in 15 minutes or less</h4>
+                <h4 className='what-title arvo black'>we solve a majority of problems in 15 minutes or less</h4>
 
-              <div className="col-xs-4">
-                <Legend />
+                <div className="col-xs-4">
+                  <Legend />
+                </div>
+
+                <div className="col-xs-8">
+                  <PieChart />
+                </div>
+
               </div>
 
-              <div className="col-xs-8">
-                <PieChart />
+
+            </div>
+          </div>
+
+          <div className="container-fluid">
+            <div className="row">
+
+              <div className="col-xs-9 no-padding">
+                <OfferList />
               </div>
 
-              </div>
             </div>
           </div>
 
