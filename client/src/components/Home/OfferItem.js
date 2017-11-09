@@ -27,7 +27,7 @@ class OfferItem extends Component {
      <div
        className='offer-item col-xs-6'
        style={ {
-         opacity: this.props.oppPosition === this.props.positionName ?
+         opacity: this.props.oppPosition === this.props.positionName ? // Track based on the opposite, I know that's weird but it works...
                   .4 :
                   1
        } }>

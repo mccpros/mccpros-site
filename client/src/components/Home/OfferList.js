@@ -12,9 +12,9 @@ class OfferList extends Component {
     super(props);
 
     this.state = {
-      buttonPos: '0',
-      href: '/',
-      positionName: 'center',
+      buttonPos: '0',         // Current Position <- this is what will change
+      href: '/',              // Current Link
+      positionName: 'center', // Track Position by Name
       center: {
         href: '/',
         pos: '0'
@@ -35,13 +35,14 @@ class OfferList extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.getPositions);
+    window.addEventListener('resize', this.getPositions);  // Changes Variables
 
+    // Grab Elements
     this.buttonWrapper = document.getElementById('buttonWrapper'),
-    this.button = document.getElementById('learnButton'),
-    this.container = document.getElementById('what_we_offer'),
+    this.button        = document.getElementById('learnButton'),
+    this.container     = document.getElementById('what_we_offer'),
 
-    this.getPositions();
+    this.getPositions(); // Set Variables
   }
 
   componentWillUnmount() {
@@ -49,42 +50,49 @@ class OfferList extends Component {
   }
 
   getPositions() {
+    // Grab button width because it changes things
     let buttonWidth = this.button.clientWidth || this.button.offsetWidth;
 
+    // Grab width of container
     let fullWidth = this.buttonWrapper.clientWidth || this.buttonWrapper.offsetWidth;
 
-    let centerPos = (fullWidth  - buttonWidth) * .50;
-    let leftPos = (fullWidth - buttonWidth / 2) * .2;
-    let rightPos = (fullWidth  - buttonWidth / 2) * .74;
+    let centerPos = (fullWidth  - buttonWidth) * .50;    // When this button is centered
+    let leftPos   = (fullWidth - buttonWidth / 2) * .2;  // When the button should be left
+    let rightPos  = (fullWidth  - buttonWidth / 2) * .74;// When the button should be right
 
     this.setState({
       buttonPos: centerPos,
       center: { ...this.state.center, pos: centerPos },
-      left: { ...this.state.left, pos: leftPos },
-      right: { ...this.state.right, pos: rightPos }
+      left:   { ...this.state.left,   pos: leftPos },
+      right:  { ...this.state.right,  pos: rightPos }
     })
   }
 
   hoverHandler(e) {
     let containerWidth = this.container.offsetWidth || this.container.clientWidth;
-    let threshold = containerWidth / 2;
+    let threshold = containerWidth / 2; // Grab the middle of container
 
     if(e.pageX < threshold) {
+      // If left
       this.setState({
         buttonPos: this.state.left.pos,
         href: this.state.left.href,
         positionName: 'left'
       });
+
     } else {
+      // If right
       this.setState({
         buttonPos: this.state.right.pos,
         href: this.state.right.href,
         positionName: 'right'
       });
+
     };
   }
 
   resetButtonPos() {
+    // Center if not hovering
     this.setState({
       buttonPos: this.state.center.pos,
       href: this.state.center.href,
@@ -99,6 +107,7 @@ class OfferList extends Component {
        onMouseLeave={ this.resetButtonPos }
        className='what_we_offer'
        id='what_we_offer'>
+
         <OfferItem
           {...this.state}
           oppPosition='right'

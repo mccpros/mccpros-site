@@ -56,6 +56,10 @@ body, #root, #canvas-wrapper {
   margin-top: -2em;
 }
 
+.what-container {
+  padding-bottom: 10em;
+}
+
 .what-list {
   margin: 3em 0 0 4em;
   font-size: 1.25em;
@@ -233,4 +237,18 @@ ul.offer-includes li {
   -o-transition: left .8s ease;
   -moz-transition: left .8s ease;
   -webkit-transition: left .8s ease;
+}
+
+.parallax-wrapper {
+  background-image: url('/assets/skyFront.png'); 
+}
+
+.parallax-wrapper::after {
+  content: '';
+  height: 100px;
+  width: 100%;
+  background-color: #20b789;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

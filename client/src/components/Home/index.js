@@ -6,6 +6,7 @@ import WhatLi from './WhatLi';
 import PieChart from './PieChart';
 import Legend from './Legend';
 import OfferList from './OfferList';
+import Parallax from './Parallax';
 // We should probably check prop types
 // const propTypes = {
 //
@@ -75,6 +76,9 @@ class Home extends Component {
                 <h2 className='arvo title white'>what we <span className="green">offer</span></h2>
                 <OfferList />
               </div>
+
+
+              <Parallax />
 
             </div>
           </div>
