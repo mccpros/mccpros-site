@@ -102,44 +102,47 @@ class OfferList extends Component {
 
   render() {
     return (
-     <div
-       onMouseMove={ this.hoverHandler }
-       onMouseLeave={ this.resetButtonPos }
-       className='what_we_offer'
-       id='what_we_offer'>
+      <div className='col-xs-9 offer-container white'>
+        <h2 className='arvo title white'>what we <span className="green">offer</span></h2>
+        <div
+         onMouseMove={ this.hoverHandler }
+         onMouseLeave={ this.resetButtonPos }
+         className='what_we_offer'
+         id='what_we_offer'>
 
-        <OfferItem
-          {...this.state}
-          oppPosition='right'
-          data={ {
-            name: 'ramp',
-            desc: 'Lorem upsume dolor sit amet, consectetur adipiscing elit. Nunc vel iaculis elit. Fusce vehicula turpis massa, eu suscupit erat commodo eget.',
-            details: ['Lorem ipsum dolor sit amet', 'Nunc vel ialculis elit', 'Fusce vehicula turpis massa', 'Nunc vel ialculis elit']
-        } } />
+          <OfferItem
+            {...this.state}
+            oppPosition='right'
+            data={ {
+              name: 'ramp',
+              desc: 'Lorem upsume dolor sit amet, consectetur adipiscing elit. Nunc vel iaculis elit. Fusce vehicula turpis massa, eu suscupit erat commodo eget.',
+              details: ['Lorem ipsum dolor sit amet', 'Nunc vel ialculis elit', 'Fusce vehicula turpis massa', 'Nunc vel ialculis elit']
+          } } />
 
-        <hr className='offer-break'/>
+          <hr className='offer-break'/>
 
-        <OfferItem
-          {...this.state}
-          oppPosition='left'
-          data={ {
-            name: 'procare',
-            desc: 'Lorem upsume dolor sit amet, consectetur adipiscing elit. Nunc vel iaculis elit. Fusce vehicula turpis massa, eu suscupit erat commodo eget.',
-            details: ['Lorem ipsum dolor sit amet', 'Nunc vel ialculis elit', 'Fusce vehicula turpis massa', 'Nunc vel ialculis elit']
-        } } />
+          <OfferItem
+            {...this.state}
+            oppPosition='left'
+            data={ {
+              name: 'procare',
+              desc: 'Lorem upsume dolor sit amet, consectetur adipiscing elit. Nunc vel iaculis elit. Fusce vehicula turpis massa, eu suscupit erat commodo eget.',
+              details: ['Lorem ipsum dolor sit amet', 'Nunc vel ialculis elit', 'Fusce vehicula turpis massa', 'Nunc vel ialculis elit']
+          } } />
 
-        <div id='buttonWrapper' className='offer-button-wrapper relative'>
-          <a href={ this.state.href }>
-            <button
-              id='learnButton'
-              className='arvo'
-              style={ {
-                left: `${this.state.buttonPos}px`
-              } }
-              >Learn More</button>
-          </a>
+          <div id='buttonWrapper' className='offer-button-wrapper relative'>
+            <a href={ this.state.href }>
+              <button
+                id='learnButton'
+                className='arvo white'
+                style={ {
+                  left: `${this.state.buttonPos}px`
+                } }
+                >Learn More</button>
+            </a>
+          </div>
+
         </div>
-
       </div>
     );
   }

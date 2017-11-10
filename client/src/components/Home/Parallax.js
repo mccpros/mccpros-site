@@ -6,18 +6,18 @@ class Parallax extends Component {
     super(props);
 
     this.state = {
-      height: 0,
-      y: -100,
-      scrollStart: 0
+      height: 0,     // Container Height
+      y: -100,       // Parallax Pos
+      scrollStart: 0 // Start the animation
     }
 
-    this.offset = -80,
+    this.offset = -80;  // Offset ( Instead of starting at 0 )
     this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
-    this.getHeight();
+    this.setContainerHeight();
   }
 
   componentWillUnmount() {
@@ -26,26 +26,30 @@ class Parallax extends Component {
 
   handleScroll() {
     if(this.props.animated && !this.state.scrollStart) {
+      // As soon as the Element is on screen
+      // Set start point
       return this.setState({ scrollStart: window.scrollY }, this.parallax);
     }
 
     if(this.props.animated) {
+      // If we already have a start, go for it
       this.parallax();
     }
   }
 
   parallax() {
-    let scrollPos = window.scrollY;
-    let relativeToElementPos = this.state.scrollStart - scrollPos;
+    let scrollPos = window.scrollY; // Current scroll
+    let relativeToElementPos = this.state.scrollStart - scrollPos; // Plus starting position
     let speed = 0.13;
 
-    let pos = relativeToElementPos * speed;
-    pos += this.offset;
+    let pos = relativeToElementPos * speed; // New Postion
+    pos += this.offset;                     // Plus offset
 
     this.setState({ y: pos });
   }
 
-  getHeight() {
+  setContainerHeight() {
+    // Match the height of sibling div
     let newHeight = document.querySelector('.offer-container').clientHeight ||
                       document.querySelector('.offer-container').offsetHeight;
 

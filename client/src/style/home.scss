@@ -240,7 +240,7 @@ ul.offer-includes li {
 }
 
 .parallax-wrapper {
-  background-image: url('/assets/skyFront.png'); 
+  background-image: url('/assets/skyFront.png');
 }
 
 .parallax-wrapper::after {
@@ -251,4 +251,65 @@ ul.offer-includes li {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.why_were_different {
+  min-height: 200px;
+  background-color: #fcfcfc;
+  display: inline-block;
+  height: 100%;
+}
+
+.different-container {
+  height: 740px;
+}
+
+.different-text h2.title {
+  font-size: 1.3em;
+}
+
+.different-text {
+  font-size: 1.4em;
+  letter-spacing: 1px;
+  padding: 8em 10em !important;
+}
+
+.different-text p {
+  margin: 2em 0;
+}
+
+.why-heroes-img {
+  background-image: url(/assets/why-heroes.png);
+  height: 740px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.stylized-header {
+  position: absolute;
+  left: 0;
+  bottom: -28px;
+  margin: 0;
+  font-size: 5.8em;
+  text-transform: uppercase;
+  opacity: .3;
+  letter-spacing: 10px;
+}
+
+div.animated-cover {
+  position:absolute;
+  top:0; bottom:0; right:0;
+  width: 100%;
+  background: -webkit-linear-gradient(left,rgba(0,0,0,0) 0%,rgba(252,252,252,1) 100%);
+  background: linear-gradient(to right,rgba(0,0,0,0) 0%,rgba(252,252,252,1) 100%);
+  background: -moz-linear-gradient(left,rgba(0,0,0,0) 0%, rgba(252,252,252,1) 100%);
+}
+
+div.animated-cover.disappear {
+
+}
+
+div.animated-cover.appear {
+
 }

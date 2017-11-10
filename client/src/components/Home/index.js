@@ -7,6 +7,7 @@ import PieChart from './PieChart';
 import Legend from './Legend';
 import OfferList from './OfferList';
 import Parallax from './Parallax';
+import WhyWereDifferent from './WhyWereDifferent';
 // We should probably check prop types
 // const propTypes = {
 //
@@ -43,7 +44,9 @@ class Home extends Component {
 
           <div className='what-container container-fluid'>
             <div className="row">
+
               <div className="col-xs-12 col-md-4 col-md-offset-1">
+
                 <h2 className='arvo title black'>
                   <span className='green'>what</span> we do
                 </h2>
@@ -58,9 +61,7 @@ class Home extends Component {
 
                 <Legend />
 
-                <div className="col-xs-8">
-                  <PieChart />
-                </div>
+                <PieChart />
 
               </div>
 
@@ -69,16 +70,25 @@ class Home extends Component {
           </div>
 
           <div className='container-fluid'>
-
             <div className='row'>
 
-              <div className='col-xs-9 offer-container white'>
-                <h2 className='arvo title white'>what we <span className="green">offer</span></h2>
-                <OfferList />
-              </div>
-
+              <OfferList />
 
               <Parallax />
+
+            </div>
+          </div>
+
+          <div className='container-fluid no-padding'>
+            <div className='row'>
+
+              <div className='col-xs-12'>
+
+                <WhyWereDifferent />
+
+              </div>
+              
+              <div className="separator"></div>
 
             </div>
           </div>

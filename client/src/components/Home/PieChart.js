@@ -17,61 +17,63 @@ class PieChart extends Component {
 
   render() {
     return (
-      <svg width='100%' viewBox='125 125 150 150' id='pie-1' className='pie'>
-        <circle className='pie-ring' cx='200' cy='200' r='15.91549430918952' fill='transparent' stroke='#d2d3d4' strokeWidth='100'></circle>
+      <div className='col-xs-8'>
+        <svg width='100%' viewBox='125 125 150 150' id='pie-1' className='pie'>
+          <circle className='pie-ring' cx='200' cy='200' r='15.91549430918952' fill='transparent' stroke='#d2d3d4' strokeWidth='100'></circle>
 
-        <Segment
+          <Segment
+              {...this.props}
+              color='#8064a2'
+              dasharray0={101}
+              dasharray1={0} />
+
+          <Segment
+              {...this.props}
+              color='#34cfa9'
+              dasharray0={28}
+              dasharray1={72} />
+
+          <Segment
+              {...this.props}
+              color='#c0504d'
+              dasharray0={14}
+              dasharray1={86} />
+
+          <Segment
+              {...this.props}
+              color='#4f81bd'
+              dasharray0={7}
+              dasharray1={93} />
+
+
+          <circle className='pie-hole' cx='200' cy='200' r='36.7887357729738' fill='#fff'></circle>
+
+          <Text
             {...this.props}
-            color='#8064a2'
-            dasharray0={101}
-            dasharray1={0} />
+            x='140'
+            y='210'
+            percent='72%' />
 
-        <Segment
+          <Text
             {...this.props}
-            color='#34cfa9'
-            dasharray0={28}
-            dasharray1={72} />
+            x='206'
+            y='155'
+            percent='7%'/>
 
-        <Segment
+          <Text
             {...this.props}
-            color='#c0504d'
-            dasharray0={14}
-            dasharray1={86} />
+            x='225'
+            y='165'
+            percent='7%'/>
 
-        <Segment
+          <Text
             {...this.props}
-            color='#4f81bd'
-            dasharray0={7}
-            dasharray1={93} />
+            x='240'
+            y='190'
+            percent='14%' />
 
-
-        <circle className='pie-hole' cx='200' cy='200' r='36.7887357729738' fill='#fff'></circle>
-
-        <Text
-          {...this.props}
-          x='140'
-          y='210'
-          percent='72%' />
-
-        <Text
-          {...this.props}
-          x='206'
-          y='155'
-          percent='7%'/>
-
-        <Text
-          {...this.props}
-          x='225'
-          y='165'
-          percent='7%'/>
-
-        <Text
-          {...this.props}
-          x='240'
-          y='190'
-          percent='14%' />
-
-      </svg>
+        </svg>
+      </div>
     );
   }
 }
