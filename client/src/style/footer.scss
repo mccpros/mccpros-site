@@ -1,0 +1,113 @@
+.footer-container {
+  padding-bottom: 5em;
+}
+
+.meet-the-team {
+  background-color: #07638F;
+  padding-top: 2em;
+}
+
+.meet-the-team h2 {
+  margin-left: 4em !important;
+  margin-top: 1em !important;
+}
+
+.hero-label p, .hero-label hr {
+  margin: .7em 0;
+}
+
+.hero-label p.arvo {
+  font-size: 1.1em;
+  letter-spacing: 1px;
+}
+
+.hero-label p.lato {
+  font-size: .9em;
+  letter-spacing: 1px;
+  font-weight: 100;
+}
+
+.partners {
+  margin-top: 2em;
+}
+
+.partners h3 {
+  letter-spacing: 2px;
+  font-size: 2em;
+}
+
+.footer-images-wrapper {
+  margin: 3em 0;
+}
+
+.footer-images-wrapper img {
+  margin: 0 2em;
+  opacity: .8;
+}
+
+.partners hr {
+  width: 85%;
+  border-color: #00638D;
+}
+
+.footer-nav {
+  letter-spacing: 6px;
+  margin: 3em 0;
+}
+
+.footer-nav a {
+  margin: 0 2em;
+  font-size: 1.4em;
+}
+
+.footer-contact {
+  margin: 4em;
+}
+
+.footer-contact img {
+  width: 220px;
+}
+
+.footer-contact img, div.right  {
+  display: inline-block;
+}
+
+.footer-contact img {
+  margin-top: -4.8em;
+}
+
+div.right {
+  margin: 0 2em;
+}
+
+div.right div {
+  text-align: left;
+}
+
+.social {
+  font-size: 2.3em;
+  margin-top: .3em;
+}
+
+.social * {
+  margin-right: .2em;
+}
+
+.copyright {
+  letter-spacing: 1px;
+  margin: 1em;
+  opacity: .7;
+}
+
+@media (max-width: 543px) {
+  .footer-contact img {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 1025px) {
+  .footer-nav a {
+    display: block;
+    margin: 1em 0;
+  }
+}

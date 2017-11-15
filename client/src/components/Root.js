@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import Router from '../components/Router'
+import Router from '../components/Router';
 // We should probably check prop types
 // const propTypes = {
 //

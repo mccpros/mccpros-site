@@ -24,6 +24,16 @@ export default function info(state = { loading: true }, action) { // Init with l
         loading: false,
         home: action.home // Got em
       };
+    case ActionTypes.RECEIVE_HEROES:
+      return {
+        ...state,
+        heroes: action.heroes // Got em
+      };
+    case ActionTypes.RECEIVE_PARTNERS:
+      return {
+        ...state,
+        partners: action.partners // Got em
+      };
     default:
       return state;
   }

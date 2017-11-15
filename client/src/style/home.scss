@@ -297,19 +297,83 @@ ul.offer-includes li {
   letter-spacing: 10px;
 }
 
-div.animated-cover {
-  position:absolute;
-  top:0; bottom:0; right:0;
-  width: 100%;
-  background: -webkit-linear-gradient(left,rgba(0,0,0,0) 0%,rgba(252,252,252,1) 100%);
-  background: linear-gradient(to right,rgba(0,0,0,0) 0%,rgba(252,252,252,1) 100%);
-  background: -moz-linear-gradient(left,rgba(0,0,0,0) 0%, rgba(252,252,252,1) 100%);
+.who-container {
+  padding: 8em 0;
 }
 
-div.animated-cover.disappear {
-
+.quote-container {
+  text-align: center;
+  margin: 10em 0;
 }
 
-div.animated-cover.appear {
+.quote-container p {
+  width: 50%;
+  margin-top: 3em;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  letter-spacing: 1px;
+}
 
+.quote-container p::before,
+.quote-container p::after {
+  content: '"';
+  position: absolute;
+  font-size: 8em;
+  font-style: italic;
+  opacity: .3;
+}
+
+.quote-container p::before {
+  top: -.6em;
+  left: -.4em;
+}
+
+.quote-container p::after {
+  bottom: -1em;
+  right: -.1em;
+}
+
+.slick-list {
+  z-index: 1;
+}
+
+.slick-initialized.slick-slider {
+  position: relative;
+}
+
+i.icon-right-open-mini,
+i.icon-left-open-mini {
+  z-index: 5;
+  position: absolute;
+  top: 1.5em;
+  font-size: 6em;
+  color: #20b789;
+  transition: all .2s ease;
+  -o-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+}
+
+i.icon-right-open-mini {
+  right: 0;
+}
+
+i.icon-right-open-mini:hover,
+i.icon-left-open-mini:hover {
+  color: #3cdfae;
+  cursor: pointer;
+}
+
+.who-button-wrapper {
+  text-align: center;
+}
+
+.who-button-wrapper button {
+  padding: .6em 2.4em;
+  background-color: #20b789;
+  border: none;
+  letter-spacing: 1px;
+  font-size: 1.2em;
+  border-radius: 2px;
 }

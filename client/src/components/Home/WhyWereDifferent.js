@@ -10,40 +10,58 @@ class WhyWereDifferent extends Component {
   constructor(props) {
     super(props);
 
+    this.renderP = this.renderP.bind(this);
+  }
+
+  renderP () {
+    let { acf } = this.props.home;
+
+    return acf.why_were_different.split('|').map((s, i) => {
+      if(i === 0) this.keyword = s;
+      return (<p key={i}>{s}</p>);
+    });
   }
 
   render() {
     return (
-      <div className='why_were_different'>
+      <div className='container-fluid no-padding'>
+        <div className='row relative'>
 
-        <div className='col-xs-12 col-md-6 no-padding'>
+          <div className='col-xs-12'>
+            <div className='why_were_different'>
 
-          <div className='why-heroes-img'></div>
+              <div className='col-xs-12 col-md-6 no-padding'>
 
-        </div>
+                <div className='why-heroes-img'></div>
 
-        <div className='col-xs-12 col-md-6 different-container'>
+              </div>
 
-          <div className='different-text black left lato'>
-            <h2 className='arvo title'>
-              <span className="green">why</span> we're different
-            </h2>
+              <div className='col-xs-12 col-md-6 different-container'>
 
-            <p>Supportive.</p>
-            <p>We utilize technology to be as user-friendly as possible, resulting
-            in users with the ability to solve basic problems themselves. We acheive
-            this by creating intuitive systems and supplying users with cutting-edge tools.</p>
-            <p>With custom built applications like <a href='/learningportal'>The Learning Portal</a>,
-            we allow our customers to stay independent and knowledgable about their environment.</p>
+                <div className='different-text black left lato'>
+                  <h2 className='arvo title'>
+                    <span className="green">why</span> we're different
+                    <CoverAnimation />
+                  </h2>
+
+                { this.renderP() }
+
+                </div>
+
+
+                <h4 className='stylized-header arvo'>
+                  { this.keyword.substring(0, this.keyword.length - 1) || '' }
+                  <CoverAnimation />
+                </h4>
+              </div>
+            </div>
           </div>
 
+          <div className="separator"></div>
 
-          <h4 className='stylized-header arvo'>
-            supportive
-            <CoverAnimation />
-          </h4>
         </div>
       </div>
+
     );
   }
 }

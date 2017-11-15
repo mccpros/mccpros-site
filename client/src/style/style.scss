@@ -1,6 +1,9 @@
 @import './home.scss';
+@import './footer.scss';
 @import './fontello.scss';
 @import './bootstrap.min.scss';
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 h2.title {
   margin: 0;
@@ -8,6 +11,7 @@ h2.title {
   font-weight: 100;
   font-size: 1.8em;
   text-transform: uppercase;
+  position: relative;
 }
 
 h3.title {
@@ -16,6 +20,15 @@ h3.title {
   font-weight: 100;
   font-size: 1.5em;
   text-transform: uppercase;
+}
+
+h5.title {
+  margin: 0;
+  letter-spacing: 10px;
+  font-weight: 100;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  position: relative;
 }
 
 .arvo {
@@ -40,6 +53,10 @@ h3.title {
 
 .green {
   color: #20b789;
+}
+
+.blue {
+  color: #00638D;
 }
 
 .relative {
@@ -69,4 +86,24 @@ h3.title {
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+div.animated-cover {
+  position:absolute;
+  top:0; bottom:0; right:0;
+  background: -webkit-linear-gradient(left,rgba(0,0,0,0) 0%,rgba(252,252,252,1) 10%);
+  background: linear-gradient(to right,rgba(0,0,0,0) 0%,rgba(252,252,252,1) 10%);
+  background: -moz-linear-gradient(left,rgba(0,0,0,0) 0%, rgba(252,252,252,1) 10%);
+  transition: width 1.2s ease-out;
+  -o-transition: width 1.2s ease-out;
+  -moz-transition: width 1.2s ease-out;
+  -webkit-transition: width 1.2s ease-out;
+}
+
+div.animated-cover.disappear {
+  width: 100%;
+}
+
+div.animated-cover.appear {
+  width: 0%
 }

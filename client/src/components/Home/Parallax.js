@@ -7,11 +7,11 @@ class Parallax extends Component {
 
     this.state = {
       height: 0,     // Container Height
-      y: -100,       // Parallax Pos
+      y: 40,       // Parallax Pos
       scrollStart: 0 // Start the animation
     }
 
-    this.offset = -80;  // Offset ( Instead of starting at 0 )
+    this.offset = 40;  // Offset ( Instead of starting at 0 )
     this.handleScroll = this.handleScroll.bind(this);
   }
 
@@ -40,7 +40,7 @@ class Parallax extends Component {
   parallax() {
     let scrollPos = window.scrollY; // Current scroll
     let relativeToElementPos = this.state.scrollStart - scrollPos; // Plus starting position
-    let speed = 0.13;
+    let speed = 0.12;
 
     let pos = relativeToElementPos * speed; // New Postion
     pos += this.offset;                     // Plus offset
@@ -53,7 +53,7 @@ class Parallax extends Component {
     let newHeight = document.querySelector('.offer-container').clientHeight ||
                       document.querySelector('.offer-container').offsetHeight;
 
-    this.setState({ height: newHeight + 1 });
+    this.setState({ height: newHeight });
   }
 
   render() {
@@ -66,7 +66,7 @@ class Parallax extends Component {
                transform: `translateY(${this.state.y}px)`
              } }>
           <img style={{
-              marginLeft: '-10em',
+              marginLeft: '-3em',
               height: '1150px'
             }} src="/assets/hero.png" alt=""/>
         </div>

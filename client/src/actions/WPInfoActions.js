@@ -21,32 +21,73 @@ export function receiveHome(data) {
   return { type: types.RECEIVE_HOME, home: data }; // Send info
 }
 
+export function receiveHeroes(data) {
+  return { type: types.RECEIVE_HEROES, heroes: data }; // Send info
+}
+
+export function receivePartners(data) {
+  return { type: types.RECEIVE_PARTNERS, partners: data }; // Send info
+}
+
 export function fetchInfo(data) {
   return dispatch => {
     dispatch(fetchingInfo()); // 'Loading...'
 
     // API Call
-    // axios.get(url('/'))
-    //   .then(res => {
-        dispatch(receiveInfo({})); // Got em
-      // })
-      // .catch(err => {
-      //   console.log('err', err);
-      // })
+    axios.get(url('/'))
+      .then(res => {
+        dispatch(receiveInfo(res.data)); // Got em
+      })
+      .catch(err => {
+        console.log('err', err);
+      })
   };
 }
 
 export function fetchHome(data) {
+  let returnObj = {};
+
   return dispatch => {
     dispatch(fetchingHome()); // 'Loading...'
 
     // API Call
-    // axios.get(url('/wp/v2/home'))
-    //   .then(res => {
-        dispatch(receiveHome({})); // Got em
-      // })
-      // .catch(err => {
-      //   console.log('err', err);
-      // })
+    axios.get(url('/wp/v2/home'))
+      .then(res => {
+        returnObj = res.data[0];
+        return axios.get(url('/wp/v2/testimonial'));
+      })
+      .then(res => {
+        returnObj.acf = { ...returnObj.acf, testimonials: res.data }
+        dispatch(receiveHome(returnObj));
+      })
+      .catch(err => {
+        console.log('err', err);
+      })
+  };
+}
+
+export function fetchHeroes() {
+  return dispatch => {
+    // API Call
+    axios.get(url('/wp/v2/superhero'))
+      .then(res => {
+        dispatch(receiveHeroes(res.data)); // Got em
+      })
+      .catch(err => {
+        console.log('err', err);
+      })
+  };
+}
+
+export function fetchPartners() {
+  return dispatch => {
+    // API Call
+    axios.get(url('/wp/v2/partners'))
+      .then(res => {
+        dispatch(receivePartners(res.data)); // Got em
+      })
+      .catch(err => {
+        console.log('err', err);
+      })
   };
 }

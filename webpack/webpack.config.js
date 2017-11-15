@@ -44,7 +44,21 @@ let config = {
         }, {
           loader: 'sass-loader' // compiles SASS to CSS
         }]
-     }
+     },
+     {
+      test: /\.(ttf|eot|woff|woff2)$/,
+      loader: 'file-loader',
+      options: {
+        name: 'fonts/[name].[ext]',
+      },
+    },
+    {
+      test: /\.(jpg|png|gif|svg)$/,
+      loader: 'file-loader',
+      options: {
+        name: '[path][name].[hash].[ext]',
+      },
+    },
    ]
   },
   devServer: {
