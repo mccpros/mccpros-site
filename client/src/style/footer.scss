@@ -7,9 +7,23 @@
   padding-top: 2em;
 }
 
+.meet-the-team .row div img {
+  max-width: 710px;
+}
+
 .meet-the-team h2 {
   margin-left: 4em !important;
   margin-top: 1em !important;
+}
+
+.meet-the-team p.desc {
+  margin-left: 6.5em !important;
+  margin-right: 6.5em !important;
+  margin-top: 5em !important;
+  font-size: 1.1em;
+  letter-spacing: 2px;
+  font-weight: 100;
+  line-height: 28px;
 }
 
 .hero-label p, .hero-label hr {
@@ -25,6 +39,10 @@
   font-size: .9em;
   letter-spacing: 1px;
   font-weight: 100;
+}
+
+.hero-label div {
+  margin-top: 25em;
 }
 
 .partners {
@@ -109,5 +127,57 @@ div.right div {
   .footer-nav a {
     display: block;
     margin: 1em 0;
+  }
+}
+
+@media (max-width: 1195px) {
+  div#getHeight {
+    margin-top: 4em;
+  }
+}
+@media (max-width: 1770px) {
+  .hero-label div {
+    margin-top: 20em;
+  }
+}
+
+@media (max-width: 1490px) {
+  .hero-label div {
+    margin-top: 15em;
+  }
+}
+
+@media (max-width: 1282px) {
+  .hero-label div {
+    margin-top: 10em;
+  }
+  .meet-the-team p.desc {
+    margin-top: 1.5em !important;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 526px) {
+  .hero-label div {
+    margin-top: 7em;
+    font-size: .8em;
+  }
+}
+
+@media (max-width: 426px) {
+  .hero-label div {
+    margin-top: 3em;
+    font-size: .8em;
+  }
+}
+
+@media (max-width: 735px) {
+  .meet-the-team p.desc {
+    margin-left: 2em !important;
+    margin-right: 2em !important;
+  }
+  .meet-the-team h2{
+    margin-left: 1.15em !important;
+    margin-right: 2em !important;
   }
 }

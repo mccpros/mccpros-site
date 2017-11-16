@@ -22,7 +22,7 @@ class Legend extends Component {
             we solve a majority of problems in 15 minutes or less
           </h4>
 
-          <div className="col-xs-4">
+          <div className='col-xs-4 col-md-6'>
             <div className={ this.props.animated ?
                 'animate mcc-show legend' :
                 'mcc-hide legend' }>

@@ -17,11 +17,24 @@ class WhatWeDo extends Component {
   }
 
   renderWhats(whats) {
-    return whats.split('|').map((w, idx) => {
+    let dividedWhats = [];
+    whats = whats.split('|');
+    while(whats.length) dividedWhats.push(whats.splice(0,4));
+
+    return dividedWhats.map((arr, idx) => {
       return (
-        <WhatLi key={idx} name={w} />
+        <div
+          key={idx}
+          className='col-xs-12 col-md-6 col-lg-3'>
+          {
+            arr.map((w, i) => {
+              return <WhatLi key={i} name={w} />
+            })
+          }
+        </div>
       );
     });
+    return <div></div>;
   }
 
   render() {
@@ -31,7 +44,7 @@ class WhatWeDo extends Component {
       <div className='what-container container-fluid'>
         <div className="row">
 
-          <div className="col-xs-12 col-md-4 col-md-offset-1">
+          <div className="col-xs-12 col-md-10 col-md-offset-1">
 
             <h2 className='arvo title black'>
               <span className='green'>what</span> we do
@@ -43,13 +56,6 @@ class WhatWeDo extends Component {
 
           </div>
 
-          <div className='col-xs-12 col-md-5 col-md-offset-1 pie-wrapper'>
-
-            <Legend />
-
-            <PieChart />
-
-          </div>
 
 
         </div>

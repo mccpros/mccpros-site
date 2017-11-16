@@ -21,15 +21,18 @@ class MeetTheTeam extends Component {
       <div
         className='meet-the-team relative'>
         <div className='row'>
-          <div className='col-xs-6'>
+          <div className='col-xs-12 col-lg-6'>
             <h2 className='arvo title white'>
               meet the <span className='green'>team</span>
             </h2>
+            <p className='desc white lato'>At Merino Computer Concepts, your organization isn't supported by one expert,
+              but an entire team. Our dedicated staff is a venerable "Avengers" of IT Superheroes.
+              Each Superhero has unique skills to prevent and solve common problems.</p>
           </div>
 
-          <div id='getHeight' className='col-xs-6 relative'>
+          <div id='getHeight' className='col-xs-12 col-lg-6 relative'>
 
-            <div className='col-xs-3 hero-label white relative'>
+            <div className='col-xs-offset-1 col-xs-3 col-lg-offset-0 col-lg-3 hero-label white relative'>
 
               <div>
                 <p className='arvo'>{hero.acf.name}</p>
@@ -39,7 +42,7 @@ class MeetTheTeam extends Component {
             </div>
 
             <img
-              className='col-xs-9'
+              className='col-xs-8 col-lg-9'
               src={hero.acf.close_up} alt=""/>
           </div>
 
@@ -49,7 +52,6 @@ class MeetTheTeam extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         { this.props.heroes ?

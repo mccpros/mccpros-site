@@ -35,6 +35,8 @@ class OfferList extends Component {
   }
 
   componentDidMount() {
+    if(window.innerWidth < 768) return;
+
     window.addEventListener('resize', this.getPositions);  // Changes Variables
 
     // Grab Elements
@@ -56,9 +58,9 @@ class OfferList extends Component {
     // Grab width of container
     let fullWidth = this.buttonWrapper.clientWidth || this.buttonWrapper.offsetWidth;
 
-    let centerPos = (fullWidth  - buttonWidth) * .50;    // When this button is centered
+    let centerPos = (fullWidth - buttonWidth) * .50;    // When this button is centered
     let leftPos   = (fullWidth - buttonWidth / 2) * .2;  // When the button should be left
-    let rightPos  = (fullWidth  - buttonWidth / 2) * .74;// When the button should be right
+    let rightPos  = (fullWidth - buttonWidth / 2) * .74;// When the button should be right
 
     this.setState({
       buttonPos: centerPos,
@@ -69,6 +71,8 @@ class OfferList extends Component {
   }
 
   hoverHandler(e) {
+    if(window.innerWidth < 991) return;
+
     let containerWidth = this.container.offsetWidth || this.container.clientWidth;
     let threshold = containerWidth / 2; // Grab the middle of container
 
@@ -102,7 +106,7 @@ class OfferList extends Component {
 
   render() {
     return (
-      <div className='col-xs-9 offer-container white'>
+      <div className='col-xs-12 col-md-9 offer-container white'>
         <h2 className='arvo title white'>what we <span className="green">offer</span></h2>
         <div
          onMouseMove={ this.hoverHandler }

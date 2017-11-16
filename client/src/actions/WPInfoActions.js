@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes';
 import axios from 'axios';
 
 function url(path) {
-  return `http://localhost:8080/wp-json${path}`
+  return `http://192.168.150.115:8080/wp-json${path}`
 }
 
 export function fetchingInfo(data) {
@@ -84,6 +84,20 @@ export function fetchPartners() {
     // API Call
     axios.get(url('/wp/v2/partners'))
       .then(res => {
+        dispatch(receivePartners(res.data)); // Got em
+      })
+      .catch(err => {
+        console.log('err', err);
+      })
+  };
+}
+
+export function fetchPages() {
+  return dispatch => {
+    // API Call
+    axios.get(url('/wp/v2/custom_pages'))
+      .then(res => {
+        console.log(res);
         dispatch(receivePartners(res.data)); // Got em
       })
       .catch(err => {

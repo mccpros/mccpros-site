@@ -25,7 +25,7 @@ class OfferItem extends Component {
 
     return (
      <div
-       className='offer-item col-xs-6'
+       className='offer-item col-xs-12 col-md-6'
        style={ {
          opacity: this.props.oppPosition === this.props.positionName ? // Track based on the opposite, I know that's weird but it works...
                   .4 :
@@ -41,6 +41,12 @@ class OfferItem extends Component {
         <ul className="offer-includes no-padding">
           { this.renderOfferDetails() }
         </ul>
+
+        <a href='/ramp'>
+          <button className='arvo white static-button relative'>
+            Learn More
+          </button>
+        </a>
 
       </div>
     );
