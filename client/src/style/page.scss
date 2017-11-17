@@ -1,0 +1,53 @@
+.page-wrapper {
+  margin: 175px 0;
+}
+
+h1.page-title {
+  letter-spacing: 3px;
+}
+
+.page-content {
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  line-height: 32px;
+}
+
+.page-img {
+  float: right;
+  width: 200px;
+  height: auto;
+}
+
+.fixed-col {
+  position: relative;
+}
+
+.fixed-social a {
+  display: block;
+  font-size: 2em;
+}
+
+.fixed-contact {
+  padding: 1.2em;
+  background-color: #3379b8;
+  text-align: center;
+  width: 220px;
+}
+
+.fixed-contact h3 {
+  font-size: 1.3em;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.fixed-contact p {
+  letter-spacing: 1px;
+}
+
+.fixed-contact button {
+  background: none;
+  border: 2px solid;
+  border-radius: 1px;
+  padding: 0.5em;
+  width: 100%;
+}

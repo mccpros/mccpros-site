@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router';
 
 import HomeContainer from '../containers/HomeContainer';
+import PageContainer from '../containers/PageContainer';
 // We should probably check prop types
 // const propTypes = {
 //
@@ -17,13 +18,18 @@ class Router extends Component {
   renderRoutes() {
     let { pages } = this.props;
 
-
-    return <div></div>;
+    return pages.map((page, idx) => {
+      return (
+        <Route
+          exact
+          key={idx}
+          path={page.acf.url}
+          render={props => {
+            return <PageContainer pageId={page.id} {...this.props} />
+          }} />
+      );
+    });
     // return routeKeys.map((routeName, idx) => {
-    //
-    //   let route = routes[routeName];
-    //   let Component = this.state[route.componentName];
-    //   let exact = idx === 0 ? true : false;
     //
     //   return(
     //     <Route

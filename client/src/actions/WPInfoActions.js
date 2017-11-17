@@ -33,6 +33,10 @@ export function receivePages(data) {
   return { type: types.RECEIVE_PAGES, pages: data }; // Send info
 }
 
+export function receiveOnePage(data) {
+  return { type: types.RECEIVE_ONE_PAGE, page: data }; // Send info
+}
+
 export function fetchInfo(data) {
   return dispatch => {
     dispatch(fetchingInfo()); // 'Loading...'
@@ -99,9 +103,22 @@ export function fetchPartners() {
 export function fetchPages() {
   return dispatch => {
     // API Call
-    axios.get(url('/wp/v2/custom_pages'))
+    axios.get(url('/wp/v2/pages'))
       .then(res => {
         dispatch(receivePages(res.data)); // Got em
+      })
+      .catch(err => {
+        console.log('err', err);
+      })
+  };
+}
+
+export function fetchOnePage(id) {
+  return dispatch => {
+    // API Call
+    axios.get(url(`/wp/v2/pages/${id}`))
+      .then(res => {
+        dispatch(receiveOnePage(res.data)); // Got em
       })
       .catch(err => {
         console.log('err', err);
