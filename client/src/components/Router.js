@@ -12,38 +12,43 @@ class Router extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      home: HomeContainer,
-    }
   }
 
   renderRoutes() {
-    let { routes } = this.props;
-    let routeKeys = Object.keys(routes);
+    let { pages } = this.props;
 
-    return routeKeys.map((routeName, idx) => {
 
-      let route = routes[routeName];
-      let Component = this.state[route.componentName];
-      let exact = idx === 0 ? true : false;
-
-      return(
-        <Route
-          exact={ exact }
-          key={idx}
-          path={ route.path }
-          render={(props) => {
-            return <Component title={route.name} {...this.props} />;
-          }} />
-      );
-    })
+    return <div></div>;
+    // return routeKeys.map((routeName, idx) => {
+    //
+    //   let route = routes[routeName];
+    //   let Component = this.state[route.componentName];
+    //   let exact = idx === 0 ? true : false;
+    //
+    //   return(
+    //     <Route
+    //       exact={ exact }
+    //       key={idx}
+    //       path={ route.path }
+    //       render={(props) => {
+    //         return <Component title={route.name} {...this.props} />;
+    //       }} />
+    //   );
+    // })
   }
 
   render() {
     return (
       <div className='body-wrapper'>
 
-        { this.props.routes ?
+      <Route
+        path='/'
+        exact={ true }
+        render={(props) => {
+          return <HomeContainer title='Home' {...this.props} />;
+        }} />
+
+        { this.props.pages ?
           this.renderRoutes() :
           'Loading...' }
 

@@ -7,6 +7,7 @@ import WhatWeDo         from './WhatWeDo';
 import WhatWeOffer      from './WhatWeOffer';
 import WhyWereDifferent from './WhyWereDifferent';
 import WhoWeWorkWith    from './WhoWeWorkWith';
+import NavContainer     from '../../containers/NavContainer';
 import FooterContainer  from '../../containers/FooterContainer';
 
 // We should probably check prop types
@@ -23,6 +24,9 @@ class Home extends Component {
   renderHome() {
     return (
       <div>
+
+        <NavContainer {...this.props} />
+
         <div className='home-wrapper'>
 
           <Canvas />
@@ -54,6 +58,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="home-container">
 

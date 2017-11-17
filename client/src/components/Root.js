@@ -12,17 +12,7 @@ class Root extends Component {
   componentWillMount() {
     // Start with an action
     this.props.fetchInfo();
-  }
-
-  renderInfo() {
-    const { wpInfo } = this.props;
-
-    // If loading, say it
-    if(wpInfo && wpInfo.loading) {
-      return 'Loading...';
-    } else {
-      return wpInfo.data.name;
-    }
+    this.props.fetchPages();
   }
 
   render() {

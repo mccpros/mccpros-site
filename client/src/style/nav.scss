@@ -1,0 +1,85 @@
+.navbar-wrapper {
+  // padding: 1em;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  -webkit-transition: background-color .8s ease-out;
+  -moz-transition: background-color .8s ease-out;
+  -o-transition: background-color .8s ease-out;
+  transition: background-color .8s ease-out;
+}
+
+.nav-main-wrapper {
+  display: inline-block;
+}
+
+.main-ul {
+  display: inline-block;
+  margin: 0;
+  padding: 2em;
+  -webkit-transition: background-color 0s ease-out .8s;
+  -moz-transition: background-color 0s ease-out .8s;
+  -o-transition: background-color 0s ease-out .8s;
+  transition: background-color 0s ease-out .8s;
+}
+
+#canvas-wrapper {
+  background-color: pink;
+}
+
+.main-ul li {
+  list-style: none;
+  display: inline-block;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.main-ul li a {
+  padding: 2em 1em;
+}
+
+.sub-uls {
+  margin: 0;
+}
+.sub-ul {
+  display: none;
+  opacity: 0;
+  position: absolute;
+  padding: 0;
+  background-color: #00638D;
+  z-index: -1;
+  margin: 0;
+  -webkit-transition: all .2s ease-out;
+  -moz-transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+}
+
+.sub-ul:hover {
+  display: block;
+  opacity: 1;
+}
+
+.sub-ul li {
+  padding: .8em;
+  font-size: .95em;
+  font-weight: 100;
+  list-style: none;
+}
+.sub-ul li a {
+  color: #fff;
+}
+
+// .main-ul li:hover .sub-ul {
+//   display: block;
+// }
+
+.nav-img-wrapper {
+  display: inline-block;
+}
+
+.nav-img-wrapper img {
+  width: 180px;;
+}

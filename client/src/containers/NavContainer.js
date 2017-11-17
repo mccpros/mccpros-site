@@ -3,25 +3,22 @@ import { connect } from 'react-redux';
 
 // Most actions should happen right here
 // Let all the data fall to Child through props
-import { fetchInfo, fetchPages } from '../actions/WPInfoActions';
-import * as routes from '../constants/RouteConstants';
-import Root from '../components/Root';
+import { fetchPages} from '../actions/WPInfoActions';
+import Nav from '../components/Nav';
 
 // Don't render much in containers
 // But pass the props!
-const RootContainer = props => <Root {...props} />;
+const FooterContainer = props => <Nav {...props} />;
 
 // Where store/state becomes our props
 const mapStateToProps = (state) => {
-  const { wpInfo } = state; // Pull it out
-
+  const { pages } = state.wpInfo; // Pull it out
+  
   return { // Pass it along
-    wpInfo: wpInfo.data,
-    pages: wpInfo.pages,
+    pages
   };
 };
 
 export default connect(mapStateToProps, {
-  fetchInfo,
-  fetchPages
-})(RootContainer);
+  fetchPages,
+})(FooterContainer);
