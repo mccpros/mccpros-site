@@ -109,6 +109,7 @@ class Nav extends Component {
   returnNavItem(page, index, subNavs) {
     return (
       <NavItem
+        {...this.state}
         key={index}
         index={index}
         page={page}
@@ -183,6 +184,7 @@ class Nav extends Component {
         <div className='nav-img-wrapper'>
           <img src='/assets/mcc.png' alt=""/>
         </div>
+
         { this.props.pages && this.props.pages.length ?
           this.renderNavBar() :
           'Loading...'}

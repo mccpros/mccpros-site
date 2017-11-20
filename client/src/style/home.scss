@@ -1,5 +1,5 @@
 body, #root, #canvas-wrapper {
-  min-height: 100vh;
+  // min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
   background-color: white;
@@ -10,6 +10,10 @@ body, #root, #canvas-wrapper {
   top: 0;
   height: 100vh;
   width: 100vw;
+  background-image: url(/assets/header.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
 }
 
 .home-cta-wrapper {

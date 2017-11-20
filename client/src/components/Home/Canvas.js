@@ -55,7 +55,6 @@ class Canvas extends Component {
   render() {
     return (
       <div id='canvas-wrapper'>
-
       </div>
     );
   }

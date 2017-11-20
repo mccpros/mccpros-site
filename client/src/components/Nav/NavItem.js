@@ -12,14 +12,18 @@ class NavItem extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <li
         key={this.props.index}
         data-index={this.props.index}
         className='nav-item'>
         <a
+          style={{ color: this.props.color === '#fcfcfc' ?
+                     '' :
+                     '#fcfcfc' }}
           className='lato black'
-          href={this.props.page.acf.url}
+          href={ this.props.page.acf.url }
           onMouseEnter={ this.props.subNavs ? this.props.mouseOverHandler : null }
           onMouseLeave={ this.props.subNavs ? this.props.mouseOutHandler  : null }>
 
