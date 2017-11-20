@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
+import NavItem from './NavItem';
+
 // We should probably check prop types
 // const propTypes = {
 //
@@ -71,8 +73,6 @@ class Nav extends Component {
       newSubNavLib[m.title.rendered] = subNavs;  // Add to library
 
       this.subNavLib = newSubNavLib;
-
-      mainEls.push(this.returnNavItem(m, idx, subNavs)); // Get the Element for Parent while looping
     });
 
     // Loop through Sub Pages
@@ -80,6 +80,7 @@ class Nav extends Component {
     for(let i = 0; i < subNavKeys.length; i++) {
       if (this.subNavLib.hasOwnProperty(subNavKeys[i])) {
         let subNavArr = this.subNavLib[subNavKeys[i]]; // Sub Pages for one Parent
+        let mainNav   = main[i];  // Main Nav Data
 
         // Map through each subpage,
         // Push ONE <ul> for each Parent Page
@@ -88,7 +89,8 @@ class Nav extends Component {
             { subNavArr.map((s, i) => this.returnNavItem(s, i, null)) }
           </ul>
         );
-        subEls.push(subNav)
+
+        mainEls.push(this.returnNavItem(mainNav, i, subNav));
       }
     }
 
@@ -99,10 +101,6 @@ class Nav extends Component {
           className='main-ul'>
           { mainEls }
         </ul>
-        <ul
-          className='sub-uls'>
-          { subEls }
-        </ul>
       </div>
     );
   }
@@ -110,20 +108,15 @@ class Nav extends Component {
   // Creates <li> for all <ul> types
   returnNavItem(page, index, subNavs) {
     return (
-      <li
+      <NavItem
         key={index}
-        data-index={index}
-        className='nav-item'>
-        <a
-          className='lato black'
-          href={page.acf.url}
-          onMouseEnter={ subNavs && subNavs.length ? this.showSubNav : null}
-          onMouseLeave={ subNavs && subNavs.length ? this.hideSubNav : null}>
-
-          { page.title.rendered }
-
-        </a>
-      </li>
+        index={index}
+        page={page}
+        subNavs={subNavs && subNavs.length ? true : false}
+        mouseOverHandler={this.showSubNav}
+        mouseOutHandler={this.hideSubNav}>
+        { subNavs }
+      </NavItem>
     );
   }
 
@@ -183,8 +176,8 @@ class Nav extends Component {
      <div className='navbar-wrapper'
        style={{
          backgroundColor: this.state.color,
-         boxShadow: this.state.color === '#fcfcfc' ?
-                    'rgba(0, 0, 0, 0.7) 0px 0px 8px 0px' :
+         borderBottom: this.state.color === '#fcfcfc' ?
+                    '2px solid #00638D' :
                     '0px'
         }}>
         <div className='nav-img-wrapper'>
