@@ -115,9 +115,12 @@ class Content extends Component {
               { page.title.rendered }
             </h1>
 
-            <img
-              className='page-img'
-              src={page.acf.hero_image} alt="" />
+            { page.acf.hero_image ?
+              <img
+                className='page-img'
+                src={ page.acf.hero_image } /> :
+                ''
+            }
 
             <div className='page-content lato' dangerouslySetInnerHTML={{ __html: page.content.rendered }}></div>
 

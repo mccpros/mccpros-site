@@ -1,15 +1,21 @@
 .city-wrapper {
-  height: 100vh;
+  // height: 100vh;
   width: 100vw;
-  background-image: url(/assets/city.png);
-  background-position: center;
-  background-size: cover;
+  // background-image: url(/assets/city.png);
+  background-position: 50% 50%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   position: relative;
+}
+
+.city-wrapper img {
+  width: 100%;
+  height: auto;
 }
 
 .heroes-wrapper {
   position: absolute;
-  top: 30vh;
+  top: 35%;
 }
 
 .meet-hero-wrapper {
@@ -24,4 +30,91 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
+}
+
+.controller-wrapper  {
+  width: 100vw;
+  margin: 5em 0;
+  position: relative;
+}
+
+.hero-control {
+  position: absolute;
+  top: 40%;
+  font-size: 4em;
+  box-shadow: 1px 1px 17px -5px rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+  background-color: #fcfcfc;
+  z-index: 10;
+  transition: all .2s ease;
+  -o-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+}
+.hero-control:hover {
+  font-size: 4.15em;
+  padding: .05em;
+  box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+.hero-control.icon-left-open-mini {
+  left: 10vw;
+}
+.hero-control.icon-right-open-mini {
+  right: 10vw;
+}
+
+.hero-row-container {
+  width: 100vw;
+  margin: 5em 0;
+  overflow-x: scroll;
+  position: relative;
+}
+
+.hero-row {
+  width: 250vw;
+  margin-left: 30vw;
+}
+
+.hero-card {
+  width: auto;
+  height: 500px;
+  position: relative;
+  display: inline-block;
+  padding: 1em 1.2em;
+  margin: 1em 3em;
+  background-image: url('/assets/card-back.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+}
+
+.hero-card img {
+  width: auto;
+  height: 100%;
+}
+
+.hero-card .info {
+  position: absolute;
+  top: 60%;
+  background-color: #20b789;
+  width: 100%;
+  left: 0;
+  text-align: center;
+}
+
+.hero-card .info h3 {
+  margin: 10px 0;
+  letter-spacing: 4px;
+  font-weight: 100;
+  font-size: 1.2em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .hero-control.icon-left-open-mini {
+    display: none;
+  }
 }

@@ -1,6 +1,9 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
+import Content from '../Page/Content.js';
+import HeroRow from '../HeroRow';
+
 import NavContainer     from '../../containers/NavContainer';
 import FooterContainer  from '../../containers/FooterContainer';
 
@@ -15,6 +18,7 @@ class MeetTheTeam extends Component {
   }
 
   componentWillMount() {
+    this.props.fetchOnePage(this.props.pageId);
     this.props.fetchHeroes();
   }
 
@@ -53,11 +57,14 @@ class MeetTheTeam extends Component {
   }
 
   render() {
+    let { page } = this.props;
+
     return (
       <div className='meet-the-team-page'>
         <NavContainer {...this.props} />
 
         <div className='city-wrapper'>
+          <img src='/assets/city.png' alt=""/>
           <div className='heroes-wrapper'>
             { this.props.heroes ?
               this.renderHeroLineUp() :
@@ -65,6 +72,15 @@ class MeetTheTeam extends Component {
           </div>
 
         </div>
+
+        <div className='page'>
+          { page ?
+            <Content {...this.props} /> :
+            'Loading...'
+          }
+        </div>
+
+        <HeroRow {...this.props} />
 
         <FooterContainer />
       </div>

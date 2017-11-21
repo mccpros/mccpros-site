@@ -20,14 +20,26 @@ class Router extends Component {
     let { pages } = this.props;
 
     return pages.map((page, idx) => {
-      return (
-        <Route
-          key={idx}
-          path={page.acf.url}
-          render={props => {
-            return <PageContainer pageId={page.id} {...this.props} />
-          }} />
-      );
+      switch (page.acf.url) {
+        case '/meet-the-team':
+          return (
+            <Route
+              key={idx}
+              path='/meet-the-team'
+              render={(props) => {
+                return <MeetTheTeamContainer pageId={page.id} {...this.props} />;
+              }} />
+          );
+        default:
+          return (
+            <Route
+              key={idx}
+              path={page.acf.url}
+              render={props => {
+                return <PageContainer pageId={page.id} {...this.props} />
+              }} />
+          );
+      }
     });
     // return routeKeys.map((routeName, idx) => {
     //
@@ -52,12 +64,6 @@ class Router extends Component {
         exact={ true }
         render={(props) => {
           return <HomeContainer title='Home' {...this.props} />;
-        }} />
-
-      <Route
-        path='/meet-the-team'
-        render={(props) => {
-          return <MeetTheTeamContainer {...this.props} />;
         }} />
 
         { this.props.pages ?
