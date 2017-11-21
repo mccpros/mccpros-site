@@ -4,6 +4,7 @@ import { Route } from 'react-router';
 
 import HomeContainer from '../containers/HomeContainer';
 import PageContainer from '../containers/PageContainer';
+import MeetTheTeamContainer from '../containers/MeetTheTeamContainer';
 // We should probably check prop types
 // const propTypes = {
 //
@@ -21,7 +22,6 @@ class Router extends Component {
     return pages.map((page, idx) => {
       return (
         <Route
-          exact
           key={idx}
           path={page.acf.url}
           render={props => {
@@ -52,6 +52,12 @@ class Router extends Component {
         exact={ true }
         render={(props) => {
           return <HomeContainer title='Home' {...this.props} />;
+        }} />
+
+      <Route
+        path='/meet-the-team'
+        render={(props) => {
+          return <MeetTheTeamContainer {...this.props} />;
         }} />
 
         { this.props.pages ?

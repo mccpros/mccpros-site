@@ -7,15 +7,30 @@ import React, { Component } from 'react';
 // };
 
 class MeetTheTeam extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      heroIndex: null
+    }
+  }
 
   componentWillMount() {
     // Start with an action
-    this.props.fetchHeroes();
+    if(!this.props.heroes) {
+      this.props.fetchHeroes();
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if(newProps.heroes && !this.state.index) {
+      this.setState({ index: Math.floor(Math.random() * newProps.heroes.length) });
+    }
   }
 
   renderHero() {
     let superheroes = this.props.heroes;
-    let hero = superheroes[Math.floor(Math.random() * superheroes.length)];
+    let hero = superheroes[this.state.index];
 
     return (
       <div

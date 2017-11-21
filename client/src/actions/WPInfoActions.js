@@ -77,7 +77,7 @@ export function fetchHome(data) {
 export function fetchHeroes() {
   return dispatch => {
     // API Call
-    axios.get(url('/wp/v2/superhero'))
+    axios.get(url('/wp/v2/superhero?per_page=15'))
       .then(res => {
         dispatch(receiveHeroes(res.data)); // Got em
       })

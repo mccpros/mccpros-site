@@ -12,7 +12,6 @@ class NavItem extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <li
         key={this.props.index}

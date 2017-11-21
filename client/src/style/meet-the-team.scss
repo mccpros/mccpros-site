@@ -1,0 +1,27 @@
+.city-wrapper {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(/assets/city.png);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.heroes-wrapper {
+  position: absolute;
+  top: 30vh;
+}
+
+.meet-hero-wrapper {
+  display: inline-block;
+  text-align: center;
+  position: relative;
+}
+
+.meet-hero-wrapper img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
