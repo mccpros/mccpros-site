@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes';
 import axios from 'axios';
 
 function url(path) {
-  return `http://192.168.150.133:8080/wp-json${path}`
+  return `http://192.168.150.199:8080/wp-json${path}`
 }
 
 export function fetchingInfo(data) {
@@ -109,7 +109,6 @@ export function fetchPages() {
       }
     })
       .then(res => {
-        console.log(res.data);
         dispatch(receivePages(res.data)); // Got em
       })
       .catch(err => {

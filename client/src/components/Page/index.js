@@ -21,11 +21,13 @@ class Page extends Component {
     return (
       <div className='page-container'>
         <NavContainer {...this.props} />
-        { this.props.page ?
-          <Content {...this.props} /> :
-          'Loading...' }
+        <div id="pageWrapper">
+          { this.props.page ?
+            <Content {...this.props} /> :
+              'Loading...' }
 
-        <FooterContainer />
+              <FooterContainer />
+        </div>
       </div>
     );
   }

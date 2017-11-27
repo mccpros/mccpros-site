@@ -27,32 +27,34 @@ class Home extends Component {
 
         <NavContainer {...this.props} />
 
-        <div className='home-wrapper'>
+        <div id="pageWrapper">
+          <div className='home-wrapper'>
 
-          <Canvas />
+            <Canvas />
 
-          <div className="home-cta-wrapper">
-            <div className='home-cta'></div>
+            <div className="home-cta-wrapper">
+              <div className='home-cta'></div>
+            </div>
+
+            <div className='home-content'>
+
+              <WhatWeDo
+                {...this.props} />
+
+              <WhatWeOffer
+                {...this.props} />
+
+              <WhyWereDifferent
+                {...this.props} />
+
+              <WhoWeWorkWith
+                {...this.props} />
+
+            </div>
           </div>
 
-          <div className='home-content'>
-
-            <WhatWeDo
-              {...this.props} />
-
-            <WhatWeOffer
-              {...this.props} />
-
-            <WhyWereDifferent
-              {...this.props} />
-
-            <WhoWeWorkWith
-              {...this.props} />
-
-          </div>
+          <FooterContainer />
         </div>
-
-        <FooterContainer />
       </div>
     );
   }

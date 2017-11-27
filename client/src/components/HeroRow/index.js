@@ -11,14 +11,12 @@ class HeroRow extends Component {
   constructor(props) {
     super(props);
 
-    // this.handleScroll = this.handleScroll.bind(this);
     this.handleHover = this.handleHover.bind(this);
     this.endHover = this.endHover.bind(this);
   }
 
   componentDidMount() {
     this.scrollEl = document.getElementById('hero-scroll');
-    // this.scrollEl.addEventListener('scroll', this.handleScroll);
   }
 
   handleHover(right) {

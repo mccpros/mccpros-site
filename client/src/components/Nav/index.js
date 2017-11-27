@@ -1,6 +1,7 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { elastic as Menu } from 'react-burger-menu'
 
 import NavItem from './NavItem';
 
@@ -19,11 +20,12 @@ class Nav extends Component {
     }
     this.subNavLib = {};
 
-    this.renderNavBar  = this.renderNavBar.bind(this);
-    this.returnNavItem = this.returnNavItem.bind(this);
-    this.getScroll     = this.getScroll.bind(this);
-    this.showSubNav    = this.showSubNav.bind(this);
-    this.hideSubNav    = this.hideSubNav.bind(this);
+    this.renderNavBar     = this.renderNavBar.bind(this);
+    this.returnNavItem    = this.returnNavItem.bind(this);
+    this.getScroll        = this.getScroll.bind(this);
+    this.showSubNav       = this.showSubNav.bind(this);
+    this.hideSubNav       = this.hideSubNav.bind(this);
+    this.showMobileSubNav = this.showMobileSubNav.bind(this);
   }
 
   componentDidMount() {
@@ -32,12 +34,30 @@ class Nav extends Component {
     if(pathname === '/') { // Event listener only on Homepage
       window.addEventListener('scroll', this.getScroll);
     }
+    if(window.innerWidth < 769) {
+      this.topLinks = document.getElementsByClassName('main-li-a');
+
+      for (var key in this.topLinks) {
+        if (this.topLinks.hasOwnProperty(key)) {
+          this.topLinks[key].addEventListener('click', this.cancelLink);
+        }
+      }
+
+    }
 
     this.getScroll();
   }
 
   componentWillUnmount() {
+    // document.getElementsByClassName('.main-li-a').forEach(el => {
+    //   el.removeEventListener('click', this.cancelLink);
+    // });
     window.removeEventListener('scroll', this.getScroll); // Remove Event Listener
+  }
+
+  cancelLink(e) {
+    e.preventDefault();
+    e.stopPropagation();
   }
 
   getScroll() {
@@ -56,7 +76,7 @@ class Nav extends Component {
     }
   }
 
-  renderNavBar() {
+  renderNavBar(logo) {
     let mainEls = [];
     let subEls  = [];
     let main    = this.props.pages.filter(p => !p.acf.parent_page); // Parent Pages
@@ -90,30 +110,45 @@ class Nav extends Component {
           </ul>
         );
 
-        mainEls.push(this.returnNavItem(mainNav, i, subNav));
+        mainEls.push(this.returnNavItem(mainNav, i, subNav, 'main-li-a'));
       }
     }
 
     return (
-      <div className='nav-main-wrapper'>
-        <ul
-          style={{ backgroundColor: this.state.color }}
-          className='main-ul'>
-          { mainEls }
-        </ul>
-      </div>
+      <div className='navbar-wrapper'
+        style={{
+          backgroundColor: this.state.color,
+          borderBottom: this.state.color === '#fcfcfc' ?
+                     '2px solid #00638D' :
+                     '0px'
+         }}>
+           { logo ?
+             <div className='nav-img-wrapper'>
+               <img src='/assets/mcc.png' alt=""/>
+             </div> :
+             ''
+           }
+          <div className='nav-main-wrapper'>
+            <ul
+              style={{ backgroundColor: this.state.color }}
+              className='main-ul'>
+              { mainEls }
+            </ul>
+          </div>
+        </div>
     );
   }
 
   // Creates <li> for all <ul> types
-  returnNavItem(page, index, subNavs) {
+  returnNavItem(page, index, subNavs, className) {
     return (
       <NavItem
         {...this.state}
         key={index}
         index={index}
         page={page}
-        subNavs={subNavs && subNavs.length ? true : false}
+        className={ className ||  '' }
+        clickHandler={this.showMobileSubNav}
         mouseOverHandler={this.showSubNav}
         mouseOutHandler={this.hideSubNav}>
         { subNavs }
@@ -121,41 +156,55 @@ class Nav extends Component {
     );
   }
 
+  showMobileSubNav(e) {
+    let allSubs = document.getElementsByClassName('sub-ul')
+    for (var key in allSubs) {
+      if (allSubs.hasOwnProperty(key)) {
+        allSubs[key].style.display = 'none';
+        allSubs[key].style.position = 'absolute';
+      }
+    }
+
+    if(!e || !e.target) return;
+    let el = e.target;
+    let subEl = el.querySelector('ul');
+
+    if(!subEl) subEl = el.parentNode;
+    if(!this.matches(subEl, '.sub-ul')) subEl = subEl.querySelector('ul');
+    if(!subEl || !this.matches(subEl, '.sub-ul')) return;
+
+    subEl.style.display = 'inline';
+    subEl.style.position = 'relative';
+  }
+
   showSubNav(e) {
-    this.setState({ color: '#fcfcfc' }) // Close the curtain;
+    let el = e.target;
+    let subEl = el.querySelector('ul');
 
-    let element = e.target;                        // Element: <a>
-    let subEl   = this.getSubElement(element);     // Element: <ul> (Sub Page Ul)
-    if(!subEl || !subEl.style) return;
-
-    let elRect  = element.getBoundingClientRect(); // For Later...
-
-    subEl.style.display = 'block';  // Make it so it has height
-    let subElHeight = subEl.clientHeight || subEl.offsetHeight; // Get Height
-
-    subEl.style.transform = `translateY(-${subElHeight}px)`; // Pull behind curtain
-    subEl.style.left = `${elRect.x + 10}px`;                 // Line it up with <li>
+    if(!subEl) return;
+    subEl.style.display = 'block';
 
     setTimeout(() => {
-      // Reveal
-      subEl.style.opacity = 1;
-      subEl.style.transform = `translateY(0px)`;
+      subEl.style.opacity = '1';
     }, 0)
   }
 
   hideSubNav(e) {
-    let element = e.target;                  // Element: <a>
-    let subEl = this.getSubElement(element); // Element: <ul> (Sub Page Ul)
-    if(!subEl || !subEl.style) return;
+    let el = e.target;
+    let subEl = el.querySelector('ul');
 
-    let subElHeight = subEl.clientHeight || subEl.offsetHeight; // Height
+    if(!subEl) subEl = el.parentNode;
+    if(!this.matches(subEl, '.sub-ul')) subEl = subEl.parentNode;
 
-    subEl.style.transform = `translateY(-${subElHeight}px)`;   // Pull behind curtain
-    subEl.style.opacity = 0;                                   // Hide it
+    subEl.style.opacity = '0';
 
     setTimeout(() => {
-      subEl.style.display = 'none'; // Gone, girl
-    }, 0)
+      subEl.style.display = 'none';
+    }, 200)
+  }
+
+  matches(el, selector) {
+    return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
   }
 
   getSubElement(el) {
@@ -172,24 +221,36 @@ class Nav extends Component {
     return subEl;
   }
 
-  render() {
+  renderMobileNav() {
     return (
-     <div className='navbar-wrapper'
-       style={{
-         backgroundColor: this.state.color,
-         borderBottom: this.state.color === '#fcfcfc' ?
-                    '2px solid #00638D' :
-                    '0px'
-        }}>
-        <div className='nav-img-wrapper'>
-          <img src='/assets/mcc.png' alt=""/>
+      <div className='mobile-nav-wrapper'>
+
+        <div className='mobile-burger-wrapper'>
+          <Menu
+            pageWrapId={ 'pageWrapper' }
+            outerContainerId={ 'root' }
+            right>
+            { this.renderNavBar(false) }
+          </Menu>
         </div>
-
-        { this.props.pages && this.props.pages.length ?
-          this.renderNavBar() :
-          'Loading...'}
-
       </div>
+    );
+  }
+
+  render() {
+    let width = window.outerWidth;
+
+    if(!this.props.pages || !this.props.pages.length) {
+      return <div>Loading...</div>
+    }
+
+    return (
+      <div>
+        { width >= 769 ?
+          this.renderNavBar(true) :
+          this.renderMobileNav() }
+      </div>
+
     );
   }
 }

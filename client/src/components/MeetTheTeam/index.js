@@ -63,26 +63,28 @@ class MeetTheTeam extends Component {
       <div className='meet-the-team-page'>
         <NavContainer {...this.props} />
 
-        <div className='city-wrapper'>
-          <img src='/assets/city.png' alt=""/>
-          <div className='heroes-wrapper'>
-            { this.props.heroes ?
-              this.renderHeroLineUp() :
-              'Loading...' }
+        <div id="pageWrapper">
+          <div className='city-wrapper'>
+            <img src='/assets/city.png' alt=""/>
+              <div className='heroes-wrapper'>
+                { this.props.heroes ?
+                  this.renderHeroLineUp() :
+                  'Loading...' }
+              </div>
+
           </div>
 
+          <div className='page'>
+            { page ?
+              <Content {...this.props} /> :
+                'Loading...'
+              }
+          </div>
+
+          <HeroRow {...this.props} />
+
+          <FooterContainer />
         </div>
-
-        <div className='page'>
-          { page ?
-            <Content {...this.props} /> :
-            'Loading...'
-          }
-        </div>
-
-        <HeroRow {...this.props} />
-
-        <FooterContainer />
       </div>
     );
   }

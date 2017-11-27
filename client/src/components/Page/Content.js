@@ -43,6 +43,8 @@ class Content extends Component {
     this.margin = 30;
 
     let navbar    = document.getElementsByClassName('navbar-wrapper')[0];
+    if(!navbar) return;
+
     this.navHeight = navbar.clientHeight || navbar.offsetHeight;
     this.navHeight += this.margin;
 
