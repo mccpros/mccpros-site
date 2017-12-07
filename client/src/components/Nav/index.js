@@ -23,9 +23,9 @@ class Nav extends Component {
     this.renderNavBar     = this.renderNavBar.bind(this);
     this.returnNavItem    = this.returnNavItem.bind(this);
     this.getScroll        = this.getScroll.bind(this);
-    this.showSubNav       = this.showSubNav.bind(this);
-    this.hideSubNav       = this.hideSubNav.bind(this);
     this.showMobileSubNav = this.showMobileSubNav.bind(this);
+    // this.showSubNav       = this.showSubNav.bind(this);
+    // this.hideSubNav       = this.hideSubNav.bind(this);
   }
 
   componentDidMount() {
@@ -106,11 +106,11 @@ class Nav extends Component {
         // Push ONE <ul> for each Parent Page
         let subNav = (
           <ul data-index={i} key={i} className='sub-ul'>
-            { subNavArr.map((s, i) => this.returnNavItem(s, i, null)) }
+            { subNavArr.map((s, i) => this.returnNavItem(s, i, null, 'sub-li')) }
           </ul>
         );
 
-        mainEls.push(this.returnNavItem(mainNav, i, subNav, 'main-li-a'));
+        mainEls.push(this.returnNavItem(mainNav, i, subNav, 'main-li'));
       }
     }
 
@@ -177,31 +177,34 @@ class Nav extends Component {
     subEl.style.position = 'relative';
   }
 
-  showSubNav(e) {
-    let el = e.target;
-    let subEl = el.querySelector('ul');
-
-    if(!subEl) return;
-    subEl.style.display = 'block';
-
-    setTimeout(() => {
-      subEl.style.opacity = '1';
-    }, 0)
-  }
-
-  hideSubNav(e) {
-    let el = e.target;
-    let subEl = el.querySelector('ul');
-
-    if(!subEl) subEl = el.parentNode;
-    if(!this.matches(subEl, '.sub-ul')) subEl = subEl.parentNode;
-
-    subEl.style.opacity = '0';
-
-    setTimeout(() => {
-      subEl.style.display = 'none';
-    }, 200)
-  }
+  // showSubNav(e) {
+  //   let el = e.target;
+  //   let subEl = el.querySelector('ul');
+  //
+  //   if(!subEl) return;
+  //   subEl.style.display = 'block';
+  //
+  //   setTimeout(() => {
+  //     subEl.style.opacity = '1';
+  //   }, 0)
+  // }
+  //
+  // hideSubNav(e) {
+  //   if(!e || !e.target) return;
+  //
+  //   let el = e.target;
+  //   let subEl = el.querySelector('ul');
+  //
+  //   if(!subEl) subEl = el.parentNode;
+  //   if(!this.matches(subEl, '.sub-ul')) subEl = subEl.querySelector('ul');
+  //   if(!subEl || !this.matches(subEl, '.sub-ul')) return;
+  //
+  //   subEl.style.opacity = '0';
+  //
+  //   setTimeout(() => {
+  //     subEl.style.display = 'none';
+  //   }, 200)
+  // }
 
   matches(el, selector) {
     return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);

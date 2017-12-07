@@ -22,8 +22,24 @@ class Content extends Component {
   }
 
   componentDidMount() {
+    document.addEventListener('scroll', this.checkFixed);
+    this.initData();
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.checkFixed);
+  }
+
+  componentWillReceiveProps() {
+    setTimeout(this.initData.bind(this), 0);
+    // this.initData();
+  }
+
+  initData() {
     let fixedCols   = document.getElementsByClassName('fixed-col');
     let pageContent = document.getElementById('page-length');
+
+    if(!pageContent || !fixedCols) return;
     this.fullHeight  = pageContent.clientHeight || pageContent.offsetHeight;
 
     for(let i = 0; i < fixedCols.length; i++) {
@@ -31,12 +47,7 @@ class Content extends Component {
       col.style.height = `${this.fullHeight}px`;
     }
 
-    document.addEventListener('scroll', this.checkFixed);
     this.setData();
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('scroll', this.checkFixed);
   }
 
   setData() {
@@ -51,7 +62,7 @@ class Content extends Component {
     let fixedEls   = document.getElementsByClassName('fixed-social')[0];
     this.fixedData = fixedEls.getBoundingClientRect();
 
-    this.checkFixed();
+    // this.checkFixed();
   }
 
   checkFixed(e) {
@@ -65,21 +76,21 @@ class Content extends Component {
     let distanceToBottom =  position + offset;
 
     if(distanceToTop <= 0 && distanceToBottom > 0) {
-      this.setState({
+      return this.setState({
         positionType: 'fixed',
         left: colData.x + 15,
         top: this.navHeight,
         fixed: true
       });
     } else if(distanceToBottom <= 0 && this.state.fixed) {
-      this.setState({
+      return this.setState({
         positionType: 'relative',
         left: 0,
         top: Math.abs(colData.y - this.fixedData.height / 2 - this.margin),
         fixed: false
       });
     } else if(this.state.fixed) {
-      this.setState({
+      return this.setState({
         positionType: 'relative',
         left: 0,
         top: 0,

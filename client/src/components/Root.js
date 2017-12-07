@@ -13,6 +13,7 @@ class Root extends Component {
     // Start with an action
     this.props.fetchInfo();
     this.props.fetchPages();
+    this.props.fetchHeroes();
   }
 
   render() {

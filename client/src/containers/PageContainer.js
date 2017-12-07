@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 // Most actions should happen right here
 // Let all the data fall to Child through props
 import { fetchOnePage } from '../actions/WPInfoActions';
+
+import PageTranstion from '../components/Transitions/PageTransition';
 import Page from '../components/Page';
 
 // Don't render much in containers
@@ -19,6 +21,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
+export default PageTranstion(
+  connect(mapStateToProps, {
   fetchOnePage,
-})(PageContainer);
+})(PageContainer));

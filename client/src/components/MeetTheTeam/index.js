@@ -22,6 +22,12 @@ class MeetTheTeam extends Component {
     this.props.fetchHeroes();
   }
 
+  componentWillReceiveProps(newProps) {
+    if(newProps.heroes && newProps.heroes.length) {
+      this.props.loadComplete();
+    }
+  }
+
   renderHeroLineUp() {
     let { heroes } = this.props;
 

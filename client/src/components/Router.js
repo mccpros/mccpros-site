@@ -5,6 +5,9 @@ import { Route } from 'react-router';
 import HomeContainer from '../containers/HomeContainer';
 import PageContainer from '../containers/PageContainer';
 import MeetTheTeamContainer from '../containers/MeetTheTeamContainer';
+
+import TransitionWrapper from './Transitions/TransitionWrapper';
+import Loader from './Loader';
 // We should probably check prop types
 // const propTypes = {
 //
@@ -14,6 +17,27 @@ class Router extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      initialLoading: true,
+      componentsLoading: true
+    }
+
+    this.loadComplete = this.loadComplete.bind(this);
+    this.componentLoadComplete = this.componentLoadComplete.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if(newProps && newProps.wpInfo && newProps.heroes && newProps.pages) {
+      this.loadComplete();
+    }
+  }
+
+  loadComplete() {
+    this.setState({ initialLoading: false });
+  }
+
+  componentLoadComplete() {
+    this.setState({ componentsLoading: false });
   }
 
   renderRoutes() {
@@ -27,7 +51,10 @@ class Router extends Component {
               key={idx}
               path='/meet-the-team'
               render={(props) => {
-                return <MeetTheTeamContainer pageId={page.id} {...this.props} />;
+                return <MeetTheTeamContainer
+                          pageId={page.id}
+                          loadComplete={ this.componentLoadComplete }
+                          {...this.props} />;
               }} />
           );
         default:
@@ -35,40 +62,42 @@ class Router extends Component {
             <Route
               key={idx}
               path={page.acf.url}
-              render={props => {
-                return <PageContainer pageId={page.id} {...this.props} />
-              }} />
+              children={({ match, ...rest }) => (
+                  <TransitionWrapper>
+                    {match && <PageContainer
+                                pageId={page.id}
+                                loadComplete={ this.componentLoadComplete }
+                                {...this.props}
+                                {...rest} />}
+                  </TransitionWrapper>
+              )} />
           );
       }
     });
-    // return routeKeys.map((routeName, idx) => {
-    //
-    //   return(
-    //     <Route
-    //       exact={ exact }
-    //       key={idx}
-    //       path={ route.path }
-    //       render={(props) => {
-    //         return <Component title={route.name} {...this.props} />;
-    //       }} />
-    //   );
-    // })
   }
 
   render() {
     return (
       <div className='body-wrapper'>
 
-      <Route
-        path='/'
-        exact={ true }
-        render={(props) => {
-          return <HomeContainer title='Home' {...this.props} />;
-        }} />
+        <TransitionWrapper
+          className='load-transition'>
+          { this.state.initialLoading || this.state.componentsLoading ?
+            <Loader reversed={ true } /> :
+            null }
+        </TransitionWrapper>
 
-        { this.props.pages ?
-          this.renderRoutes() :
-          'Loading...' }
+        <Route
+          path='/'
+          exact={ true }
+          render={(props) => {
+            return <HomeContainer
+                      loadComplete={ this.componentLoadComplete }
+                      title='Home'
+                      {...this.props} />;
+          }} />
+
+          { this.props.pages && this.renderRoutes() }
 
       </div>
     );

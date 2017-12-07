@@ -2,6 +2,7 @@
 @import './footer.scss';
 @import './nav.scss';
 @import './page.scss';
+@import './loader.scss';
 @import './meet-the-team.scss';
 @import './fontello.scss';
 @import './bootstrap.min.scss';
@@ -109,4 +110,8 @@ div.animated-cover.disappear {
 
 div.animated-cover.appear {
   width: 0%
+}
+
+div#pageWrapper {
+  margin-top: 79px;
 }

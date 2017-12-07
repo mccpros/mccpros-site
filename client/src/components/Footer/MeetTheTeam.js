@@ -22,15 +22,9 @@ class MeetTheTeam extends Component {
     }
   }
 
-  componentWillReceiveProps(newProps) {
-    if(newProps.heroes && !this.state.index) {
-      this.setState({ index: Math.floor(Math.random() * newProps.heroes.length) });
-    }
-  }
-
   renderHero() {
     let superheroes = this.props.heroes;
-    let hero = superheroes[this.state.index];
+    let hero = superheroes[Math.floor(Math.random() * superheroes.length)];
 
     return (
       <div

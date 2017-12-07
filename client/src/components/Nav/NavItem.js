@@ -1,5 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 // We should probably check prop types
 // const propTypes = {
@@ -18,19 +19,18 @@ class NavItem extends Component {
       <li
         key={this.props.index}
         data-index={this.props.index}
-        onMouseLeave={ !this.isMobile ? this.props.mouseOutHandler : this.props.clickHandler }
         onMouseUp={ this.isMobile ? this.props.clickHandler : null }
-        className='nav-item'>
-        <a
+        className={`nav-item ${this.props.className}`}>
+        <Link
           style={{ color: this.props.color === '#fcfcfc' ?
                      '' :
                      '#fcfcfc' }}
-          className={`lato black ${this.props.className}`}
-          href={ this.props.page.acf.url }>
+          className={`lato black ${this.props.className}-a`}
+          to={ this.props.page.acf.url }>
 
           { this.props.page.title.rendered }
 
-        </a>
+        </Link>
 
         { this.props.children ? this.props.children : '' }
 
