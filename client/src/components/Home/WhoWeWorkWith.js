@@ -40,26 +40,28 @@ class WhoWeWorkWith extends Component {
     };
 
     return (
-      <div className='container who-container'>
-        <div className='row'>
-          <div className='col-xs-12 who_we_work_with'>
-            <h2 className='title arvo black'>
-              <span className="green">who</span> we work with
-            </h2>
+      <div className='container-fluid who-container'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-xs-12 who_we_work_with'>
+              <h2 className='title arvo black'>
+                <span className="green">who</span> we work with
+                </h2>
 
-            <Slider
-              nextArrow={ <ArrowButton arrowName='icon-right-open-mini' /> }
-              prevArrow={ <ArrowButton arrowName='icon-left-open-mini' /> }
-              {...settings}>
-              { this.renderSlides() }
+                <Slider
+                  nextArrow={ <ArrowButton arrowName='icon-right-open-mini' /> }
+                  prevArrow={ <ArrowButton arrowName='icon-left-open-mini' /> }
+                  {...settings}>
+                  { this.renderSlides() }
 
-            </Slider>
+                </Slider>
 
-            <div className='who-button-wrapper'>
-              <button className='arvo white'>Read On</button>
+                <div className='who-button-wrapper'>
+                  <button className='arvo white'>Read On</button>
+                </div>
+
+              </div>
             </div>
-
-          </div>
         </div>
       </div>
     );

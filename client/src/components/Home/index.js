@@ -1,5 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import Canvas from './Canvas';
 import WhatWeDo         from './WhatWeDo';
@@ -38,7 +39,26 @@ class Home extends Component {
           <Canvas />
 
           <div className="home-cta-wrapper">
-            <div className='home-cta'></div>
+            <div className='home-cta'>
+
+              <div className='home-header-title'>
+                <h2 className="arvo white">
+                  Your IT Department. <br/>
+                  Superpowered.
+                </h2>
+
+                <h3 className='lato white'>
+                  <span>Live Helpdesk.</span><br/>
+                  <span>24/7 Monitoring</span><br/>
+                  <span>Proactive Support.</span>
+                </h3>
+
+                <Link to='/support'>
+                  <button className='btn white arvo'>Get Support</button>
+                </Link>
+
+              </div>
+            </div>
           </div>
 
           <div className='home-content'>

@@ -71,20 +71,21 @@ class MeetTheTeam extends Component {
 
         <div id="pageWrapper">
           <div className='city-wrapper'>
-            <img src='/assets/city.png' alt=""/>
-              <div className='heroes-wrapper'>
-                { this.props.heroes ?
-                  this.renderHeroLineUp() :
-                  'Loading...' }
-              </div>
+
+            <div className='meet-title'>
+              <h1 className='arvo white'>Meet the MCC Superhero Team</h1>
+            </div>
+
+            <img src='/assets/full_city.png' alt=""/>
+
+            <div className='heroes-wrapper'></div>
 
           </div>
 
           <div className='page'>
-            { page ?
-              <Content {...this.props} /> :
-                'Loading...'
-              }
+
+            { page && <Content {...this.props} /> }
+
           </div>
 
           <HeroRow {...this.props} />

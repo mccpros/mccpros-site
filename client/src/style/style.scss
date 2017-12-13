@@ -1,4 +1,5 @@
 @import './home.scss';
+@import './hero.scss';
 @import './footer.scss';
 @import './nav.scss';
 @import './page.scss';
@@ -16,6 +17,22 @@ h2.title {
   font-size: 1.8em;
   text-transform: uppercase;
   position: relative;
+  transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
+}
+
+h2.title * {
+  transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  -moz-transition: all .2s ease-out;
+  -webkit-transition: all .2s ease-out;
+}
+
+h2.title a:hover, h2.title a:hover * {
+  text-decoration: none;
+  color: #20b789;
 }
 
 h3.title {
@@ -37,13 +54,14 @@ h5.title {
 
 .arvo {
   font-family: 'Arvo', serif;
+  font-weight: 100;
 }
 
 .lato {
   font-family: 'Lato', sans-serif;
 }
 
-.white {
+.white, .white * {
   color: #fff;
 }
 
@@ -113,5 +131,11 @@ div.animated-cover.appear {
 }
 
 div#pageWrapper {
-  margin-top: 79px;
+  padding-top: 50px;
+}
+
+@media (max-width: 992px) {
+  .hidden-xs {
+    display: none;
+  }
 }

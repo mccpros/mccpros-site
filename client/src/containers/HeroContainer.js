@@ -3,27 +3,25 @@ import { connect } from 'react-redux';
 
 // Most actions should happen right here
 // Let all the data fall to Child through props
-import { fetchHeroes, fetchOnePage } from '../actions/WPInfoActions';
+import { fetchHeroes } from '../actions/WPInfoActions';
 
 import PageTranstion from '../components/Transitions/PageTransition';
-import MeetTheTeam from '../components/MeetTheTeam';
+import HeroPage from '../components/HeroPage';
 
 // Don't render much in containers
 // But pass the props!
-const MeetTheTeamContainer = props => <MeetTheTeam {...props} />;
+const HeroContainer = props => <HeroPage {...props} />;
 
 // Where store/state becomes our props
 const mapStateToProps = (state) => {
-  const { heroes, page } = state.wpInfo; // Pull it out
+  const { heroes } = state.wpInfo; // Pull it out
 
   return { // Pass it along
-    heroes,
-    page
+    heroes
   };
 };
 
 export default PageTranstion(
 connect(mapStateToProps, {
-  fetchHeroes,
-  fetchOnePage
-})(MeetTheTeamContainer));
+  fetchHeroes
+})(HeroContainer));

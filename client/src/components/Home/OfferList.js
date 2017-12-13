@@ -58,7 +58,7 @@ class OfferList extends Component {
     // Grab width of container
     let fullWidth = this.buttonWrapper.clientWidth || this.buttonWrapper.offsetWidth;
 
-    let centerPos = (fullWidth - buttonWidth) * .50;    // When this button is centered
+    let centerPos = (fullWidth - buttonWidth) * .5;    // When this button is centered
     let leftPos   = (fullWidth - buttonWidth / 2) * .2;  // When the button should be left
     let rightPos  = (fullWidth - buttonWidth / 2) * .74;// When the button should be right
 
@@ -138,7 +138,7 @@ class OfferList extends Component {
             <a href={ this.state.href }>
               <button
                 id='learnButton'
-                className='arvo white'
+                className='btn arvo white'
                 style={ {
                   left: `${this.state.buttonPos}px`
                 } }

@@ -48,12 +48,12 @@ class Page extends Component {
   render() {
     return (
       <div className='page-container'>
+        <NavContainer
+          loadComplete={ this.loadComplete }
+          {...this.props} />
 
         <div id="pageWrapper">
           <div className='page-container'>
-            <NavContainer
-              loadComplete={ this.loadComplete }
-              {...this.props} />
 
             <div id="pageWrapper">
                 { this.props.page ?

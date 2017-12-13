@@ -22,7 +22,7 @@ class NavItem extends Component {
         onMouseUp={ this.isMobile ? this.props.clickHandler : null }
         className={`nav-item ${this.props.className}`}>
         <Link
-          style={{ color: this.props.color === '#fcfcfc' ?
+          style={{ color: this.props.color === 'rgb(244, 244, 244)' ?
                      '' :
                      '#fcfcfc' }}
           className={`lato black ${this.props.className}-a`}

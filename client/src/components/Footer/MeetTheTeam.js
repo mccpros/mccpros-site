@@ -1,5 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 // We should probably check prop types
 // const propTypes = {
@@ -24,7 +25,11 @@ class MeetTheTeam extends Component {
 
   renderHero() {
     let superheroes = this.props.heroes;
-    let hero = superheroes[Math.floor(Math.random() * superheroes.length)];
+    let hero;
+
+    if(!hero) {
+      hero = superheroes[Math.floor(Math.random() * superheroes.length)];
+    }
 
     return (
       <div
@@ -32,7 +37,11 @@ class MeetTheTeam extends Component {
         <div className='row'>
           <div className='col-xs-12 col-lg-6'>
             <h2 className='arvo title white'>
-              meet the <span className='green'>team</span>
+              <Link to='/meet-the-team'>
+                <span>
+                  meet the <span className='green'>team</span>
+                </span>
+              </Link>
             </h2>
             <p className='desc white lato'>At Merino Computer Concepts, your organization isn't supported by one expert,
               but an entire team. Our dedicated staff is a venerable "Avengers" of IT Superheroes.
@@ -44,15 +53,25 @@ class MeetTheTeam extends Component {
             <div className='col-xs-offset-1 col-xs-3 col-lg-offset-0 col-lg-3 hero-label white relative'>
 
               <div>
-                <p className='arvo'>{hero.acf.name}</p>
+                <Link to={`/the-team/${hero.id}`}>
+                  <p className='arvo'>{hero.acf.name}</p>
+                </Link>
+
                 <hr/>
-                <p className='lato'>{hero.acf.title}</p>
+                
+                <Link to={`/the-team/${hero.id}`}>
+                  <p className='lato'>{hero.acf.title}</p>
+                </Link>
               </div>
+
             </div>
 
-            <img
-              className='col-xs-8 col-lg-9'
-              src={hero.acf.close_up} alt=""/>
+            <Link to={`/the-team/${hero.id}`}>
+              <img
+                className='col-xs-8 col-lg-9'
+                src={hero.acf.close_up} alt=""/>
+            </Link>
+
           </div>
 
         </div>
@@ -63,9 +82,8 @@ class MeetTheTeam extends Component {
   render() {
     return (
       <div>
-        { this.props.heroes ?
-          this.renderHero() :
-          'Loading...' }
+        { this.props.heroes &&
+          this.renderHero() }
       </div>
     );
   }

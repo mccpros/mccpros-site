@@ -8,23 +8,23 @@ body, #root, #canvas-wrapper {
 #canvas-wrapper {
   position: absolute;
   top: 0;
-  height: 100vh;
+  height: 900px;
   width: 100vw;
   background-image: url(/assets/header.png);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 50% 50%;
+  background-position: 90% 50%;
 }
 
 .home-cta-wrapper {
   position: relative;
-  height: 1300px;
+  height: 1200px;
 }
 
 .home-cta {
   position: absolute;
   top: 0;
-  height: 100%;
+  height: 90%;
   width: 100%;
 }
 
@@ -57,7 +57,7 @@ body, #root, #canvas-wrapper {
   // height: 1000px;
   // background-color: #fcfcfc;
   // position: relative;
-  margin-top: -2em;
+  margin-top: -9em;
 }
 
 .what-container {
@@ -229,13 +229,17 @@ ul.offer-includes li {
   height: 60px;
 }
 
-.what_we_offer button {
-  display: none;
+.btn {
   background-color: #20b789;
   font-size: 1.3em;
   letter-spacing: 2px;
   border: none;
-  padding: 1em;
+  padding: .6em 2em;
+  border-radius: 2px;
+}
+
+.what_we_offer button {
+  display: none;
   position: absolute;
   left: 0;
   transition: left .8s ease;
@@ -250,6 +254,11 @@ ul.offer-includes li {
 
 .parallax-wrapper {
   background-image: url('/assets/skyFront.png');
+}
+
+.parallax-wrapper img {
+  margin-left: -3em;
+  height: 1150px;
 }
 
 .parallax-wrapper::after {
@@ -290,10 +299,31 @@ ul.offer-includes li {
 .why-heroes-img {
   background-image: url(/assets/why-background.png);
   height: 740px;
-  background-position: fixed;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+}
+
+.why-heroes-img img {
+  width: 350px;
+}
+
+img.-why-hero-1 {
+  z-index: 5;
+  right: -140px;
+  position: absolute;
+}
+
+img.-why-hero-2 {
+  z-index: 10;
+  left: -50px;
+  position: absolute;
+}
+
+img.-why-hero-3 {
+  z-index: 5;
+  left: -140px;
+  position: absolute;
 }
 
 .stylized-header {
@@ -309,6 +339,10 @@ ul.offer-includes li {
 
 .who-container {
   padding: 8em 0;
+  background-color: #fcfcfc;
+  display: inline-block;
+  position: relative;
+  width: 100%;
 }
 
 .quote-container {
@@ -487,4 +521,34 @@ i.icon-left-open-mini:hover {
     padding-right: 2em !important;
     padding-left: 2em !important
   }
+}
+
+.parallax-wrapper img.default {
+  margin-top: -5em;
+}
+
+.home-header-title {
+  position: absolute;
+  bottom: 300px;
+  left: 4%;
+  z-index: 10;
+}
+
+.home-header-title h2, .home-header-title h3 {
+  font-weight: 100;
+}
+
+.home-header-title h2 {
+  font-size: 2.2em;
+  letter-spacing: 2px;
+}
+
+.home-header-title h3 {
+  font-size: 1.6em;
+  letter-spacing: 1px;
+}
+
+.home-header-title a {
+  float: right;
+  margin-right: -7em;
 }

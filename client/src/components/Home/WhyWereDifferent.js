@@ -1,5 +1,9 @@
+
+
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+
+import Parallax from './Parallax';
 import CoverAnimation from '../CoverAnimation';
 // We should probably check prop types
 // const propTypes = {
@@ -32,7 +36,34 @@ class WhyWereDifferent extends Component {
 
               <div className='col-xs-12 col-md-6 no-padding'>
 
-                <div className='why-heroes-img'></div>
+                <div className='why-heroes-img'>
+                  <div className="row">
+                    <div className='col-xs-4 relative -why-hero-1-container'>
+                      <Parallax
+                        imgClass='-why-hero-1'
+                        speed={ 0.06 }
+                        offset={ 250 }
+                        parentContainer='.why_were_different'
+                        imgSrc='/assets/Denis.png' />
+                    </div>
+                    <div className='col-xs-4 relative -why-hero-2-container'>
+                      <Parallax
+                        imgClass='-why-hero-2'
+                        speed={ 0.08 }
+                        offset={ 220 }
+                        parentContainer='.why_were_different'
+                        imgSrc='/assets/Orlando.png' />
+                    </div>
+                    <div className='col-xs-4 relative -why-hero-3-container'>
+                      <Parallax
+                        imgClass='-why-hero-3'
+                        speed={ 0.06 }
+                        offset={ 240 }
+                        parentContainer='.why_were_different'
+                        imgSrc='/assets/Chris.png' />
+                    </div>
+                  </div>
+                </div>
 
               </div>
 

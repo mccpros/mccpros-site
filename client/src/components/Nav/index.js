@@ -1,6 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { elastic as Menu } from 'react-burger-menu'
 
 import NavItem from './NavItem';
@@ -71,7 +71,7 @@ class Nav extends Component {
     } else {
       // If Not Home or not scrolled to top
       // Keep the bar transparent
-      this.setState({ color: '#fcfcfc' });
+      this.setState({ color: 'rgb(244, 244, 244)' });
       window.removeEventListener('scroll', this.getScroll);
     }
   }
@@ -79,10 +79,10 @@ class Nav extends Component {
   renderNavBar(logo) {
     let mainEls = [];
     let subEls  = [];
+
     let main    = this.props.pages.filter(p => !p.acf.parent_page); // Parent Pages
 
     main.sort((a, b) => parseInt(a.acf.order) - parseInt(b.acf.order)); // Put them in order
-
     // Time to sort out sub pages
     main.forEach((m, idx) => {
       let subNavs = this.props.pages.filter(n => {
@@ -100,6 +100,7 @@ class Nav extends Component {
     for(let i = 0; i < subNavKeys.length; i++) {
       if (this.subNavLib.hasOwnProperty(subNavKeys[i])) {
         let subNavArr = this.subNavLib[subNavKeys[i]]; // Sub Pages for one Parent
+        subNavArr.sort((a,b) => parseInt(a.acf.order) - parseInt(b.acf.order)); // Sort
         let mainNav   = main[i];  // Main Nav Data
 
         // Map through each subpage,
@@ -118,16 +119,16 @@ class Nav extends Component {
       <div className='navbar-wrapper'
         style={{
           backgroundColor: this.state.color,
-          borderBottom: this.state.color === '#fcfcfc' ?
-                     '2px solid #00638D' :
-                     '0px'
+          boxShadow: this.state.color === 'rgb(244, 244, 244)' && window.innerWidth > 769 ?
+                     '0px 0px 12px -1px rgba(0, 0, 0, .4)' :
+                     '0'
          }}>
-           { logo ?
+           { logo &&
              <div className='nav-img-wrapper'>
-               <img src='/assets/mcc.png' alt=""/>
-             </div> :
-             ''
-           }
+               <Link to='/'>
+                 <img src='/assets/mcc.png' alt=""/>
+               </Link>
+             </div> }
           <div className='nav-main-wrapper'>
             <ul
               style={{ backgroundColor: this.state.color }}

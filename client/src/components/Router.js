@@ -5,6 +5,7 @@ import { Route } from 'react-router';
 import HomeContainer from '../containers/HomeContainer';
 import PageContainer from '../containers/PageContainer';
 import MeetTheTeamContainer from '../containers/MeetTheTeamContainer';
+import HeroContainer from '../containers/HeroContainer';
 
 import TransitionWrapper from './Transitions/TransitionWrapper';
 import Loader from './Loader';
@@ -42,7 +43,6 @@ class Router extends Component {
 
   renderRoutes() {
     let { pages } = this.props;
-
     return pages.map((page, idx) => {
       switch (page.acf.url) {
         case '/meet-the-team':
@@ -50,12 +50,14 @@ class Router extends Component {
             <Route
               key={idx}
               path='/meet-the-team'
-              render={(props) => {
-                return <MeetTheTeamContainer
-                          pageId={page.id}
-                          loadComplete={ this.componentLoadComplete }
-                          {...this.props} />;
-              }} />
+              children={({ match, ...rest}) => (
+                <TransitionWrapper>
+                  { match && <MeetTheTeamContainer
+                    pageId={ page.id }
+                    loadComplete={ this.componentLoadComplete }
+                    {...this.props} /> }
+                </TransitionWrapper>
+              )} />
           );
         default:
           return (
@@ -96,6 +98,17 @@ class Router extends Component {
                       title='Home'
                       {...this.props} />;
           }} />
+        <Route
+          path='/the-team/:id'
+          children={({ match, ...rest }) => (
+            <TransitionWrapper>
+              { match && <HeroContainer
+                loadComplete={ this.componentLoadComplete }
+                {...match}
+                {...this.props} />
+              }
+            </TransitionWrapper>
+          )} />
 
           { this.props.pages && this.renderRoutes() }
 

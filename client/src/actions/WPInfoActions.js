@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes';
 import axios from 'axios';
 
 function url(path) {
-  return `http://localhost:8080/wp-json${path}`
+  return `http://192.168.150.106:8080/wp-json${path}`
 }
 
 export function fetchingInfo(data) {
@@ -103,9 +103,9 @@ export function fetchPartners() {
 export function fetchPages() {
   return dispatch => {
     // API Call
-    axios.get(url('/wp/v2/pages'), {
+    axios.get(url('/wp/v2/pages?per_page=50'), {
       params: {
-        fields: 'id,acf,title'
+        fields: 'id,acf,title',
       }
     })
       .then(res => {

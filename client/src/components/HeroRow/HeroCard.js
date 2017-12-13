@@ -1,5 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 // We should probably check prop types
 // const propTypes = {
@@ -15,23 +16,28 @@ class HeroCard extends Component {
     let { hero } = this.props;
 
     return (
-      <div className='hero-card'>
-        <img src={hero.acf.full_superhero} alt=""/>
+      <Link
+        to={`/the-team/${hero.id}`}>
+        <div className='hero-card'>
+          <img src={hero.acf.full_superhero} alt=""/>
 
-        <div className='info white'>
-          <h3 className='arvo title'>
-            { hero.acf.name }
-          </h3>
-          <p className='lato'>
-            <a
-              className='white'
-              href="/">
-              { hero.acf.title }
-            </a>
-          </p>
+          <div className='info white'>
+            <h3 className='arvo title'>
+
+                <span>
+                  { hero.acf.name }
+                </span>
+
+            </h3>
+            <p className='lato white'>
+
+                { hero.acf.title }
+
+            </p>
+          </div>
+
         </div>
-
-      </div>
+      </Link>
     );
   }
 }

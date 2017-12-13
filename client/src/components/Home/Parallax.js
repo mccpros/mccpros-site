@@ -7,11 +7,11 @@ class Parallax extends Component {
 
     this.state = {
       height: 0,     // Container Height
-      y: 40,       // Parallax Pos
+      y: 40,         // Parallax Pos
       scrollStart: 0 // Start the animation
     }
 
-    this.offset = 40;  // Offset ( Instead of starting at 0 )
+    this.offset = this.props.offset;  // Offset ( Instead of starting at 0 )
     this.handleScroll = this.handleScroll.bind(this);
   }
 
@@ -40,7 +40,7 @@ class Parallax extends Component {
   parallax() {
     let scrollPos = window.scrollY; // Current scroll
     let relativeToElementPos = this.state.scrollStart - scrollPos; // Plus starting position
-    let speed = 0.12;
+    let speed = this.props.speed || 0.12;
 
     let pos = relativeToElementPos * speed; // New Postion
     pos += this.offset;                     // Plus offset
@@ -50,25 +50,23 @@ class Parallax extends Component {
 
   setContainerHeight() {
     // Match the height of sibling div
-    let newHeight = document.querySelector('.offer-container').clientHeight ||
-                      document.querySelector('.offer-container').offsetHeight;
+    let newHeight = document.querySelector(this.props.parentContainer).clientHeight ||
+                      document.querySelector(this.props.parentContainer).offsetHeight;
 
     this.setState({ height: newHeight });
   }
 
   render() {
     return (
-      <div className='col-xs-3 parallax-wrapper'
+      <div
            style={ { height: `${this.state.height}px` } }>
         <div className='parallax'
              style={ {
-
                transform: `translateY(${this.state.y}px)`
              } }>
-          <img style={{
-              marginLeft: '-3em',
-              height: '1150px'
-            }} src="/assets/hero.png" alt=""/>
+          <img
+            className={ this.props.imgClass ? `${this.props.imgClass}` : 'default' }
+            src={this.props.imgSrc} alt=""/>
         </div>
       </div>
     );

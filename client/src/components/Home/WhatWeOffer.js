@@ -21,7 +21,14 @@ class WhatWeOffer extends Component {
 
           <OfferList />
 
-          <Parallax />
+        <div className='parallax-wrapper col-xs-3'>
+          <Parallax
+            speed={ -0.08 }
+            offset={ 40 }
+            parentContainer='.offer-container'
+            imgSrc='/assets/hero.png'
+            />
+        </div>
 
         </div>
       </div>
