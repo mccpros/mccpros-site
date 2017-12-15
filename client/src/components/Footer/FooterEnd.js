@@ -62,7 +62,7 @@ class FooterEnd extends Component {
               <img src='/assets/mcc.png' alt=""/>
               <div className='right arvo'>
                 <div>
-                  Email: <a href='mailto:tech@mccpros.com'>tech@mccpros.com</a>
+                  Email: <a href='mailto:connect@mccpros.com'>connect@mccpros.com</a>
                 </div>
                 <div>
                   Phone: <a href='tel:18773656800'>1-877-365-6800</a>

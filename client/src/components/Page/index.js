@@ -55,19 +55,19 @@ class Page extends Component {
         <div id="pageWrapper">
           <div className='page-container'>
 
-            <div id="pageWrapper">
-                { this.props.page ?
-                  <Content
-                    key={this.props.pageId}
-                    loadComplete={ this.loadComplete }
-                    {...this.props} /> :
-                  'Loading...' }
 
-              <FooterContainer
+            { this.props.page ?
+              <Content
+                key={this.props.pageId}
                 loadComplete={ this.loadComplete }
-                {...this.props} />
+                {...this.props} /> :
+              'Loading...' }
 
-            </div>
+            <FooterContainer
+              loadComplete={ this.loadComplete }
+              {...this.props} />
+
+
 
           </div>
         </div>

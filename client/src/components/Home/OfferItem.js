@@ -43,7 +43,7 @@ class OfferItem extends Component {
         </ul>
 
         <a href='/ramp'>
-          <button className='arvo white static-button relative'>
+          <button className='btn arvo white static-button relative'>
             Learn More
           </button>
         </a>

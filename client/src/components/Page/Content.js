@@ -137,6 +137,8 @@ class Content extends Component {
 
             <div className='page-content lato' dangerouslySetInnerHTML={{ __html: page.content.rendered }}></div>
 
+            { this.props.children }
+
           </div>
 
 

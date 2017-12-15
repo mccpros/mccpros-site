@@ -65,15 +65,19 @@ $blue: #00638D;
   z-index: 10000;
 }
 
+.loader.original {
+  position: relative;
+  top: 50vh;
+}
+
 .loader {
   background: #fcfcfc;
   position: absolute;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   bottom: 0;
-  width: 100%;
-  height: 100%;
-  left: auto;
   right: 0;
   z-index: 1000;
 }

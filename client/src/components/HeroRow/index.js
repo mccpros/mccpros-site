@@ -48,7 +48,7 @@ class HeroRow extends Component {
       Animated.timing(this.state.anim, {     // Starts animation
         toValue: right ? 1 : 0,  // Checks if left or right
         easing: Easing.in(),     // Ease in
-        duration: this.state.animationOff ? 6000 : 10000
+        duration: this.state.animationOff ? 5000 : 5000
       }).start();
     });
   }

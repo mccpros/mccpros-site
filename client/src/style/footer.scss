@@ -52,7 +52,8 @@
 
 .partners h3 {
   letter-spacing: 2px;
-  font-size: 2em;
+  font-size: 1.75em;
+  opacity: .8;
 }
 
 .footer-images-wrapper {
@@ -76,7 +77,11 @@
 
 .footer-nav a {
   margin: 0 2em;
-  font-size: 1.4em;
+  font-size: 1.25em;
+}
+
+.footer-nav a:hover {
+  text-decoration: none;
 }
 
 .footer-contact {

@@ -6,6 +6,7 @@ import HomeContainer from '../containers/HomeContainer';
 import PageContainer from '../containers/PageContainer';
 import MeetTheTeamContainer from '../containers/MeetTheTeamContainer';
 import HeroContainer from '../containers/HeroContainer';
+import TestimonialContainer from '../containers/TestimonialContainer';
 
 import TransitionWrapper from './Transitions/TransitionWrapper';
 import Loader from './Loader';
@@ -43,6 +44,7 @@ class Router extends Component {
 
   renderRoutes() {
     let { pages } = this.props;
+
     return pages.map((page, idx) => {
       switch (page.acf.url) {
         case '/meet-the-team':
@@ -53,6 +55,20 @@ class Router extends Component {
               children={({ match, ...rest}) => (
                 <TransitionWrapper>
                   { match && <MeetTheTeamContainer
+                    pageId={ page.id }
+                    loadComplete={ this.componentLoadComplete }
+                    {...this.props} /> }
+                </TransitionWrapper>
+              )} />
+          );
+        case '/testimonials':
+          return (
+            <Route
+              key={idx}
+              path='/testimonials'
+              children={({ match, ...rest}) => (
+                <TransitionWrapper>
+                  { match && <TestimonialContainer
                     pageId={ page.id }
                     loadComplete={ this.componentLoadComplete }
                     {...this.props} /> }
@@ -92,20 +108,23 @@ class Router extends Component {
         <Route
           path='/'
           exact={ true }
-          render={(props) => {
-            return <HomeContainer
-                      loadComplete={ this.componentLoadComplete }
-                      title='Home'
-                      {...this.props} />;
-          }} />
+          children={({ match, ...rest }) => (
+            <TransitionWrapper>
+              { match && <HomeContainer
+                          loadComplete={ this.componentLoadComplete }
+                          title='Home'
+                          {...this.props} />
+              }
+            </TransitionWrapper>  
+          )} />
         <Route
           path='/the-team/:id'
           children={({ match, ...rest }) => (
             <TransitionWrapper>
               { match && <HeroContainer
-                loadComplete={ this.componentLoadComplete }
-                {...match}
-                {...this.props} />
+                            loadComplete={ this.componentLoadComplete }
+                            {...match}
+                            {...this.props} />
               }
             </TransitionWrapper>
           )} />

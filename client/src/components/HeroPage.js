@@ -13,7 +13,7 @@ import Parallax from './Home/Parallax';
 //
 // };
 
-class Page extends Component {
+class HeroPage extends Component {
   constructor(props) {
     super(props);
 
@@ -183,6 +183,6 @@ var Meter = function (props) {
   );
 };
 
-// Page.propTypes = propTypes;
+// HeroPage.propTypes = propTypes;
 
-export default Page;
+export default HeroPage;

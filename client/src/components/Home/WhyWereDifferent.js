@@ -43,7 +43,7 @@ class WhyWereDifferent extends Component {
                         imgClass='-why-hero-1'
                         speed={ 0.06 }
                         offset={ 250 }
-                        parentContainer='.why_were_different'
+                        parentContainer='.why-heroes-img'
                         imgSrc='/assets/Denis.png' />
                     </div>
                     <div className='col-xs-4 relative -why-hero-2-container'>
@@ -51,7 +51,7 @@ class WhyWereDifferent extends Component {
                         imgClass='-why-hero-2'
                         speed={ 0.08 }
                         offset={ 220 }
-                        parentContainer='.why_were_different'
+                        parentContainer='.why-heroes-img'
                         imgSrc='/assets/Orlando.png' />
                     </div>
                     <div className='col-xs-4 relative -why-hero-3-container'>
@@ -59,7 +59,7 @@ class WhyWereDifferent extends Component {
                         imgClass='-why-hero-3'
                         speed={ 0.06 }
                         offset={ 240 }
-                        parentContainer='.why_were_different'
+                        parentContainer='.why-heroes-img'
                         imgSrc='/assets/Chris.png' />
                     </div>
                   </div>

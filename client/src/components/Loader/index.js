@@ -13,9 +13,9 @@ class Loader extends Component {
   render() {
     return (
       <div
-        className={`loader ${this.props.reversed ? 'reversed' : ''}`}>
+        className={`loader ${this.props.reversed ? 'reversed' : 'original'}`}>
         <ul
-          className={`loading ${this.props.reversed ? 'reversed' : ''}`}>
+          className={`loading ${this.props.reversed ? 'reversed' : 'original'}`}>
           <li></li>
           <li></li>
           <li></li>

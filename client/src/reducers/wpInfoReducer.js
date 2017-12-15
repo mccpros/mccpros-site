@@ -44,6 +44,11 @@ export default function info(state = { loading: true }, action) { // Init with l
         ...state,
         page: action.page // Got em
       };
+    case ActionTypes.RECEIVE_TESTIMONIALS:
+      return {
+        ...state,
+        testimonials: action.testimonials // Got em
+      };
     default:
       return state;
   }

@@ -4,6 +4,7 @@
 @import './nav.scss';
 @import './page.scss';
 @import './loader.scss';
+@import './testimonial.scss';
 @import './meet-the-team.scss';
 @import './fontello.scss';
 @import './bootstrap.min.scss';
@@ -108,6 +109,7 @@ h5.title {
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: 10;
 }
 
 div.animated-cover {
@@ -132,6 +134,11 @@ div.animated-cover.appear {
 
 div#pageWrapper {
   padding-top: 50px;
+  background-color: #fcfcfc;
+}
+
+.page {
+  background: #fcfcfc;
 }
 
 @media (max-width: 992px) {
