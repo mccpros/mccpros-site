@@ -1,5 +1,6 @@
-.page-container {
+.page-container, .page-parent {
   background-color: #fcfcfc;
+  min-height: 100vh;
 }
 .page-wrapper {
   min-height: 60vh;

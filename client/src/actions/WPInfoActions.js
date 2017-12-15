@@ -37,6 +37,10 @@ export function receiveTestimonials(data) {
   return { type: types.RECEIVE_TESTIMONIALS, testimonials: data }; // Send info
 }
 
+export function fetchingOnePage() {
+  return { type: types.FETCHING_ONE_PAGE, page:{} }; // Send 'Loading'
+}
+
 export function receiveOnePage(data) {
   return { type: types.RECEIVE_ONE_PAGE, page: data }; // Send info
 }
@@ -136,6 +140,8 @@ export function fetchPages() {
 
 export function fetchOnePage(id) {
   return dispatch => {
+    dispatch(fetchingOnePage());
+
     // API Call
     axios.get(url(`/wp/v2/pages/${id}`))
       .then(res => {

@@ -69,7 +69,7 @@ class TestimonialList extends Component {
           <div className='page-container'>
 
           { this.props.testimonials && this.props.testimonials.length &&
-              this.props.page ?
+              this.props.page && this.props.page.id ?
             this.renderTestimonials() :
             <TransitionWrapper><Loader /></TransitionWrapper> }
 

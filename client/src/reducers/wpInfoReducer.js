@@ -39,6 +39,7 @@ export default function info(state = { loading: true }, action) { // Init with l
         ...state,
         pages: action.pages // Got em
       };
+    case ActionTypes.FETCHING_ONE_PAGE:
     case ActionTypes.RECEIVE_ONE_PAGE:
       return {
         ...state,

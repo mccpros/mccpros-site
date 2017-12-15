@@ -1,11 +1,13 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Content from '../Page/Content.js';
-import HeroRow from '../HeroRow';
-
 import NavContainer     from '../../containers/NavContainer';
 import FooterContainer  from '../../containers/FooterContainer';
+
+import TransitionWrapper from '../Transitions/TransitionWrapper';
+import Loader from '../Loader';
+import Content from '../Page/Content';
+import HeroRow from '../HeroRow';
 
 // We should probably check prop types
 // const propTypes = {
@@ -63,8 +65,6 @@ class MeetTheTeam extends Component {
   }
 
   render() {
-    let { page } = this.props;
-
     return (
       <div className='meet-the-team-page'>
         <NavContainer {...this.props} />
@@ -82,9 +82,11 @@ class MeetTheTeam extends Component {
 
           </div>
 
-          <div className='page'>
+          <div className='page-parent'>
 
-            { page && <Content {...this.props} /> }
+            { this.props.page && this.props.page.id ?
+              <Content {...this.props} />  :
+              <TransitionWrapper><Loader /></TransitionWrapper> }
 
           </div>
 

@@ -5,6 +5,7 @@ import { animateScroll } from 'react-scroll'
 import NavContainer     from '../containers/NavContainer';
 import FooterContainer  from '../containers/FooterContainer';
 
+import TransitionWrapper from './Transitions/TransitionWrapper';
 import Loader from './Loader';
 import HeroRow from './HeroRow';
 import Parallax from './Home/Parallax';
@@ -144,16 +145,18 @@ class HeroPage extends Component {
           loadComplete={ this.loadComplete }
           {...this.props} />
         <div id='pageWrapper'>
-          <div className='page-container'>
+          <div className='page-parent'>
 
-            { this.state.selectedHero.id && this.renderHero() }
+            { this.state.selectedHero.id ?
+                this.renderHero() :
+                <TransitionWrapper><Loader /></TransitionWrapper> }
+          </div>
 
             <HeroRow {...this.props}/>
 
             <FooterContainer
               loadComplete={ this.loadComplete }/>
 
-          </div>
         </div>
       </div>
     );

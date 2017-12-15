@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import NavContainer     from '../../containers/NavContainer';
 import FooterContainer  from '../../containers/FooterContainer';
 
-import Loader            from '../Loader';
-
+import TransitionWrapper from '../Transitions/TransitionWrapper';
+import Loader from '../Loader';
 import Content from './Content';
 
 // We should probably check prop types
@@ -31,7 +31,7 @@ class Page extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if(newProps.page) {
+    if(newProps.page && newProps.page.id) {
       setTimeout(this.props.loadComplete, 0);
       // this.props.loadComplete();
     }
@@ -53,23 +53,19 @@ class Page extends Component {
           {...this.props} />
 
         <div id="pageWrapper">
-          <div className='page-container'>
 
-
-            { this.props.page ?
+          <div className="page-parent">
+            { this.props.page && this.props.page.id ?
               <Content
-                key={this.props.pageId}
                 loadComplete={ this.loadComplete }
                 {...this.props} /> :
-              'Loading...' }
-
-            <FooterContainer
-              loadComplete={ this.loadComplete }
-              {...this.props} />
-
-
-
+                <TransitionWrapper><Loader /></TransitionWrapper> }
           </div>
+
+          <FooterContainer
+            loadComplete={ this.loadComplete }
+            {...this.props} />
+
         </div>
       </div>
     );
