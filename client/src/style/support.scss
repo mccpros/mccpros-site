@@ -1,0 +1,33 @@
+.map {
+  padding: 0 !important;
+  border: 3px solid #20b789;
+  border-radius: 2px;
+}
+
+ul.contact {
+  list-style: none;
+  padding-left: 0;
+  font-size: 1em;
+}
+
+ul.contact li {
+  margin: 1em 0;
+}
+
+ul.contact li i, ul.contact li p {
+  display: inline-block;
+}
+
+ul.contact i {
+  color: #20b789;
+  font-size: 2em;
+}
+
+.contact-form {
+  letter-spacing: 2px;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin: 1em 0;
+}

@@ -19,12 +19,9 @@ class HeroPage extends Component {
     super(props);
 
     this.state = {
-      awaitLoad: 3,
       selectedHero: { id: null },
       pageLoaded: false
     }
-
-    this.loaded = 0
 
     this.loadComplete = this.loadComplete.bind(this);
   }
@@ -40,7 +37,7 @@ class HeroPage extends Component {
 
       if(!this.state.pageLoaded) {
         this.setState({ pageLoaded: true });
-        setTimeout(this.props.loadComplete, 0);
+        this.props.loadComplete();
       }
 
       newProps.heroes.forEach(h => {
@@ -54,11 +51,7 @@ class HeroPage extends Component {
   }
 
   loadComplete() {
-    this.loaded++;
-
-    if(this.loaded === this.state.awaitLoad) {
-      this.props.loadComplete();
-    }
+    this.props.loadComplete();
   }
 
   renderHero() {
@@ -141,9 +134,8 @@ class HeroPage extends Component {
     return (
       <div className='page-container'>
 
-        <NavContainer
-          loadComplete={ this.loadComplete }
-          {...this.props} />
+        <NavContainer {...this.props} />
+
         <div id='pageWrapper'>
           <div className='page-parent'>
 
@@ -154,8 +146,7 @@ class HeroPage extends Component {
 
             <HeroRow {...this.props}/>
 
-            <FooterContainer
-              loadComplete={ this.loadComplete }/>
+            <FooterContainer {...this.props} />
 
         </div>
       </div>

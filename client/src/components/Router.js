@@ -7,6 +7,7 @@ import PageContainer from '../containers/PageContainer';
 import MeetTheTeamContainer from '../containers/MeetTheTeamContainer';
 import HeroContainer from '../containers/HeroContainer';
 import TestimonialContainer from '../containers/TestimonialContainer';
+import SupportContainer from '../containers/SupportContainer';
 
 import TransitionWrapper from './Transitions/TransitionWrapper';
 import Loader from './Loader';
@@ -51,13 +52,13 @@ class Router extends Component {
           return (
             <Route
               key={idx}
-              path='/meet-the-team'
+              path={page.acf.url}
               children={({ match, ...rest}) => (
                 <TransitionWrapper>
                   { match && <MeetTheTeamContainer
-                    pageId={ page.id }
-                    loadComplete={ this.componentLoadComplete }
-                    {...this.props} /> }
+                                pageId={ page.id }
+                                loadComplete={ this.componentLoadComplete }
+                                {...this.props} /> }
                 </TransitionWrapper>
               )} />
           );
@@ -65,13 +66,27 @@ class Router extends Component {
           return (
             <Route
               key={idx}
-              path='/testimonials'
+              path={page.acf.url}
               children={({ match, ...rest}) => (
                 <TransitionWrapper>
                   { match && <TestimonialContainer
-                    pageId={ page.id }
-                    loadComplete={ this.componentLoadComplete }
-                    {...this.props} /> }
+                                pageId={ page.id }
+                                loadComplete={ this.componentLoadComplete }
+                                {...this.props} /> }
+                </TransitionWrapper>
+              )} />
+          );
+        case '/support':
+          return (
+            <Route
+              key={idx}
+              path={page.acf.url}
+              children={({ match, ...rest}) => (
+                <TransitionWrapper>
+                  { match && <SupportContainer
+                                pageId={ page.id }
+                                loadComplete={ this.componentLoadComplete }
+                                {...this.props} /> }
                 </TransitionWrapper>
               )} />
           );
@@ -115,8 +130,9 @@ class Router extends Component {
                           title='Home'
                           {...this.props} />
               }
-            </TransitionWrapper>  
+            </TransitionWrapper>
           )} />
+
         <Route
           path='/the-team/:id'
           children={({ match, ...rest }) => (

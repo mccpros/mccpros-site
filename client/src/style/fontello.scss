@@ -9,13 +9,14 @@
   font-weight: normal;
   font-style: normal;
 }
+/* Chrome hack: SV
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
 /* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?93721820#fontello') format('svg');
+    src: url('../font/fontello.svg?58477243#fontello') format('svg');
   }
 }
 */
@@ -58,7 +59,10 @@
 .icon-left-open-mini:before { content: '\e800'; } /* '' */
 .icon-ok-circled:before { content: '\e801'; } /* '' */
 .icon-right-open-mini:before { content: '\e802'; } /* '' */
+.icon-mobile:before { content: '\e803'; } /* '' */
 .icon-twitter:before { content: '\f099'; } /* '' */
 .icon-facebook:before { content: '\f09a'; } /* '' */
+.icon-mail-alt:before { content: '\f0e0'; } /* '' */
 .icon-linkedin:before { content: '\f0e1'; } /* '' */
 .icon-right-circled2:before { content: '\f18e'; } /* '' */
+.icon-map-pin:before { content: '\f276'; } /* '' */

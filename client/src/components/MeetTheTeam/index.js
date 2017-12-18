@@ -67,6 +67,7 @@ class MeetTheTeam extends Component {
   render() {
     return (
       <div className='meet-the-team-page'>
+
         <NavContainer {...this.props} />
 
         <div id="pageWrapper">
@@ -92,7 +93,8 @@ class MeetTheTeam extends Component {
 
           <HeroRow {...this.props} />
 
-          <FooterContainer />
+          <FooterContainer {...this.props} />
+
         </div>
       </div>
     );

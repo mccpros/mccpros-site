@@ -12,7 +12,8 @@ class MeetTheTeam extends Component {
     super(props);
 
     this.state = {
-      heroIndex: null
+      heroIndex: null,
+      selectedHero: null
     }
   }
 
@@ -23,13 +24,17 @@ class MeetTheTeam extends Component {
     }
   }
 
-  renderHero() {
-    let superheroes = this.props.heroes;
-    let hero;
+  componentWillReceiveProps(newProps) {
+    if(newProps.heroes && !this.state.selectedHero) {
+      let superheroes  = newProps.heroes;
+      let randIdx      = Math.floor(Math.random() * superheroes.length)
+      let selectedHero = superheroes[randIdx];
 
-    if(!hero) {
-      hero = superheroes[Math.floor(Math.random() * superheroes.length)];
+      this.setState({ selectedHero });
     }
+  }
+
+  renderHero() {
 
     return (
       <div
@@ -53,23 +58,23 @@ class MeetTheTeam extends Component {
             <div className='col-xs-offset-1 col-xs-3 col-lg-offset-0 col-lg-3 hero-label white relative'>
 
               <div>
-                <Link to={`/the-team/${hero.id}`}>
-                  <p className='arvo'>{hero.acf.name}</p>
+                <Link to={`/the-team/${this.state.selectedHero.id}`}>
+                  <p className='arvo'>{this.state.selectedHero.acf.name}</p>
                 </Link>
 
                 <hr/>
-                
-                <Link to={`/the-team/${hero.id}`}>
-                  <p className='lato'>{hero.acf.title}</p>
+
+                <Link to={`/the-team/${this.state.selectedHero.id}`}>
+                  <p className='lato'>{this.state.selectedHero.acf.title}</p>
                 </Link>
               </div>
 
             </div>
 
-            <Link to={`/the-team/${hero.id}`}>
+            <Link to={`/the-team/${this.state.selectedHero.id}`}>
               <img
                 className='col-xs-8 col-lg-9'
-                src={hero.acf.close_up} alt=""/>
+                src={this.state.selectedHero.acf.close_up} alt=""/>
             </Link>
 
           </div>
@@ -82,7 +87,7 @@ class MeetTheTeam extends Component {
   render() {
     return (
       <div>
-        { this.props.heroes &&
+        { this.state.selectedHero &&
           this.renderHero() }
       </div>
     );

@@ -16,13 +16,6 @@ import Content from './Content';
 class Page extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      awaitLoad: 3
-    }
-    this.loaded = 0
-
-    this.loadComplete = this.loadComplete.bind(this);
   }
 
   componentWillMount() {
@@ -32,15 +25,6 @@ class Page extends Component {
 
   componentWillReceiveProps(newProps) {
     if(newProps.page && newProps.page.id) {
-      setTimeout(this.props.loadComplete, 0);
-      // this.props.loadComplete();
-    }
-  }
-
-  loadComplete() {
-    this.loaded++;
-
-    if(this.loaded === this.state.awaitLoad) {
       this.props.loadComplete();
     }
   }
@@ -49,7 +33,6 @@ class Page extends Component {
     return (
       <div className='page-container'>
         <NavContainer
-          loadComplete={ this.loadComplete }
           {...this.props} />
 
         <div id="pageWrapper">
@@ -63,7 +46,6 @@ class Page extends Component {
           </div>
 
           <FooterContainer
-            loadComplete={ this.loadComplete }
             {...this.props} />
 
         </div>
@@ -75,14 +57,3 @@ class Page extends Component {
 // Page.propTypes = propTypes;
 
 export default Page;
-
-// <div className='page-container'>
-//   <NavContainer {...this.props} />
-//   <div id="pageWrapper">
-//     { this.props.page ?
-//       <Content {...this.props} /> :
-//       <Loader />
-//
-//         <FooterContainer />
-//   </div>
-// </div>

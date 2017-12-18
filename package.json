@@ -25,6 +25,7 @@
     "react-css-transition": "^0.7.4",
     "react-dom": "^16.0.0",
     "react-dom-animated": "^1.0.3",
+    "react-google-maps": "^9.4.3",
     "react-hot-loader": "^3.1.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
