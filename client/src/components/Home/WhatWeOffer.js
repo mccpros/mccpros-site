@@ -23,7 +23,7 @@ class WhatWeOffer extends Component {
 
         <div className='parallax-wrapper col-xs-3'>
           <Parallax
-            speed={ -0.08 }
+            speed={ -0.05 }
             offset={ 40 }
             parentContainer='.offer-container'
             imgSrc='/assets/hero.png'

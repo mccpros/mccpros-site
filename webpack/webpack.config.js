@@ -6,6 +6,9 @@ let path    = require('path');
 let BUILD_DIR = path.resolve(__dirname, '../client/public/build/');
 let APP_DIR   = path.resolve(__dirname, '../client/src/');
 
+
+let allPlugins = [];
+
 let config = {
   entry: {
     main: [
@@ -61,6 +64,9 @@ let config = {
     },
    ]
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
   devServer: {
     hot: true
   }

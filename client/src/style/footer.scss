@@ -187,3 +187,12 @@ div.right div {
     margin-right: 2em !important;
   }
 }
+
+@media (max-width: 767px) {
+  div.right div {
+    text-align: center;
+  }
+  div.right {
+    margin-top: 1em;
+  }
+}

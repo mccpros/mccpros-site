@@ -31,8 +31,7 @@ class Content extends Component {
   }
 
   componentWillReceiveProps() {
-    setTimeout(this.initData.bind(this), 0);
-    // this.initData();
+    // this.initData.bind(this);
   }
 
   initData() {

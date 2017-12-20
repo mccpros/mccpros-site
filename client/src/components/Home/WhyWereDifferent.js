@@ -34,7 +34,7 @@ class WhyWereDifferent extends Component {
           <div className='col-xs-12'>
             <div className='why_were_different'>
 
-              <div className='col-xs-12 col-md-6 no-padding'>
+              <div className='col-md-6 no-padding parallax-different'>
 
                 <div className='why-heroes-img'>
                   <div className="row">

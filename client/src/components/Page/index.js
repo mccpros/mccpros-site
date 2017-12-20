@@ -35,9 +35,9 @@ class Page extends Component {
         <NavContainer
           {...this.props} />
 
-        <div id="pageWrapper">
+        <div id='pageWrapper'>
 
-          <div className="page-parent">
+          <div className='page-parent'>
             { this.props.page && this.props.page.id ?
               <Content
                 loadComplete={ this.loadComplete }

@@ -77,6 +77,7 @@ class HeroPage extends Component {
             <div className='col-xs-12 col-md-6'>
               <div className='col-xs-2 col-sm-6'>
                 <Parallax
+                  start={ window.innerWidth < 768 ? -120 : -620 }
                   speed={ 0.12 }
                   offset={ 40 }
                   parentContainer='.row'

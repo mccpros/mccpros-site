@@ -17,6 +17,11 @@ import HeroRow from '../HeroRow';
 class MeetTheTeam extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      headerImg: '',
+      page: {}
+    }
   }
 
   componentWillMount() {
@@ -25,6 +30,18 @@ class MeetTheTeam extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    if(newProps.page && newProps.page.id) {
+      let headerImg = window.innerWidth > 1000 ?
+                        newProps.page.acf.hero_image :
+                        newProps.page.acf.mobile_header;
+      delete newProps.page.acf.hero_image;
+
+      this.setState({
+        headerImg,
+        page: newProps.page
+      });
+    }
+
     if(newProps.heroes && newProps.heroes.length) {
       this.props.loadComplete();
     }
@@ -70,14 +87,18 @@ class MeetTheTeam extends Component {
 
         <NavContainer {...this.props} />
 
-        <div id="pageWrapper">
+        <div id='pageWrapper'>
           <div className='city-wrapper'>
 
             <div className='meet-title'>
               <h1 className='arvo white'>Meet the MCC Superhero Team</h1>
             </div>
 
-            <img src='/assets/full_city.png' alt=""/>
+            { this.state.headerImg ?
+                <img
+                  src={ this.state.headerImg }
+                  alt='' /> :
+                <TransitionWrapper><Loader /></TransitionWrapper> }
 
             <div className='heroes-wrapper'></div>
 

@@ -10,8 +10,6 @@ import { Link } from 'react-router-dom';
 class NavItem extends Component {
   constructor(props) {
     super(props);
-
-    this.isMobile = window.innerWidth <= 768;
   }
 
   render() {
@@ -19,7 +17,6 @@ class NavItem extends Component {
       <li
         key={this.props.index}
         data-index={this.props.index}
-        onMouseUp={ this.isMobile ? this.props.clickHandler : null }
         className={`nav-item ${this.props.className}`}>
         <Link
           style={{ color: this.props.color === 'rgb(244, 244, 244)' ?

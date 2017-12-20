@@ -8,8 +8,10 @@ class Parallax extends Component {
     this.state = {
       height: 0,     // Container Height
       y: 40,         // Parallax Pos
-      scrollStart: 0 // Start the animation
+      scrollStart: this.props.start || null // Start the animation
     }
+
+    console.log(this.state.scrollStart);
 
     this.offset = this.props.offset;  // Offset ( Instead of starting at 0 )
     this.handleScroll = this.handleScroll.bind(this);
@@ -18,6 +20,7 @@ class Parallax extends Component {
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
     this.setContainerHeight();
+    this.parallax()
   }
 
   componentWillUnmount() {

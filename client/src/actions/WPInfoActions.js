@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes';
 import axios from 'axios';
 
 function url(path) {
-  return `http://localhost:8080/wp-json${path}`
+  return `http://138.68.26.87:8080/wp-json${path}`
 }
 
 export function fetchingInfo(data) {
@@ -38,7 +38,7 @@ export function receiveTestimonials(data) {
 }
 
 export function fetchingOnePage() {
-  return { type: types.FETCHING_ONE_PAGE, page:{} }; // Send 'Loading'
+  return { type: types.FETCHING_ONE_PAGE, page: {} }; // Send 'Loading'
 }
 
 export function receiveOnePage(data) {
@@ -143,12 +143,15 @@ export function fetchOnePage(id) {
     dispatch(fetchingOnePage());
 
     // API Call
-    axios.get(url(`/wp/v2/pages/${id}`))
+    setTimeout(() => {
+      axios.get(url(`/wp/v2/pages/${id}`))
       .then(res => {
         dispatch(receiveOnePage(res.data)); // Got em
       })
       .catch(err => {
         console.log('err', err);
       })
+
+    }, 1900);
   };
 }

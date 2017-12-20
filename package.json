@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node ./server/app.js",
+    "deploy": "NODE_ENV=production babel-node ./server/app.js",
+    "build-dev": "webpack --config ./webpack/webpack.dev.js",
+    "build-prod": "webpack --config ./webpack/webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -33,6 +36,7 @@
     "react-scroll": "^1.7.3",
     "react-scrollbar": "^0.5.1",
     "react-slick": "^0.15.4",
+    "react-swipeable": "^4.2.0",
     "react-touch": "^0.4.3",
     "react-visibility-sensor": "^3.11.0",
     "redux": "^3.7.2",

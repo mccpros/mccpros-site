@@ -33,12 +33,12 @@ class Home extends Component {
 
   renderHome() {
     return (
-      <div id="pageWrapper">
+      <div id='pageWrapper'>
         <div className='home-wrapper'>
 
           <Canvas />
 
-          <div className="home-cta-wrapper">
+          <div className='home-cta-wrapper'>
             <div className='home-cta'>
 
               <div className='home-header-title'>
@@ -58,6 +58,14 @@ class Home extends Component {
                 </Link>
 
               </div>
+
+              <svg className='cta' viewBox={`100 100 ${window.innerWidth} ${window.innerHeight}`}>
+                 <polygon points='0,150 0,820 1160,690' className='triangle' />
+              </svg>
+
+              <svg className='gap' viewBox={`100 100 ${window.innerWidth} ${window.innerHeight}`}>
+                 <polygon points={`100,720 100,820 ${window.innerWidth + 100},820 ${window.innerWidth + 100},512`} className='rect' />
+              </svg>
             </div>
           </div>
 

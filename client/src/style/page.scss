@@ -63,3 +63,24 @@ h1.page-title {
     display: none;
   }
 }
+
+@media (max-width: 767px) {
+  .page-img {
+    width: 140px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .page-container, .page-parent {
+    min-height: 60vh;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1155px) {
+  .page-container, .page-parent {
+    min-height: 60vh;
+  }
+  div#page-length {
+    margin-left: 17vw;
+  }
+}

@@ -12,6 +12,7 @@ import express, { Router } from 'express';
 // Webpack Stuff
 import webpack       from 'webpack';
 import webpackConfig from '../webpack/webpack.dev';
+const compiler = webpack(webpackConfig);
 
 // Uncomment and add controller for API
 // import Controller from './controllers/controller';
@@ -21,20 +22,20 @@ const app       = express();
 const server    = http.createServer(app);
 const apiRouter = Router();
 
-const PORT = process.env.NODE_ENV === 'prod' ? 80 : 3000;
+const PORT = process.env.NODE_ENV === 'production' ? 80 : 3000;
 
 // Webpack Dev Setup
-const compiler = webpack(webpackConfig);
-
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true, publicPath: webpackConfig.output.publicPath
-}));
-
-app.use(require('webpack-hot-middleware')(compiler, {
- 'log': false,
- 'path': '/__webpack_hmr',
- 'heartbeat': 10 * 1000
-}));
+if(process.env.NODE_ENV !== 'production') {
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true, publicPath: webpackConfig.output.publicPath
+  }));
+  app.use(require('webpack-hot-middleware')(compiler, {
+    // 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true'
+    'log': false,
+    'path': '/__webpack_hmr',
+    'heartbeat': 10 * 1000
+  }));
+}
 
 // Express options/middlewares
 app.use(morgan('dev'));

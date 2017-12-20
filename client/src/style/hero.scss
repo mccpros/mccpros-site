@@ -183,6 +183,12 @@ img.hero-page-parallax {
   }
 }
 
+@media (max-width: 768px) {
+  .hero-component {
+    margin-top: 5em;
+  }
+}
+
 @media (max-width: 640px) {
   .stats-wrapper {
     margin-left: 12em;
