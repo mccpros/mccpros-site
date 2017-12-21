@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Canvas from './Canvas';
+import Canvas           from '../Canvas';
 import WhatWeDo         from './WhatWeDo';
 import WhatWeOffer      from './WhatWeOffer';
 import WhyWereDifferent from './WhyWereDifferent';
@@ -60,11 +60,11 @@ class Home extends Component {
               </div>
 
               <svg className='cta' viewBox={`100 100 ${window.innerWidth} ${window.innerHeight}`}>
-                 <polygon points='0,150 0,820 1160,690' className='triangle' />
+                 <polygon points={`0,${window.innerHeight - 550} 0,${window.innerHeight + 50} 1160,${window.innerHeight - 100}`} className='triangle' />
               </svg>
 
               <svg className='gap' viewBox={`100 100 ${window.innerWidth} ${window.innerHeight}`}>
-                 <polygon points={`100,720 100,820 ${window.innerWidth + 100},820 ${window.innerWidth + 100},512`} className='rect' />
+                 <polygon points={`100,${window.innerHeight} 100,${window.innerHeight + 50} ${window.innerWidth + 100},${window.innerHeight + 50} ${window.innerWidth + 100},${window.innerHeight - 200}`} className='rect' />
               </svg>
             </div>
           </div>
