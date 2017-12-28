@@ -1,5 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 // We should probably check prop types
 // const propTypes = {
@@ -39,21 +40,21 @@ class FooterEnd extends Component {
             <hr />
 
             <div className='footer-nav'>
-              <a
+              <Link
                 className='arvo'
-                href='#'>ABOUT</a>
-              <a
+                to='/about'>ABOUT</Link>
+              <Link
                 className='arvo'
-                href='#'>SERVICES</a>
-              <a
+                to='/services'>SERVICES</Link>
+              <Link
                 className='arvo'
-                href='#'>PROGRAMS</a>
-              <a
+                to='/programs'>PROGRAMS</Link>
+              <Link
                 className='arvo'
-                href='#'>CLIENTS</a>
-              <a
+                to='/clients'>CLIENTS</Link>
+              <Link
                 className='arvo'
-                href='#'>CONTACT</a>
+                to='/support'>CONTACT</Link>
             </div>
 
             <hr />

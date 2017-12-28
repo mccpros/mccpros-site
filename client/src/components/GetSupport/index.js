@@ -1,5 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import Recaptcha from 'react-google-invisible-recaptcha';
 
 import NavContainer     from '../../containers/NavContainer';
 import FooterContainer  from '../../containers/FooterContainer';
@@ -23,10 +24,13 @@ class GetSupport extends Component {
        email: '',
        phone: '',
        message: '',
+       messageSent: false,
+       sending: false
      };
 
      this.handleChange = this.handleChange.bind(this);
      this.handleSubmit = this.handleSubmit.bind(this);
+     this.googleCallback = this.googleCallback.bind(this);
   }
 
   componentWillMount() {
@@ -49,7 +53,49 @@ class GetSupport extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({
+      messageSent: true,
+      sending: true
+    });
 
+    // UNCOMMENT THIS
+    // this.recaptcha.execute();
+
+    // DElETE THIS
+    this.googleCallback();
+  }
+
+  googleCallback() {
+   let data = {
+     // gresponse: this.recaptcha.getResponse(),
+     name: this.state.name,
+     email: this.state.email,
+     phone: this.state.phone,
+     message: this.state.message,
+   }
+
+   let valid = this.validateForm(data);
+
+   if(valid) {
+     this.props.postMessage(data);
+   } else {
+     this.setState({ sending: false });
+   }
+ }
+
+  validateForm(data) {
+    let valid = true;
+
+    for(let key in data) {
+      if (data.hasOwnProperty(key)) {
+        if(key !== 'phone' && key !== 'message'
+            && !data[key] && data[key].length <= 0) {
+          valid = false;
+          this.setState({ [key]: '' });
+        }
+      }
+    }
+    return valid;
   }
 
   renderForm() {
@@ -60,40 +106,56 @@ class GetSupport extends Component {
 
         <div className='col-xs-12 col-md-6'>
           <form
-            onSubmit={this.handleSubmit}
+            onSubmit={ this.handleSubmit }
             className='contact-form'>
             <label className='lato black' htmlFor='name'>Name*</label>
             <input
               name='name'
-              className='lato'
+              className={
+                `lato ${this.state.messageSent && !this.state.name ?
+                    'incorrect' : ''}`
+              }
               type='text'
-              value={this.state.name}
+              value={ this.state.name }
+              ref={ name => this.name = name }
               onChange={this.handleChange}/>
             <label className='lato black' htmlFor='email'>Email*</label>
             <input
               name='email'
-              className='lato'
+              className={
+                `lato ${this.state.messageSent && !this.state.email ?
+                    'incorrect' : ''}`
+              }
               type='email'
               value={this.state.email}
+              ref={ email => this.email = email }
               onChange={this.handleChange}/>
             <label className='lato black' htmlFor='phone'>Phone</label>
             <input
               name='phone'
-              className='lato'
+              className={ `lato` }
               type='text'
               value={this.state.phone}
+              ref={ phone => this.phone = phone }
               onChange={this.handleChange}/>
             <label className='lato black' htmlFor='message'>Message</label>
             <textarea
               name='message'
-              className='lato'
+              className={ `lato` }
               value={this.state.message}
+              ref={ message => this.message = message }
               onChange={this.handleChange}></textarea>
             <input
+              disabled={ this.state.sending }
               id='submit'
               className='lato white btn'
               type='submit'
               value='Submit' />
+          {  // <Recaptcha
+            //   ref={ ref => this.recaptcha = ref }
+            //   sitekey='6Ld3mj4UAAAAAFJYts5G12CIwnfK0yBgyBuKIxBp'
+            //   onResolved={ this.googleCallback } />
+          }
           </form>
         </div>
 
@@ -101,15 +163,16 @@ class GetSupport extends Component {
           <ul className='contact lato black'>
             <li>
               <i className='icon-mail-alt'></i>
-              <p><a href=''>connect@mccpros.com</a></p>
+              <p><a href='mailto:connect@mccpros.com'>connect@mccpros.com</a></p>
             </li>
             <li>
               <i className='icon-mobile'></i>
-              <p><a href=''>1-877-365-6800</a></p>
+              <p><a href='tel:18773656800'>1-877-365-6800</a></p>
             </li>
             <li>
               <i className='icon-map-pin'></i>
-              <p><a href=''>1822 West Kettleman Lane Suite 4 <br/>
+              <p><a target='_blank'
+                href='https://www.google.com/maps/place/Merino+Computer+Concepts/@38.1156112,-121.2946386,16.51z/data=!4m5!3m4!1s0x0:0xd59a4d48f66cafcf!8m2!3d38.1151848!4d-121.2953057'>1822 West Kettleman Lane Suite 4 <br/>
                             Lodi, CA 95242</a></p>
             </li>
           </ul>

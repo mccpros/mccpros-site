@@ -31,4 +31,16 @@ ul.contact i {
   width: 100%;
   margin: 1em 0;
   border: 1px solid #b6b6b6;
+  transition: all .2s ease;
+  -o-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+}
+
+input.incorrect, textarea.incorrect {
+  border: 1px solid #e60000;
+}
+
+input[type='submit'][disabled] {
+  opacity: 0.4;
 }

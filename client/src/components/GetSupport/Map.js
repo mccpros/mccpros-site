@@ -4,7 +4,7 @@ import {
   withGoogleMap,
   GoogleMap,
   Marker,
-} from "react-google-maps";
+} from 'react-google-maps';
 
 // We should probably check prop types
 // const propTypes = {

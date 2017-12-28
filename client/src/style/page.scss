@@ -1,7 +1,12 @@
 .page-container, .page-parent {
   background-color: #fcfcfc;
   min-height: 100vh;
+  transition: all .2s ease;
+  -o-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -webkit-transition: all .2s ease;
 }
+
 .page-wrapper {
   min-height: 60vh;
   padding: 6em 0;
@@ -17,6 +22,12 @@ h1.page-title {
   letter-spacing: 1px;
   line-height: 32px;
 }
+.page-content * {
+  color: rgba(0, 0, 0, 0.87)
+}
+.page-content p {
+  color: rgba(0, 0, 0, 0.54)
+}
 
 .page-img {
   float: right;
@@ -31,6 +42,10 @@ h1.page-title {
 .fixed-social a {
   display: block;
   font-size: 2em;
+  transition: all .2s ease;
+  -o-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -webkit-transition: all .2s ease;
 }
 
 .fixed-contact {
@@ -38,6 +53,10 @@ h1.page-title {
   background-color: #3379b8;
   text-align: center;
   width: 220px;
+}
+
+.fixed-contact:hover {
+  cursor: pointer;
 }
 
 .fixed-contact h3 {
@@ -56,6 +75,15 @@ h1.page-title {
   border-radius: 1px;
   padding: 0.5em;
   width: 100%;
+  transition: all .2s ease;
+  -o-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+}
+.fixed-contact button:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #17628f;
 }
 
 @media (max-width: 1155px) {

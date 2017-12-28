@@ -1,5 +1,7 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import OfferItem from './OfferItem';
 
 // We should probably check prop types
@@ -135,7 +137,7 @@ class OfferList extends Component {
           } } />
 
           <div id='buttonWrapper' className='offer-button-wrapper relative'>
-            <a href={ this.state.href }>
+            <Link to={ this.state.href }>
               <button
                 id='learnButton'
                 className='btn arvo white'
@@ -143,7 +145,7 @@ class OfferList extends Component {
                   left: `${this.state.buttonPos}px`
                 } }
                 >Learn More</button>
-            </a>
+            </Link>
           </div>
 
         </div>

@@ -125,9 +125,14 @@ li.nav-item, li.nav-item a {
   top: 0;
   height: 70px;
   width: 100%;
-  border-bottom: 2px solid #00638D;
   background-color: #fcfcfc;
   z-index: 100;
+}
+
+.mobile-nav-wrapper img {
+  width: 150px;
+  margin: 1em;
+  margin-left: 0;
 }
 
 span.bm-burger-bars {

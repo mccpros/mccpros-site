@@ -1,6 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 
 import HomeContainer from '../containers/HomeContainer';
 import PageContainer from '../containers/PageContainer';
@@ -10,6 +10,7 @@ import TestimonialContainer from '../containers/TestimonialContainer';
 import SupportContainer from '../containers/SupportContainer';
 
 import TransitionWrapper from './Transitions/TransitionWrapper';
+import PageNotFound from './404';
 import Loader from './Loader';
 // We should probably check prop types
 // const propTypes = {
@@ -101,6 +102,7 @@ class Router extends Component {
                                 pageId={page.id}
                                 loadComplete={ this.componentLoadComplete }
                                 {...this.props}
+                                {...this.state}
                                 {...rest} />}
                   </TransitionWrapper>
               )} />
@@ -120,32 +122,47 @@ class Router extends Component {
             null }
         </TransitionWrapper>
 
-        <Route
-          path='/'
-          exact={ true }
-          children={({ match, ...rest }) => (
-            <TransitionWrapper>
-              { match && <HomeContainer
-                          loadComplete={ this.componentLoadComplete }
-                          title='Home'
-                          {...this.props} />
+        <Switch>
+          <Route
+            path='/'
+            exact={ true }
+            children={({ match, ...rest }) => (
+              <TransitionWrapper>
+                { match && <HomeContainer
+                  loadComplete={ this.componentLoadComplete }
+                  title='Home'
+                  {...this.props} />
               }
             </TransitionWrapper>
           )} />
 
-        <Route
-          path='/the-team/:id'
-          children={({ match, ...rest }) => (
-            <TransitionWrapper>
-              { match && <HeroContainer
-                            loadComplete={ this.componentLoadComplete }
-                            {...match}
-                            {...this.props} />
+          <Route
+            path='/the-team/:id'
+            children={({ match, ...rest }) => (
+              <TransitionWrapper>
+                { match && <HeroContainer
+                  loadComplete={ this.componentLoadComplete }
+                  {...match}
+                  {...this.props} />
               }
             </TransitionWrapper>
           )} />
+
 
           { this.props.pages && this.renderRoutes() }
+
+          <Route
+            children={({ match, ...rest }) => (
+              <TransitionWrapper>
+                { match && <PageNotFound
+                  loadComplete={ this.componentLoadComplete }
+                  {...match}
+                  {...this.props} />
+              }
+            </TransitionWrapper>
+          )} />
+
+        </Switch>
 
       </div>
     );

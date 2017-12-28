@@ -1,5 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 // We should probably check prop types
 // const propTypes = {
@@ -78,7 +79,7 @@ class Content extends Component {
       return this.setState({
         positionType: 'fixed',
         left: colData.x + 15,
-        top: this.navHeight,
+        top: this.navHeight - 10,
         fixed: true
       });
     } else if(distanceToBottom <= 0 && this.state.fixed) {
@@ -132,29 +133,31 @@ class Content extends Component {
                 className='page-img'
                 src={ page.acf.hero_image } /> :
                 ''
-            }
+              }
 
-            <div className='page-content lato' dangerouslySetInnerHTML={{ __html: page.content.rendered }}></div>
+              <div
+                className='page-content lato'
+                dangerouslySetInnerHTML={{ __html: page.content.rendered }}></div>
 
-            { this.props.children }
-
-          </div>
-
-
-          <div className='col-md-2 fixed-col fixed-contact-wrapper'>
-            <div style={{ position: this.state.positionType, top: this.state.top }} className='fixed-contact'>
-
-              <h3 className='arvo white'>Need Help?</h3>
-              <p className='lato white'>Don't see what you're looking for? Call us today to get the support you need!</p>
-              <a href='/support'>
-                <button className='lato white'>Get Support</button>
-              </a>
+              { this.props.children }
 
             </div>
-          </div>
 
+
+            <div className='col-md-2 fixed-col fixed-contact-wrapper'>
+              <div style={{ position: this.state.positionType, top: this.state.top }} className='fixed-contact'>
+
+                <h3 className='arvo white'>Need Help?</h3>
+                <p className='lato white'>Don't see what you're looking for? Call us today to get the support you need!</p>
+                <Link to='/support'>
+                  <button className='lato white'>Get Support</button>
+                </Link>
+
+              </div>
+            </div>
+
+          </div>
         </div>
-      </div>
     );
   }
 }

@@ -16,6 +16,10 @@ import Content from './Content';
 class Page extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      loading: true
+    }
   }
 
   componentWillMount() {
@@ -26,6 +30,7 @@ class Page extends Component {
   componentWillReceiveProps(newProps) {
     if(newProps.page && newProps.page.id) {
       this.props.loadComplete();
+      this.setState({ loading: false });
     }
   }
 
@@ -36,13 +41,14 @@ class Page extends Component {
           {...this.props} />
 
         <div id='pageWrapper'>
-
           <div className='page-parent'>
-            { this.props.page && this.props.page.id ?
+
+            { this.props.page && this.props.page.id && !this.state.loading ?
               <Content
                 loadComplete={ this.loadComplete }
                 {...this.props} /> :
                 <TransitionWrapper><Loader /></TransitionWrapper> }
+
           </div>
 
           <FooterContainer

@@ -3,6 +3,10 @@
 
 # production
 /client/public/build/*
+/client/public/favicons/*
+/client/public/assets/*
+/client/public/font/*
+/client/public/threejs/*
 
 # misc
 .DS_Store

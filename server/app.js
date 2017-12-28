@@ -15,7 +15,7 @@ import webpackConfig from '../webpack/webpack.dev';
 const compiler = webpack(webpackConfig);
 
 // Uncomment and add controller for API
-// import Controller from './controllers/controller';
+import MessageController from './controllers/Message';
 
 // Express server setup
 const app       = express();
@@ -47,7 +47,7 @@ app.use(express.static(path.join(__dirname, '../client/public')));
 app.use('/api', apiRouter);
 
 // Install Controllers
-// const controller = new Controller(apiRouter);
+const controller = new MessageController(apiRouter);
 
 // Client Side Rendering
 app.use('*', (req, res) => {

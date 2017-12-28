@@ -1,5 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 // We should probably check prop types
 // const propTypes = {
@@ -42,11 +43,11 @@ class OfferItem extends Component {
           { this.renderOfferDetails() }
         </ul>
 
-        <a href='/ramp'>
+        <Link to={`/${this.props.data.name}`}>
           <button className='btn arvo white static-button relative'>
             Learn More
           </button>
-        </a>
+        </Link>
 
       </div>
     );

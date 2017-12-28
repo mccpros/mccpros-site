@@ -1,0 +1,53 @@
+.pageNotFound {
+  text-align: center;
+  font-size: 1.4em;
+  min-height: 100vh;
+}
+
+.pageNotFound div {
+  position: absolute;
+  top: 30vh;
+  left: 0;
+  right: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  z-index: 10;
+}
+
+.pageNotFound div:last-of-type {
+  top: 600px;
+  position: relative;
+}
+
+.pageNotFound h2.title {
+  font-size: 10em;
+}
+
+.pageNotFound img {
+  z-index: 9;
+  position: absolute;
+  top: 20vh;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  height: auto;
+  opacity: 0.45;
+}
+
+@media (max-width: 768px) {
+  .pageNotFound h2.title {
+    font-size: 6em;
+  }
+
+  .pageNotFound img {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .pageNotFound div:last-of-type {
+    top: 500px;
+    position: relative;
+  }
+}

@@ -38,7 +38,7 @@ class TestimonialList extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if(newProps.testimonials) {
+    if(newProps.testimonials && newProps.testimonials.length > 0) {
       this.props.loadComplete();
     }
   }
@@ -65,13 +65,16 @@ class TestimonialList extends Component {
           loadComplete={ this.loadComplete }
           {...this.props} />
 
-        <div id="pageWrapper">
+        <div id='pageWrapper'>
           <div className='page-container'>
 
-          { this.props.testimonials && this.props.testimonials.length &&
-              this.props.page && this.props.page.id ?
-            this.renderTestimonials() :
-            <TransitionWrapper><Loader /></TransitionWrapper> }
+            <div className='page-parent'>  
+              { this.props.testimonials && this.props.testimonials.length > 0 &&
+                this.props.page && this.props.page.id ?
+                this.renderTestimonials() :
+                <TransitionWrapper><Loader /></TransitionWrapper> }
+            </div>
+
 
           <FooterContainer
             loadComplete={ this.loadComplete }

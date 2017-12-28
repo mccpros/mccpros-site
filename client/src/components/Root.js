@@ -1,8 +1,8 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Router } from 'react-router-dom';
 
-import Router from '../components/Router';
+import RouterComponent from '../components/Router';
 // We should probably check prop types
 // const propTypes = {
 //
@@ -18,13 +18,13 @@ class Root extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div>
+        <BrowserRouter>
+          <div>
 
-          <Router {...this.props} />
+            <RouterComponent {...this.props} />
 
-        </div>
-      </BrowserRouter>
+          </div>
+        </BrowserRouter>
     );
   }
 }

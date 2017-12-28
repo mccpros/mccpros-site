@@ -17,6 +17,7 @@ class Nav extends Component {
 
     this.state = {
       color: 'transparent',
+      scrolledTop: true,
       menuIsOpen: false,
       subNavLib: {}
     }
@@ -35,8 +36,8 @@ class Nav extends Component {
     this.cancelLink       = this.cancelLink.bind(this);
     this.showMobileSubNav = this.showMobileSubNav.bind(this);
     this.hideMobileSubNav = this.hideMobileSubNav.bind(this);
-    this.menuStateChange = this.menuStateChange.bind(this);
-    this.hideMenu = this.hideMenu.bind(this);
+    this.menuStateChange  = this.menuStateChange.bind(this);
+    this.hideMenu         = this.hideMenu.bind(this);
   }
 
   componentDidMount() {
@@ -109,15 +110,21 @@ class Nav extends Component {
     let { pathname } = this.props.location;
 
     if(document.querySelector('html').scrollTop === 0 &&
-        pathname === '/' && !this.isMobile) {
+        pathname === '/') {
       // If Home and scrolled to top
       // Keep the bar transparent
-      this.setState({ color: 'transparent' });
+      this.setState({ scrolledTop: true });
+
+      if(!this.isMobile) {
+        this.setState({ color: 'transparent' });
+      }
     } else {
       // If Not Home or not scrolled to top
-      // Keep the bar transparent
-      this.setState({ color: 'rgb(244, 244, 244)' });
-      window.removeEventListener('scroll', this.getScroll);
+      // Make the bar white
+      this.setState({
+        color: 'rgb(244, 244, 244)',
+        scrolledTop: false
+      });
     }
   }
 
@@ -166,7 +173,9 @@ class Nav extends Component {
   renderMobileNav() {
     return (
       <div className='mobile-nav-wrapper'>
-
+        <Link to='/'>
+          <img src='/assets/mcc.png' alt='Merino Computer Concepts Logo'/>
+        </Link>
         <div className='mobile-burger-wrapper'>
           <Swipeable
             onSwipedRight={ this.hideMenu }>
@@ -230,22 +239,22 @@ class Nav extends Component {
       <div className='navbar-wrapper'
         style={{
           backgroundColor: this.state.color,
-          boxShadow: this.state.color === 'rgb(244, 244, 244)' && !this.isMobile ?
-                     '0px 0px 12px -1px rgba(0, 0, 0, .4)' :
-                     '0'
-         }}>
-           { logo &&
-             <div className='nav-img-wrapper'>
-               <Link to='/'>
-                 <img src='/assets/mcc.png' alt=""/>
-               </Link>
-             </div> }
+          boxShadow: this.state.scrolledTop || this.isMobile ?
+            '0px 0px 12px -1px transparent' :
+            '0px 0px 12px -1px rgba(0, 0, 0, .4)'
+        }}>
+        { logo &&
+          <div className='nav-img-wrapper'>
+            <Link to='/'>
+              <img src='/assets/mcc.png' alt=""/>
+            </Link>
+          </div> }
           <div className='nav-main-wrapper'>
             <ul
-              style={{ backgroundColor: this.state.color }}
               className='main-ul'>
               { mainEls }
             </ul>
+
           </div>
         </div>
     );
@@ -258,11 +267,34 @@ class Nav extends Component {
       return <div>Loading...</div>
     }
 
+    let backgroundColor = this.isMobile || window.innerWidth < 1185 ?
+                            '#07638F' : 'transparent';
+
     return (
       <div>
         { width >= 769 ?
           this.renderNavBar(true) :
           this.renderMobileNav() }
+
+        {/*<p
+          style={{
+            color: window.innerWidth < 1185 || this.isMobile || this.state.scrolledTop ?
+                      '#fff' :
+                      'rgba(0,0,0,.87)',
+            backgroundColor: !this.state.scrolledTop ?
+                              backgroundColor :
+                              'transparent',
+            boxShadow: (window.innerWidth < 1185 || this.isMobile) && !this.state.scrolledTop ?
+                        '0px 0px 12px -1px rgba(0, 0, 0, .4)' :
+                        '0px 0px 12px -1px transparent'
+          }}
+            className='lato celebrating'>
+
+            <span><img src='/assets/confetti_emoji.png' alt='20 year anniversary'/></span>
+            Celebrating 20 years of business!
+            <span><img src='/assets/confetti_emoji.png' alt='20 year anniversary'/></span>
+
+        </p>*/}
       </div>
 
     );

@@ -11,8 +11,6 @@ class Parallax extends Component {
       scrollStart: this.props.start || null // Start the animation
     }
 
-    console.log(this.state.scrollStart);
-
     this.offset = this.props.offset;  // Offset ( Instead of starting at 0 )
     this.handleScroll = this.handleScroll.bind(this);
   }
