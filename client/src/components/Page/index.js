@@ -1,5 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { animateScroll as Scroll } from 'react-scroll';
 
 import NavContainer     from '../../containers/NavContainer';
 import FooterContainer  from '../../containers/FooterContainer';
@@ -25,6 +26,7 @@ class Page extends Component {
   componentWillMount() {
     // Start with an action
     this.props.fetchOnePage(this.props.pageId);
+    Scroll.scrollToTop();
   }
 
   componentWillReceiveProps(newProps) {
@@ -41,7 +43,9 @@ class Page extends Component {
           {...this.props} />
 
         <div id='pageWrapper'>
-          <div className='page-parent'>
+          <div
+            className='page-parent'
+            style={{ minHeight: this.state.loading ? '100vh' : '0vh' }}>
 
             { this.props.page && this.props.page.id && !this.state.loading ?
               <Content

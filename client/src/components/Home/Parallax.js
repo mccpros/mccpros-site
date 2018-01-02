@@ -21,6 +21,10 @@ class Parallax extends Component {
     this.parallax()
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setContainerHeight();
+  }
+
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }

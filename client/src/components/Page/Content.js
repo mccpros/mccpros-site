@@ -15,7 +15,8 @@ class Content extends Component {
       positionType: 'relative',
       left: 0,
       top: 0,
-      fixed: false
+      fixed: false,
+      show: false
     }
 
     this.checkFixed = this.checkFixed.bind(this);
@@ -25,14 +26,13 @@ class Content extends Component {
   componentDidMount() {
     document.addEventListener('scroll', this.checkFixed);
     this.initData();
+    setTimeout(() => this.setState({ show: true }), 400);
+
+    document.title = `${this.props.page.title.rendered} - MCC`;
   }
 
   componentWillUnmount() {
     document.removeEventListener('scroll', this.checkFixed);
-  }
-
-  componentWillReceiveProps() {
-    // this.initData.bind(this);
   }
 
   initData() {
@@ -103,19 +103,32 @@ class Content extends Component {
     let { page } = this.props;
 
     return (
-      <div className='container page-wrapper'>
+      <div
+        className='container page-wrapper'
+        style={{ opacity: this.state.show ? 1 : 0 }}>
         <div className='row'>
 
           <div className='col-md-2 fixed-col fixed-social-wrapper'>
             <div className='fixed-social' style={{position: this.state.positionType, top: this.state.top, left: this.state.left }}>
 
-              <a href="facebook.com" className="fixed-social-link">
+              <a
+                target='_blank'
+                href='https://www.facebook.com/mccpros/'
+                className="fixed-social-link">
                 <i className="icon-facebook"></i>
               </a>
-              <a href="twitter.com" className="fixed-social-link">
+              <br/>
+              <a
+                target='_blank'
+                href="https://twitter.com/mccpros"
+                className="fixed-social-link">
                 <i className="icon-twitter"></i>
               </a>
-              <a href="linkedin.com" className="fixed-social-link">
+              <br/>
+              <a
+                target='_blank'
+                href='https://www.linkedin.com/company/merino-computer-concepts/'
+                className="fixed-social-link">
                 <i className="icon-linkedin"></i>
               </a>
 

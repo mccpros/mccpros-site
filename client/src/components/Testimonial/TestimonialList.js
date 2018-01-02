@@ -1,6 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { animateScroll } from 'react-scroll'
+import { animateScroll as Scroll } from 'react-scroll';
 
 import NavContainer     from '../../containers/NavContainer';
 import FooterContainer  from '../../containers/FooterContainer';
@@ -15,19 +15,6 @@ import Testimonial from './Testimonial';
 // };
 
 class TestimonialList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      awaitLoad: 3,
-      pageLoaded: false
-    }
-
-    this.loaded = 0
-
-    // this.loadComplete = this.loadComplete.bind(this);
-  }
-
   componentWillMount() {
     // Start with an action
     this.props.fetchOnePage(this.props.pageId);
@@ -35,6 +22,8 @@ class TestimonialList extends Component {
     if(!this.props.testimonials || this.props.testimonials.length <= 0) {
       this.props.fetchTestimonials();
     }
+
+    Scroll.scrollToTop();
   }
 
   componentWillReceiveProps(newProps) {
@@ -50,7 +39,7 @@ class TestimonialList extends Component {
       <Content {...this.props}>
         <div className='testimonial-list'>
           { testimonials.map((t, idx) => {
-            return <Testimonial key={ idx } data={ t } />;
+            return <Testimonial key={ idx } data={ t } />
           })}
         </div>
       </Content>
@@ -68,11 +57,13 @@ class TestimonialList extends Component {
         <div id='pageWrapper'>
           <div className='page-container'>
 
-            <div className='page-parent'>  
+            <div className='page-parent' style={{ minHeight: '100vh' }}>
+
               { this.props.testimonials && this.props.testimonials.length > 0 &&
-                this.props.page && this.props.page.id ?
-                this.renderTestimonials() :
-                <TransitionWrapper><Loader /></TransitionWrapper> }
+                  this.props.page && this.props.page.id ?
+                    this.renderTestimonials() :
+                    <TransitionWrapper><Loader /></TransitionWrapper> }
+
             </div>
 
 

@@ -129,25 +129,23 @@ class Router extends Component {
             children={({ match, ...rest }) => (
               <TransitionWrapper>
                 { match && <HomeContainer
-                  loadComplete={ this.componentLoadComplete }
-                  title='Home'
-                  {...this.props} />
+                            loadComplete={ this.componentLoadComplete }
+                            title='Home'
+                            {...this.props} />
               }
             </TransitionWrapper>
           )} />
 
           <Route
             path='/the-team/:id'
-            children={({ match, ...rest }) => (
-              <TransitionWrapper>
-                { match && <HeroContainer
-                  loadComplete={ this.componentLoadComplete }
-                  {...match}
-                  {...this.props} />
-              }
-            </TransitionWrapper>
-          )} />
-
+            render={ (props) => {
+              return (
+                <HeroContainer
+                loadComplete={ this.componentLoadComplete }
+                {...props} />
+              );
+            }}>
+          </Route>
 
           { this.props.pages && this.renderRoutes() }
 
@@ -155,10 +153,9 @@ class Router extends Component {
             children={({ match, ...rest }) => (
               <TransitionWrapper>
                 { match && <PageNotFound
-                  loadComplete={ this.componentLoadComplete }
-                  {...match}
-                  {...this.props} />
-              }
+                            loadComplete={ this.componentLoadComplete }
+                            {...this.props} />
+                }
             </TransitionWrapper>
           )} />
 

@@ -17,7 +17,8 @@ class HeroRow extends Component {
       anim: new Animated.Value(0),
       animateWidth: 0,
       animationOff: window.innerWidth < 1025,
-      scrollLocation: 0
+      scrollLocation: 0,
+      left: true
     };
 
     this.isMobile = (() => {
@@ -33,12 +34,18 @@ class HeroRow extends Component {
     this.sideScroll = this.sideScroll.bind(this);
     this.scrolling = this.scrolling.bind(this);
     this.setScrollLocation = this.setScrollLocation.bind(this);
+    this.setEndTouch = this.setEndTouch.bind(this);
   }
 
   componentDidMount() {
     if(this.isMobile) {
       this.startSideScroll();
+      this.scrollLimit = this.scrollContainer.scrollWidth - window.innerWidth;
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.interval);
   }
 
   componentWillReceiveProps(newProps) {
@@ -73,17 +80,43 @@ class HeroRow extends Component {
 
   startSideScroll() {
     this.setScrollLocation();
-    this.setState({ interval: setInterval(this.sideScroll, 35) });
+
+    clearInterval(this.state.interval);
+    this.setState({
+      interval: setInterval(this.sideScroll, 35),
+      manual: false
+    });
   }
 
   stopSideScroll() {
-    clearInterval(this.state.interval);
+    if(!this.state.manual) {
+      this.setState({ manual: true });
+      clearTimeout(this.state.timeout);
+      clearInterval(this.state.interval);
+    }
   }
 
   sideScroll() {
-    this.setState({ scrollLocation: this.state.scrollLocation + 1 }, () => {
-      this.scrollContainer.scrollLeft = this.state.scrollLocation;
-    });
+    if(this.scrollLimit < this.scrollContainer.scrollWidth) {
+      this.scrollLimit = this.scrollContainer.scrollWidth - window.innerWidth;
+    }
+
+    if(this.scrollLimit <= this.state.scrollLocation) {
+      this.setState({ left: false });
+    }
+    if(this.state.scrollLocation <= 0) {
+      this.setState({ left: true });
+    }
+
+    if(this.state.left) {
+      this.setState({ scrollLocation: this.state.scrollLocation + 1 }, () => {
+        this.scrollContainer.scrollLeft = this.state.scrollLocation;
+      });
+    } else {
+      this.setState({ scrollLocation: this.state.scrollLocation - 1 }, () => {
+        this.scrollContainer.scrollLeft = this.state.scrollLocation;
+      });
+    }
   }
 
   scrolling() {
@@ -93,6 +126,11 @@ class HeroRow extends Component {
   setScrollLocation() {
      let location = this.scrollContainer.scrollLeft;
      this.setState({ scrollLocation: location });
+  }
+
+  setEndTouch() {
+    clearTimeout(this.state.timeout);
+    this.setState({ timeout: setTimeout(this.startSideScroll, 3500)  });
   }
 
   render() {
@@ -131,10 +169,10 @@ class HeroRow extends Component {
             ref={(scrollContainer) => { this.scrollContainer = scrollContainer }}
             onTouchStart={ this.stopSideScroll }
             onTouchMove={ this.scrolling }
-            onTouchEnd={ () => setTimeout(this.startSideScroll, 3500) }
+            onTouchEnd={ this.setEndTouch }
             className='hero-row-container'
             id='hero-scroll'
-            style={{ overflow: this.state.animationOff ? 'scroll' : 'hidden' }}>
+            style={{ overflow: this.state.animationOff && this.state.manual ? 'scroll' : 'hidden' }}>
 
             <Animated.div
               style={ style }

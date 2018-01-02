@@ -1,5 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { animateScroll as Scroll } from 'react-scroll';
 
 import NavContainer     from '../../containers/NavContainer';
 import FooterContainer  from '../../containers/FooterContainer';
@@ -20,13 +21,17 @@ class MeetTheTeam extends Component {
 
     this.state = {
       headerImg: '',
-      page: {}
+      page: {},
+      loading: true,
+      show: false
     }
   }
 
   componentWillMount() {
     this.props.fetchOnePage(this.props.pageId);
     this.props.fetchHeroes();
+
+    Scroll.scrollToTop();
   }
 
   componentWillReceiveProps(newProps) {
@@ -36,15 +41,26 @@ class MeetTheTeam extends Component {
                         newProps.page.acf.mobile_header;
       delete newProps.page.acf.hero_image;
 
-      this.setState({
-        headerImg,
-        page: newProps.page
-      });
-    }
+      this.preloadImg(headerImg)
+        .then(() => {
+          this.setState({
+            headerImg,
+            page: newProps.page,
+            loading: false
+          });
 
-    if(newProps.heroes && newProps.heroes.length) {
-      this.props.loadComplete();
+          setTimeout(() => this.setState({ show: true }), 400);
+        })
     }
+  }
+
+  preloadImg(url) {
+    return new Promise(function(resolve, reject) {
+      let loader = new Image();
+
+      loader.onload = resolve;
+      loader.src = url;
+    });
   }
 
   renderHeroLineUp() {
@@ -90,25 +106,32 @@ class MeetTheTeam extends Component {
         <div id='pageWrapper'>
           <div className='city-wrapper'>
 
-            <div className='meet-title'>
-              <h1 className='arvo white'>Meet the MCC Superhero Team</h1>
+            <div
+              style={{ opacity: this.state.show ? 1 : 0 }}
+              className='meet-title'>
+              <h1
+                className='arvo white'>Meet the MCC Superhero Team</h1>
             </div>
 
-            { this.state.headerImg ?
+            <div className='team-img-skel'>
+              { this.state.headerImg ?
                 <img
+                  style={{ opacity: this.state.show ? 1 : 0 }}
                   src={ this.state.headerImg }
                   alt='' /> :
-                <TransitionWrapper><Loader /></TransitionWrapper> }
+                  <TransitionWrapper><Loader /></TransitionWrapper> }
+            </div>
 
             <div className='heroes-wrapper'></div>
 
           </div>
 
-          <div className='page-parent'>
+          <div
+            className='page-parent meet-the-team'
+            style={{ minHeight: this.state.loading ? '100vh' : '0vh' }}>
 
-            { this.props.page && this.props.page.id ?
-              <Content {...this.props} />  :
-              <TransitionWrapper><Loader /></TransitionWrapper> }
+            { this.props.page && this.props.page.id && this.state.headerImg &&
+                <Content {...this.props} /> }
 
           </div>
 

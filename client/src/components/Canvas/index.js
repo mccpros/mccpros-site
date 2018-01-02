@@ -44,8 +44,6 @@ class Canvas extends Component {
     this.setWindowSize = this.setWindowSize.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this._onAnimate = this._onAnimate.bind(this);
-
-
   }
 
   componentDidMount() {
@@ -98,7 +96,7 @@ class Canvas extends Component {
 
     let img = new Image();
     img.onload = () => {
-      this.props.loadComplete();
+      this.props.homeLoad(true);
     }
 
     img.src = src;
@@ -118,7 +116,7 @@ class Canvas extends Component {
       .then(() => {
         this.setState({ loaded: true }, () => {
           setTimeout(() => {
-            this.props.loadComplete();
+            this.props.homeLoad(true);
           }, 500);
         });
       })
@@ -147,7 +145,7 @@ class Canvas extends Component {
     let nickHeight = this.state.width > 550 ? -0.0004 : 0.0022;
     let maxineHeight = this.state.width > 550 ? -0.0009 : 0.002;
     let shaneHeight = this.state.width > 550 ? -0.0009 : 0.002;
-    
+
     return (
       <group>
         <Plane
@@ -215,9 +213,11 @@ class Canvas extends Component {
         height={ canvasHeight }
         onAnimate={ this._onAnimate } >
 
-      <scene>
+      <scene
+        ref={ ref => this.scene = ref }>
         <perspectiveCamera
           name='camera'
+          ref={ ref => this.camera = ref }
           fov={100}
           aspect={ this.state.width / (canvasHeight)}
           near={0.1}

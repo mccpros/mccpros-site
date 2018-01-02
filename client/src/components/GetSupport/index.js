@@ -1,6 +1,7 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Recaptcha from 'react-google-invisible-recaptcha';
+import { animateScroll as Scroll } from 'react-scroll';
 
 import NavContainer     from '../../containers/NavContainer';
 import FooterContainer  from '../../containers/FooterContainer';
@@ -25,7 +26,8 @@ class GetSupport extends Component {
        phone: '',
        message: '',
        messageSent: false,
-       sending: false
+       sending: false,
+       loading: true
      };
 
      this.handleChange = this.handleChange.bind(this);
@@ -36,11 +38,13 @@ class GetSupport extends Component {
   componentWillMount() {
     // Start with an action
     this.props.fetchOnePage(this.props.pageId);
+    Scroll.scrollToTop();
   }
 
   componentWillReceiveProps(newProps) {
     if(newProps.page && newProps.page.id) {
       this.props.loadComplete();
+      this.setState({ loading: false });
     }
   }
 
@@ -195,9 +199,11 @@ class GetSupport extends Component {
         <NavContainer
           {...this.props} />
 
-        <div id="pageWrapper">
+        <div id='pageWrapper'>
 
-          <div className="page-parent">
+          <div className='page-parent'
+              style={{ minHeight: this.state.loading ? '100vh' : '0vh' }}>
+
             { this.props.page && this.props.page.id ?
               this.renderForm() :
                 <TransitionWrapper><Loader /></TransitionWrapper> }

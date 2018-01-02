@@ -22,6 +22,8 @@ class Home extends Component {
     this.state = {
       windowHeight: '',
       windowWidth: '',
+      show: false,
+      canvasLoaded: false
     }
 
     this.isMobile = (() => {
@@ -30,11 +32,33 @@ class Home extends Component {
       return check;
     })();
 
+    if(!this.isMobile) this.isMobile = window.innerWidth <= 768;
+
     this.setWindowSize = this.setWindowSize.bind(this);
+    this.homeLoad = this.homeLoad.bind(this);
+    this.show = this.show.bind(this);
   }
 
   componentWillMount() {
+    document.title = 'MCC - Managed IT Services';
     this.props.fetchHome();
+  }
+
+  homeLoad(loadedCanvas) {
+    if(loadedCanvas && !this.state.canvasLoaded) {
+      this.setState({ canvasLoaded: true }, () => {
+        this.show();
+      })
+    }
+
+    if(this.props.home && this.state.canvasLoaded) {
+      this.show();
+    }
+  }
+
+  show() {
+    this.props.loadComplete();
+    this.setState({ show: true });
   }
 
   componentDidMount() {
@@ -64,16 +88,37 @@ class Home extends Component {
 
     return (
       <div id='pageWrapper'>
-        <div className='home-wrapper'>
+        <div
+          style={{ opacity: this.state.canvasLoaded ? 1 : 0 }}
+          className='home-wrapper'>
+
+          { this.props.home.acf.announcement_image &&
+              <img
+                className='announcement'
+                src={this.props.home.acf.announcement_image}
+                alt='20 years of business'/>
+          }
 
           <Canvas
+            homeLoad={this.homeLoad}
             isMobile={ this.isMobile }
             {...this.props} />
 
           <div className='home-cta-wrapper'>
-            <div className='home-cta'>
 
-              <div className='home-header-title'>
+              <div
+                style={{
+                  transform: this.state.show || this.isMobile ?
+                  'translateY(0px)' : 'translateY(800px)',
+                  opacity: this.state.show || this.isMobile ? 1 : 0
+                }}
+                className='home-header-title'>
+
+                <h1 className='arvo white title'>Your IT Team. <br/> Superpowered.</h1>
+
+                <h2 className='lato white'>Live Helpdesk.</h2>
+                <h2 className='lato white'>24/7 Monitoring.</h2>
+                <h2 className='lato white'>Proactive Support.</h2>
 
                 <Link to='/support'>
                   <button className='btn white arvo'>Get Support</button>
@@ -81,41 +126,6 @@ class Home extends Component {
 
               </div>
 
-              <svg className='cta' viewBox={`0 0 ${windowWidth} ${windowHeight}`}>
-                <svg x='0' y={ `${windowHeight - windowHeight * 0.75}` }>
-                  <polygon
-                    points={`0,${windowHeight * 0.75} 0,0 1200,${windowHeight * 0.6}`}
-                    className='triangle'></polygon>
-                  <text
-                    id='h2'
-                    y={ window.innerWidth < 813 ? textHeight1 : '215' }
-                    fontFamily='Arvo'
-                    letterSpacing='3px'
-                    fill='#fff'>
-                    <tspan x={`${windowWidth * 0.02}`} dy='1.2em'>Your IT Department.</tspan>
-                    <tspan x={`${windowWidth * 0.02}`} dy='1.2em'>Superpowered.</tspan>
-                  </text>
-
-                  <text
-                    y={ window.innerWidth < 813 ? textHeight2 : '315' }
-                    fontFamily='Lato' fontWeight='100'
-                    fontSize='22' letterSpacing='1px' fill='#fff'>
-                    <tspan x={`${windowWidth * 0.02}`} dy='1.2em'>Live Helpdesk.</tspan>
-                    <tspan x={`${windowWidth * 0.02}`} dy='1.2em'>24/7 Monitoring.</tspan>
-                    <tspan x={`${windowWidth * 0.02}`} dy='1.2em'>Proactive Support.</tspan>
-                  </text>
-
-                </svg>
-              </svg>
-
-              <svg className='gap' viewBox={`0 0 ${windowWidth} ${windowHeight}`}>
-                <svg x='0' y='0'>
-                 <polygon
-                   points={`0,${windowHeight} 0,${windowHeight * 0.99} ${windowWidth},${windowHeight * 0.75} ${windowWidth},${windowHeight} `}
-                   className='rect' />
-               </svg>
-              </svg>
-            </div>
           </div>
 
           <div className='home-content'>
@@ -124,6 +134,7 @@ class Home extends Component {
               {...this.props} />
 
             <WhatWeOffer
+              isMobile={this.isMobile}
               {...this.props} />
 
             <WhyWereDifferent

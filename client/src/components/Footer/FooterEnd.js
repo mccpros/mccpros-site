@@ -24,6 +24,25 @@ class FooterEnd extends Component {
     })
   }
 
+  renderFooterNav() {
+    let main = this.props.pages.filter(p => !p.acf.parent_page); // Parent Pages
+    main.sort((a, b) => parseInt(a.acf.order) - parseInt(b.acf.order)); // Put them in order
+
+    return (
+      <div className='footer-nav'>
+
+        { main.map((m, i) => {
+            return <Link
+                    className='lato'
+                    key={i}
+                    to={m.acf.url}>{m.title.rendered}</Link>
+          })
+        }
+
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className='footer-container'>
@@ -39,23 +58,8 @@ class FooterEnd extends Component {
 
             <hr />
 
-            <div className='footer-nav'>
-              <Link
-                className='arvo'
-                to='/about'>ABOUT</Link>
-              <Link
-                className='arvo'
-                to='/services'>SERVICES</Link>
-              <Link
-                className='arvo'
-                to='/programs'>PROGRAMS</Link>
-              <Link
-                className='arvo'
-                to='/clients'>CLIENTS</Link>
-              <Link
-                className='arvo'
-                to='/support'>CONTACT</Link>
-            </div>
+            { this.props.pages && this.props.pages.length > 0 &&
+                this.renderFooterNav() }
 
             <hr />
 
@@ -72,15 +76,18 @@ class FooterEnd extends Component {
 
                 <div className='social'>
                   <a
-                    href='facebook.com'>
+                    target='_blank'
+                    href='https://www.facebook.com/mccpros/'>
                     <i className="icon-facebook"></i>
                   </a>
                   <a
-                    href='twitter.com'>
+                    target='_blank'
+                    href='https://twitter.com/mccpros'>
                     <i className="icon-twitter"></i>
                   </a>
                   <a
-                    href='linkedin.com'>
+                    target='_blank'
+                    href='https://www.linkedin.com/company/merino-computer-concepts/'>
                     <i className="icon-linkedin"></i>
                   </a>
                 </div>

@@ -1,16 +1,20 @@
 .page-container, .page-parent {
   background-color: #fcfcfc;
-  min-height: 100vh;
-  transition: all .2s ease;
-  -o-transition: all .2s ease;
-  -moz-transition: all .2s ease;
-  -webkit-transition: all .2s ease;
+  // min-height: 100vh;
+  transition: min-height 3s ease-out;
+  -o-transition: min-height 3s ease-out;
+  -moz-transition: min-height 3s ease-out;
+  -webkit-transition: min-height 3s ease-out;
 }
 
-.page-wrapper {
+.page-wrapper, .page-container, .home-wrapper  {
   min-height: 60vh;
   padding: 6em 0;
   background-color: #fcfcfc;
+  transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -webkit-transition: all .5s ease;
 }
 
 h1.page-title {
@@ -23,10 +27,17 @@ h1.page-title {
   line-height: 32px;
 }
 .page-content * {
-  color: rgba(0, 0, 0, 0.87)
+  color: rgba(0, 0, 0, 0.87);
 }
-.page-content p {
-  color: rgba(0, 0, 0, 0.54)
+.page-content p, .page-content li {
+  color: rgba(0, 0, 0, 0.54);
+}
+.page-content a {
+  color: #3379b8;
+}
+.page-content h2 {
+  font-size: 1.2em;
+  margin: 2em 0 1em;
 }
 
 .page-img {
@@ -40,7 +51,6 @@ h1.page-title {
 }
 
 .fixed-social a {
-  display: block;
   font-size: 2em;
   transition: all .2s ease;
   -o-transition: all .2s ease;
@@ -53,10 +63,6 @@ h1.page-title {
   background-color: #3379b8;
   text-align: center;
   width: 220px;
-}
-
-.fixed-contact:hover {
-  cursor: pointer;
 }
 
 .fixed-contact h3 {

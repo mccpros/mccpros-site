@@ -32,25 +32,39 @@ class OfferList extends Component {
     }
 
     this.getPositions = this.getPositions.bind(this);
+    this.sortData = this.sortData.bind(this);
     this.hoverHandler = this.hoverHandler.bind(this);
     this.resetButtonPos = this.resetButtonPos.bind(this);
   }
 
   componentDidMount() {
-    if(window.innerWidth < 768) return;
+    this.setState({
+      left: this.sortData('left'),
+      right: this.sortData('right'),
+    }, () => {
+      if(window.innerWidth < 768) return;
 
-    window.addEventListener('resize', this.getPositions);  // Changes Variables
-
-    // Grab Elements
-    this.buttonWrapper = document.getElementById('buttonWrapper'),
-    this.button        = document.getElementById('learnButton'),
-    this.container     = document.getElementById('what_we_offer'),
-
-    this.getPositions(); // Set Variables
+      this.getPositions();                                  // Set Variables
+      window.addEventListener('resize', this.getPositions);  // Changes Variables
+    });
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.getPositions);
+  }
+
+  sortData(side) {
+    let { acf } = this.props.home;
+    let dataStr = acf[`what_we_offer_${side}`];
+    let dataArr = dataStr.split('|');
+    let dataObj = { ...this.state[side] };
+
+    dataObj.name = dataArr[0];
+    dataObj.href = dataArr[1];
+    dataObj.desc = dataArr[2];
+    dataObj.details = dataArr.splice(3, dataArr.length);
+
+    return dataObj;
   }
 
   getPositions() {
@@ -114,31 +128,28 @@ class OfferList extends Component {
          onMouseMove={ this.hoverHandler }
          onMouseLeave={ this.resetButtonPos }
          className='what_we_offer'
-         id='what_we_offer'>
+         id='what_we_offer'
+         ref={ ref => this.container = ref }>
 
-          <OfferItem
-            {...this.state}
-            oppPosition='right'
-            data={ {
-              name: 'ramp',
-              desc: 'Lorem upsume dolor sit amet, consectetur adipiscing elit. Nunc vel iaculis elit. Fusce vehicula turpis massa, eu suscupit erat commodo eget.',
-              details: ['Lorem ipsum dolor sit amet', 'Nunc vel ialculis elit', 'Fusce vehicula turpis massa', 'Nunc vel ialculis elit']
-          } } />
+         { this.state.left.name && <OfferItem
+                                {...this.state}
+                                oppPosition='right'
+                                data={ this.state.left } /> }
 
           <hr className='offer-break'/>
 
-          <OfferItem
-            {...this.state}
-            oppPosition='left'
-            data={ {
-              name: 'procare',
-              desc: 'Lorem upsume dolor sit amet, consectetur adipiscing elit. Nunc vel iaculis elit. Fusce vehicula turpis massa, eu suscupit erat commodo eget.',
-              details: ['Lorem ipsum dolor sit amet', 'Nunc vel ialculis elit', 'Fusce vehicula turpis massa', 'Nunc vel ialculis elit']
-          } } />
+          { this.state.right.name && <OfferItem
+                                  {...this.state}
+                                  oppPosition='left'
+                                  data={ this.state.right } /> }
 
-          <div id='buttonWrapper' className='offer-button-wrapper relative'>
+          <div
+            ref={ ref => this.buttonWrapper = ref }
+            id='buttonWrapper'
+            className='offer-button-wrapper relative'>
             <Link to={ this.state.href }>
               <button
+                ref={ ref => this.button = ref }
                 id='learnButton'
                 className='btn arvo white'
                 style={ {

@@ -11,6 +11,10 @@
 .city-wrapper img {
   width: 100%;
   height: auto;
+  transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -webkit-transition: all .5s ease;
 }
 
 .heroes-wrapper {
@@ -145,12 +149,20 @@
   margin-right: auto;
   text-align: center;
   top: 80px;
+  transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -webkit-transition: all .5s ease;
 }
 
 .meet-title h1 {
   text-transform: uppercase;
   letter-spacing: 8px;
   font-size: 2.5em;
+  transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -webkit-transition: all .5s ease;
 }
 
 .hero-card a:hover, .hero-card a:hover * {
@@ -177,4 +189,7 @@
   .meet-title h1 {
     font-size: 2em;
   }
+}
+.page-parent .meet-the-team {
+  min-height: 0vh ;
 }

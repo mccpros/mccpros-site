@@ -24,11 +24,8 @@ const PageTranstion = WrappedComponent => class PageTranstion
     setTimeout(
       () => {
         Animated.timing(this.state.animate, { toValue: 1, duration: this.duration }).start()
-      },
-      500
-    );
-
-    cb();
+        cb();
+      }, this.duration );
   }
 
   // Coming out

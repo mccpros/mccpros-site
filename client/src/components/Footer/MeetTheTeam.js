@@ -48,9 +48,7 @@ class MeetTheTeam extends Component {
                 </span>
               </Link>
             </h2>
-            <p className='desc white lato'>At Merino Computer Concepts, your organization isn't supported by one expert,
-              but an entire team. Our dedicated staff is a venerable "Avengers" of IT Superheroes.
-              Each Superhero has unique skills to prevent and solve common problems.</p>
+            <p className='desc white lato'>At Merino Computer Concepts, your organization isn't supported by one expert, but an entire team. Our dedicated staff are the IT Superheroes. Each IT Superhero is unique and brings their own leader-driven personality to the team.</p>
           </div>
 
           <div id='getHeight' className='col-xs-12 col-lg-6 relative'>

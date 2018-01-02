@@ -21,6 +21,7 @@ $banner-height: 450px;
   width: 100%;
   position: absolute;
   top: 25%;
+  left: 0;
   margin-left: auto;
   margin-right: auto;
   padding-top: 3em;
@@ -223,5 +224,62 @@ img.hero-page-parallax {
   img.hero-page-parallax {
     width: 220px;
     margin-left: -80px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  img.mobile-hero-img {
+    width: 300px;
+    margin-left: -50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero-wrapper .row.banner {
+    top: 13%;
+    height: auto !important;
+    background: #17628d;
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+  }
+
+  .hero-wrapper .row.background {
+    height: auto !important;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 2em;
+  }
+
+  .hero-info {
+    padding: 0 1em;
+  }
+
+  img.mobile-hero-img {
+    width: 400px;
+    margin-left: -80px;
+    position: absolute;
+  }
+  .stats-wrapper {
+    height: 350px;
+  }
+  .hero-info:last-of-type {
+    padding-bottom: 3em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  img.mobile-hero-img {
+    width: 250px;
+    margin-left: -80px;
+  }
+  .stats-wrapper {
+    height: 450px;
+  }
+  .hero-info:last-of-type {
+    padding-bottom: 0;
+  }
+  img.mobile-hero-img {
+    position: relative;
   }
 }

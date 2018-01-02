@@ -21,7 +21,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default PageTranstion(
-connect(mapStateToProps, {
+export default connect(mapStateToProps, {
   fetchHeroes
-})(HeroContainer));
+})(HeroContainer);

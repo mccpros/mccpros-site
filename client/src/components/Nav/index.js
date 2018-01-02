@@ -16,7 +16,7 @@ class Nav extends Component {
     super(props);
 
     this.state = {
-      color: 'transparent',
+      color: 'rgb(244, 244, 244)',
       scrolledTop: true,
       menuIsOpen: false,
       subNavLib: {}

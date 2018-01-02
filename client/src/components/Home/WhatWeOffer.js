@@ -9,26 +9,23 @@ import Parallax from './Parallax';
 // };
 
 class WhatWeOffer extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   render() {
     return (
       <div className='container-fluid'>
         <div className='row'>
 
-          <OfferList />
+          <OfferList {...this.props} />
 
+      { !this.props.isMobile &&
         <div className='parallax-wrapper col-xs-3'>
           <Parallax
+            {...this.props}
             speed={ -0.05 }
             offset={ 40 }
             parentContainer='.offer-container'
             imgSrc='/assets/hero.png'
             />
-        </div>
+        </div> }
 
         </div>
       </div>
