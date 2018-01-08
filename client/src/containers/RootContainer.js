@@ -20,9 +20,6 @@ const mapStateToProps = (state) => {
     heroes,
     pages,
   };
-
-  return { // Pass it along
-  };
 };
 
 export default connect(mapStateToProps, {

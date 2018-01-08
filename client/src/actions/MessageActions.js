@@ -5,8 +5,8 @@ function url(path) {
   return `/api${path}`;
 }
 
-export function receiveMessage(data) {
-  return { type: types.FETCHING_INFO }; // Send 'Loading'
+export function receiveMessage() {
+  return { type: types.RECEIVE_MESSAGE }; // Send 'Loading'
 }
 
 export function postMessage(data) {
@@ -14,7 +14,7 @@ export function postMessage(data) {
     // API Call
     axios.post(url('/message'), data)
       .then(res => {
-        // dispatch(receiveInfo(res.data)); // Got em
+        dispatch(receiveMessage()); // Got em
       })
       .catch(err => {
         console.log('err', err);

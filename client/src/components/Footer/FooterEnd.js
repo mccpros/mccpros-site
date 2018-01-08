@@ -19,7 +19,7 @@ class FooterEnd extends Component {
           <img
             key={i}
             width='120px'
-            src={p.acf.logo} alt=""/>
+            src={p.acf.logo} alt='Merino Computer Concepts Partners'/>
       )
     })
   }
@@ -51,9 +51,8 @@ class FooterEnd extends Component {
 
             <h3 className='arvo blue'>Our Partners</h3>
             <div className='footer-images-wrapper'>
-              { this.props.partners ?
-                this.mapPartnerImages() :
-                'Loading...' }
+              { this.props.partners &&
+                this.mapPartnerImages() }
             </div>
 
             <hr />
@@ -64,7 +63,7 @@ class FooterEnd extends Component {
             <hr />
 
             <div className='footer-contact'>
-              <img src='/assets/mcc.png' alt=""/>
+              <img src='/assets/mcc.png' alt='MCC Logo'/>
               <div className='right arvo'>
                 <div>
                   Email: <a href='mailto:connect@mccpros.com'>connect@mccpros.com</a>

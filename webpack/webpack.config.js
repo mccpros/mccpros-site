@@ -2,6 +2,7 @@
 
 let webpack = require('webpack');
 let path    = require('path');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 let BUILD_DIR = path.resolve(__dirname, '../client/public/build/');
 let APP_DIR   = path.resolve(__dirname, '../client/src/');
@@ -12,14 +13,14 @@ let allPlugins = [];
 let config = {
   entry: {
     main: [
-      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
+      // 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
       'babel-polyfill',
       APP_DIR
     ],
   },
   output: {
     path: BUILD_DIR,
-    publicPath:'http://localhost:3000/build/',
+    publicPath:'https://mccpros.com/build/',
     filename: 'bundle.js'
   },
   module : {
@@ -64,12 +65,13 @@ let config = {
     },
    ]
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  devServer: {
-    hot: true
-  }
+  // plugins: [
+  //   new webpack.HotModuleReplacementPlugin(),
+  //   // new BundleAnalyzerPlugin()
+  // ],
+  // devServer: {
+  //   hot: true
+  // }
 };
 
 module.exports = config;

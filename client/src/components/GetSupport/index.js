@@ -23,6 +23,7 @@ class GetSupport extends Component {
      this.state = {
        name: '',
        email: '',
+       company: '',
        phone: '',
        message: '',
        messageSent: false,
@@ -33,6 +34,7 @@ class GetSupport extends Component {
      this.handleChange = this.handleChange.bind(this);
      this.handleSubmit = this.handleSubmit.bind(this);
      this.googleCallback = this.googleCallback.bind(this);
+     this.setGresposne = this.setGresposne.bind(this);
   }
 
   componentWillMount() {
@@ -62,20 +64,27 @@ class GetSupport extends Component {
       sending: true
     });
 
-    // UNCOMMENT THIS
-    // this.recaptcha.execute();
+    if(!this.state.gresponse) {
+      this.recaptcha.execute();
+    } else {
+      this.googleCallback();
+    }
+  }
 
-    // DElETE THIS
-    this.googleCallback();
+  setGresposne() {
+    if(!this.state.gresponse) {
+      this.setState({ gresponse: this.recaptcha.getResponse() }, this.googleCallback);
+    }
   }
 
   googleCallback() {
    let data = {
-     // gresponse: this.recaptcha.getResponse(),
+     gresponse: this.state.gresponse,
      name: this.state.name,
      email: this.state.email,
      phone: this.state.phone,
      message: this.state.message,
+     company: this.state.company,
    }
 
    let valid = this.validateForm(data);
@@ -92,7 +101,7 @@ class GetSupport extends Component {
 
     for(let key in data) {
       if (data.hasOwnProperty(key)) {
-        if(key !== 'phone' && key !== 'message'
+        if(key !== 'phone'
             && !data[key] && data[key].length <= 0) {
           valid = false;
           this.setState({ [key]: '' });
@@ -134,6 +143,17 @@ class GetSupport extends Component {
               value={this.state.email}
               ref={ email => this.email = email }
               onChange={this.handleChange}/>
+            <label className='lato black' htmlFor='company'>Company*</label>
+            <input
+              name='company'
+              className={
+                `lato ${this.state.messageSent && !this.state.company ?
+                    'incorrect' : ''}`
+              }
+              type='text'
+              value={this.state.company}
+              ref={ company => this.company = company }
+              onChange={this.handleChange}/>
             <label className='lato black' htmlFor='phone'>Phone</label>
             <input
               name='phone'
@@ -145,21 +165,23 @@ class GetSupport extends Component {
             <label className='lato black' htmlFor='message'>Message</label>
             <textarea
               name='message'
-              className={ `lato` }
+              className={
+                `lato ${this.state.messageSent && !this.state.message ?
+                    'incorrect' : ''}`
+              }
               value={this.state.message}
               ref={ message => this.message = message }
               onChange={this.handleChange}></textarea>
             <input
-              disabled={ this.state.sending }
+              disabled={ this.props.message.received || this.state.sending }
               id='submit'
               className='lato white btn'
               type='submit'
-              value='Submit' />
-          {  // <Recaptcha
-            //   ref={ ref => this.recaptcha = ref }
-            //   sitekey='6Ld3mj4UAAAAAFJYts5G12CIwnfK0yBgyBuKIxBp'
-            //   onResolved={ this.googleCallback } />
-          }
+              value={ this.props.message.received ? 'Sent!' : 'Submit' } />
+             <Recaptcha
+              ref={ ref => this.recaptcha = ref }
+              sitekey='6Ld3mj4UAAAAAFJYts5G12CIwnfK0yBgyBuKIxBp'
+              onResolved={ this.setGresposne } />
           </form>
         </div>
 

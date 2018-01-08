@@ -37,7 +37,7 @@ class HeroPage extends Component {
   componentWillMount() {
     // Start with an action
     this.props.fetchHeroes();
-    document.title = 'Meet the Team - MCC';
+    document.title = 'Meet the Team - Merino Computer Concepts';
   }
 
   componentWillReceiveProps(newProps) {

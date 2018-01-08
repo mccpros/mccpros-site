@@ -40,7 +40,7 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    document.title = 'MCC - Managed IT Services';
+    document.title = 'Managed IT Services - Merino Computer Concepts';
     this.props.fetchHome();
   }
 
@@ -114,7 +114,7 @@ class Home extends Component {
                 }}
                 className='home-header-title'>
 
-                <h1 className='arvo white title'>Your IT Team. <br/> Superpowered.</h1>
+                <h1 className='arvo white title'>Your IT Department. <br/> Superpowered.</h1>
 
                 <h2 className='lato white'>Live Helpdesk.</h2>
                 <h2 className='lato white'>24/7 Monitoring.</h2>

@@ -1,7 +1,7 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import React3 from 'react-three-renderer';
-import * as THREE from 'three';
+import { TextureLoader, Vector3 } from 'three';
 
 import Plane from './Plane';
 
@@ -11,8 +11,8 @@ import Plane from './Plane';
 // };
 
 class Canvas extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
     this.state = {
       width: window.innerWidth,
@@ -26,7 +26,7 @@ class Canvas extends Component {
 
     this.textures = {
       'back': {
-        url: '/threejs/header.png',
+        url: '/threejs/header.jpg',
       },
       'nick': {
         url: '/threejs/Nick.png',
@@ -39,7 +39,7 @@ class Canvas extends Component {
       },
     };
 
-    this.loader = new THREE.TextureLoader();
+    this.loader = new TextureLoader();
 
     this.setWindowSize = this.setWindowSize.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
@@ -75,8 +75,8 @@ class Canvas extends Component {
 
   onMouseMove(e) {
     this.setState({
-      mouseX: ( event.clientX - this.state.windowHalfX ) / 2000,
-			mouseY: ( event.clientY - this.state.windowHalfY ) / 2000,
+      mouseX: ( e.clientX - this.state.windowHalfX ) / 2000,
+			mouseY: ( e.clientY - this.state.windowHalfY ) / 2000,
     });
   }
 
@@ -153,7 +153,7 @@ class Canvas extends Component {
           pos={ { x: 0, y: 0, z: -2 } }
           width={ 32 }
           height={ 18 }
-          src='/threejs/header.png' />
+          src='/threejs/header.jpg' />
 
         <Plane
           {...this.state}
@@ -191,6 +191,12 @@ class Canvas extends Component {
     )
   }
 
+  callback(renderer) {
+    if(renderer && renderer.context) {
+      renderer.context.getShaderInfoLog = function () { return '' };
+    }
+  }
+
   render() {
 
     if(this.props.isMobile) {
@@ -199,7 +205,7 @@ class Canvas extends Component {
           className='device-header-img'
           src={ window.innerWidth < 768 ?
                     '/assets/mobile_header.png' :
-                    '/assets/tablet_header.png' } alt=''/>
+                    '/assets/tablet_header.png' } alt='Merino Computer Concepts Superheroes'/>
       )
     }
 
@@ -208,9 +214,12 @@ class Canvas extends Component {
 
     return (
       <React3
+        alpha={ true }
+        ref={ ref => this.renderer = ref }
         mainCamera='camera'
         width={ this.state.width }
         height={ canvasHeight }
+        onRendererUpdated={this.callback}
         onAnimate={ this._onAnimate } >
 
       <scene
@@ -222,7 +231,7 @@ class Canvas extends Component {
           aspect={ this.state.width / (canvasHeight)}
           near={0.1}
           far={5000}
-          position={ new THREE.Vector3(this.state.cameraPosX, this.state.cameraPosY, 3) } />
+          position={ new Vector3(this.state.cameraPosX, this.state.cameraPosY, 3) } />
 
         { this.state.loaded && this.renderPlanes() }
 

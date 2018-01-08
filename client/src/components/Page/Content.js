@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import JsxParser from 'react-jsx-parser'
+
 // We should probably check prop types
 // const propTypes = {
 //
@@ -21,6 +23,7 @@ class Content extends Component {
 
     this.checkFixed = this.checkFixed.bind(this);
     this.setData = this.setData.bind(this);
+    this.renderLinks = this.renderLinks.bind(this);
   }
 
   componentDidMount() {
@@ -28,7 +31,8 @@ class Content extends Component {
     this.initData();
     setTimeout(() => this.setState({ show: true }), 400);
 
-    document.title = `${this.props.page.title.rendered} - MCC`;
+    document.title = `${this.props.page.title.rendered} - Merino Computer Concepts`;
+    this.renderLinks();
   }
 
   componentWillUnmount() {
@@ -48,6 +52,22 @@ class Content extends Component {
     }
 
     this.setData();
+  }
+
+  renderLinks() {
+    let links,
+        html = this.props.page.content.rendered;
+
+    let match = html.match(/(?:<a href="\/)/ig);
+
+    if(match && match.length > 0) {
+      links = html.replace((/(?:<a href="\/)/ig), '<Link to="/')
+                .replace((/(<\/a>)/g), '</Link>');
+    }
+
+    if(links) {
+      this.props.page.content.rendered = links;
+    }
   }
 
   setData() {
@@ -100,6 +120,7 @@ class Content extends Component {
   }
 
   render() {
+
     let { page } = this.props;
 
     return (
@@ -141,16 +162,19 @@ class Content extends Component {
               { page.title.rendered }
             </h1>
 
-            { page.acf.hero_image ?
+            { page.acf.hero_image &&
               <img
                 className='page-img'
-                src={ page.acf.hero_image } /> :
-                ''
-              }
+                src={ page.acf.hero_image } />
+            }
 
-              <div
-                className='page-content lato'
-                dangerouslySetInnerHTML={{ __html: page.content.rendered }}></div>
+            <div className="page-content lato">
+              <JsxParser
+                bindings={{}}
+                components={{ Link }}
+                jsx={ page.content.rendered }
+                />
+            </div>
 
               { this.props.children }
 

@@ -1,5 +1,7 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import Slider from 'react-slick';
 
 // We should probably check prop types
@@ -57,7 +59,9 @@ class WhoWeWorkWith extends Component {
                 </Slider>
 
                 <div className='who-button-wrapper'>
-                  <button className='arvo white'>Read On</button>
+                  <Link to='/testimonials'>
+                    <button className='arvo white'>Read On</button>
+                  </Link>
                 </div>
 
               </div>

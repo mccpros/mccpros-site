@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes';
 import axios from 'axios';
 
 function url(path) {
-  return `http://138.68.26.87:8080/wp-json${path}`;
+  return `https://mccpros.com:8443/wp-json${path}`;
 }
 
 export function fetchingInfo(data) {

@@ -57,7 +57,8 @@ class HeroRow extends Component {
   setWidth(heroes) {
     let animateWidth = window.innerWidth > 380 ?
                         380 * heroes.length : // Dynamic width based on hero count
-                        window.innerWidth * heroes.length;
+                        360 * heroes.length;
+
 
     if(!this.state.animateWidth || animateWidth > this.state.animateWidth) {
       this.setState({ animateWidth });

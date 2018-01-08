@@ -17,7 +17,7 @@ class Nav extends Component {
 
     this.state = {
       color: 'rgb(244, 244, 244)',
-      scrolledTop: true,
+      scrolledTop: false,
       menuIsOpen: false,
       subNavLib: {}
     }
@@ -30,7 +30,8 @@ class Nav extends Component {
 
     this.subNavLib = {};
 
-    this.renderNavBar     = this.renderNavBar.bind(this);
+    this.renderNav         = this.renderNav.bind(this);
+    this.renderDesktopNav     = this.renderDesktopNav.bind(this);
     this.returnNavItem    = this.returnNavItem.bind(this);
     this.getScroll        = this.getScroll.bind(this);
     this.cancelLink       = this.cancelLink.bind(this);
@@ -109,22 +110,33 @@ class Nav extends Component {
   getScroll() {
     let { pathname } = this.props.location;
 
-    if(document.querySelector('html').scrollTop === 0 &&
+    if((document.querySelector('html').scrollTop === 0
+          && window.pageYOffset === 0) &&
         pathname === '/') {
       // If Home and scrolled to top
       // Keep the bar transparent
       this.setState({ scrolledTop: true });
 
-      if(!this.isMobile) {
+      if(!this.isMobile || (window.innerWidth < 1367 && window.innerWidth > 770)) {
+        clearTimeout(this.state.timeout);
         this.setState({ color: 'transparent' });
       }
     } else {
       // If Not Home or not scrolled to top
       // Make the bar white
       this.setState({
-        color: 'rgb(244, 244, 244)',
-        scrolledTop: false
+        scrolledTop: false,
       });
+
+      if(this.state.color !== 'rgb(244, 244, 244)') {
+        this.setState({
+          timeout: setTimeout(() => {
+            this.setState({ color: 'rgb(244, 244, 244)' }, () => {
+              this.getScroll()
+            })
+          }, 450)
+        })
+      }
     }
   }
 
@@ -174,7 +186,7 @@ class Nav extends Component {
     return (
       <div className='mobile-nav-wrapper'>
         <Link to='/'>
-          <img src='/assets/mcc.png' alt='Merino Computer Concepts Logo'/>
+          <img src='/assets/mcc_mobile.png' alt='Merino Computer Concepts Logo'/>
         </Link>
         <div className='mobile-burger-wrapper'>
           <Swipeable
@@ -185,7 +197,7 @@ class Nav extends Component {
               pageWrapId={ 'pageWrapper' }
               outerContainerId={ 'root' }
               right>
-              { this.renderNavBar(false) }
+              { this.renderDesktopNav(false) }
             </Menu>
           </Swipeable>
         </div>
@@ -193,7 +205,7 @@ class Nav extends Component {
     );
   }
 
-  renderNavBar(logo) {
+  renderDesktopNav(logo) {
     let mainEls = [];
     let subEls  = [];
 
@@ -238,19 +250,33 @@ class Nav extends Component {
     return (
       <div className='navbar-wrapper'
         style={{
-          backgroundColor: this.state.color,
-          boxShadow: this.state.scrolledTop || this.isMobile ?
-            '0px 0px 12px -1px transparent' :
-            '0px 0px 12px -1px rgba(0, 0, 0, .4)'
+          backgroundColor: this.state.color
         }}>
         { logo &&
           <div className='nav-img-wrapper'>
             <Link to='/'>
-              <img src='/assets/mcc.png' alt=""/>
+              <img src={ this.state.scrolledTop ?
+                          '/assets/mcc_full_white.png' :
+                          '/assets/mcc.png'}
+                   alt='MCC Logo'
+                   style={ {
+                            top: this.state.scrolledTop ? '30px' : '0px',
+                            left: this.state.scrolledTop ? '30px' : '0px',
+                            width: this.state.scrolledTop ? '300px' : '120px',
+                          } }
+                            />
             </Link>
           </div> }
           <div className='nav-main-wrapper'>
             <ul
+              style={{
+                position: this.state.scrolledTop && !this.isMobile ?
+                            'absolute' :
+                            'relative',
+                right: this.state.scrolledTop && !this.isMobile ?
+                        '70px' :
+                        '0px'
+              }}
               className='main-ul'>
               { mainEls }
             </ul>
@@ -260,41 +286,19 @@ class Nav extends Component {
     );
   }
 
-  render() {
+  renderNav() {
     let width = window.outerWidth;
 
-    if(!this.props.pages || !this.props.pages.length) {
-      return <div>Loading...</div>
+    if(width >= 769) {
+      return this.renderDesktopNav(true);
     }
+    return this.renderMobileNav();
+  }
 
-    let backgroundColor = this.isMobile || window.innerWidth < 1185 ?
-                            '#07638F' : 'transparent';
-
+  render() {
     return (
       <div>
-        { width >= 769 ?
-          this.renderNavBar(true) :
-          this.renderMobileNav() }
-
-        {/*<p
-          style={{
-            color: window.innerWidth < 1185 || this.isMobile || this.state.scrolledTop ?
-                      '#fff' :
-                      'rgba(0,0,0,.87)',
-            backgroundColor: !this.state.scrolledTop ?
-                              backgroundColor :
-                              'transparent',
-            boxShadow: (window.innerWidth < 1185 || this.isMobile) && !this.state.scrolledTop ?
-                        '0px 0px 12px -1px rgba(0, 0, 0, .4)' :
-                        '0px 0px 12px -1px transparent'
-          }}
-            className='lato celebrating'>
-
-            <span><img src='/assets/confetti_emoji.png' alt='20 year anniversary'/></span>
-            Celebrating 20 years of business!
-            <span><img src='/assets/confetti_emoji.png' alt='20 year anniversary'/></span>
-
-        </p>*/}
+        { this.props.pages && this.props.pages.length > 0 && this.renderNav() }
       </div>
 
     );

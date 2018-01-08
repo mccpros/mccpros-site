@@ -16,9 +16,11 @@ const SupportContainer = props => <GetSupport {...props} />;
 // Where store/state becomes our props
 const mapStateToProps = (state) => {
   const { page } = state.wpInfo; // Pull it out
+  const { message } = state;
 
   return { // Pass it along
-    page
+    page,
+    message
   };
 };
 

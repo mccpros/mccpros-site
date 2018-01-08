@@ -20,39 +20,22 @@ class PageNotFound extends Component {
     super(props);
 
     this.state = {
-
+      show: false
     }
   }
 
-  componentWillMount() {
-    // this.props.fetchOnePage(this.props.pageId);
-    // this.props.fetchHeroes();
-  }
-
-  componentWillReceiveProps(newProps) {
-    // if(newProps.page && newProps.page.id) {
-    //   let headerImg = window.innerWidth > 1000 ?
-    //                     newProps.page.acf.hero_image :
-    //                     newProps.page.acf.mobile_header;
-    //   delete newProps.page.acf.hero_image;
-    //
-    //   this.setState({
-    //     headerImg,
-    //     page: newProps.page
-    //   });
-    // }
-    //
-    // if(newProps.heroes && newProps.heroes.length) {
-    // }
-  }
-
   componentDidMount() {
-    this.props.loadComplete();
+    setTimeout(() => {
+      this.setState({ show: true });
+      this.props.loadComplete();
+    }, 1000);
   }
 
   render() {
     return (
-      <div className='404-page'>
+      <div
+        style={{ opacity: this.state.show ? 1 : 0 }}
+        className='404-page'>
 
         <NavContainer {...this.props} />
 
@@ -64,7 +47,7 @@ class PageNotFound extends Component {
               <div>
                 <h2 className='title arvo blue'>404</h2>
               </div>
-              <img src='/assets/404.png' alt='Superheroes 404'/>
+              <img src='/assets/404.png' alt='MCC Superheroes 404'/>
               <div>
                 <p>Page Not Found</p>
                 <p>These aren't the superheroes you're looking for...</p>

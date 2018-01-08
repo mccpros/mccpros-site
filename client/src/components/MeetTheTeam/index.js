@@ -91,7 +91,7 @@ class MeetTheTeam extends Component {
               left: `${offsetLeft}px`,
               top: `${offsetTop}px`
             }}
-            src={h.acf.full_superhero} alt=""/>
+            src={h.acf.full_superhero} alt='Merino Computer Concepts Team'/>
         </div>
       )
     })
@@ -118,7 +118,7 @@ class MeetTheTeam extends Component {
                 <img
                   style={{ opacity: this.state.show ? 1 : 0 }}
                   src={ this.state.headerImg }
-                  alt='' /> :
+                  alt='MCC Team' /> :
                   <TransitionWrapper><Loader /></TransitionWrapper> }
             </div>
 

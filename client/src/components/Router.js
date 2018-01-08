@@ -141,8 +141,9 @@ class Router extends Component {
             render={ (props) => {
               return (
                 <HeroContainer
-                loadComplete={ this.componentLoadComplete }
-                {...props} />
+                  loadComplete={ this.componentLoadComplete }
+                  {...props}
+                  {...this.props} />
               );
             }}>
           </Route>

@@ -19,7 +19,7 @@ class HeroCard extends Component {
       <Link
         to={`/the-team/${hero.id}`}>
         <div className='hero-card'>
-          <img src={hero.acf.full_superhero} alt=""/>
+          <img src={hero.acf.full_superhero} alt='Merino Computer Concepts Superhero Card'/>
 
           <div className='info white'>
             <h3 className='arvo title'>

@@ -15,7 +15,7 @@ class Testimonial extends Component {
     return (
       <div className='testimonial'>
         <div className='col-xs-12 col-sm-5 center'>
-          <img src={ data.acf.company_logo } alt=""/>
+          <img src={ data.acf.company_logo } alt='Merino Computer Concepts Client'/>
         </div>
 
         <div className='col-xs-12 col-sm-7'>

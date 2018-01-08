@@ -38,6 +38,15 @@ h2.title a:hover, h2.title a:hover * {
   color: #20b789;
 }
 
+a:hover, a:focus {
+  transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  -moz-transition: all .2s ease-out;
+  -webkit-transition: all .2s ease-out;
+  color: #23527c;
+  text-decoration: none;
+}
+
 h3.title {
   margin: 0;
   letter-spacing: 8px;
@@ -135,7 +144,6 @@ div.animated-cover.appear {
 }
 
 div#pageWrapper {
-  padding-top: 50px;
   background-color: #fcfcfc;
 }
 

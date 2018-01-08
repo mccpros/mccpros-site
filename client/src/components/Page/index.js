@@ -30,7 +30,7 @@ class Page extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if(newProps.page && newProps.page.id) {
+    if(newProps.page && newProps.page.id && newProps.page.title.rendered) {
       this.props.loadComplete();
       this.setState({ loading: false });
     }

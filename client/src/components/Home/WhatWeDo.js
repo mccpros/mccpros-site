@@ -34,7 +34,6 @@ class WhatWeDo extends Component {
         </div>
       );
     });
-    return <div></div>;
   }
 
   render() {

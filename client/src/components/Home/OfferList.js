@@ -122,7 +122,7 @@ class OfferList extends Component {
 
   render() {
     return (
-      <div className='col-xs-12 col-md-9 offer-container white'>
+      <div className='col-xs-12 col-lg-9 offer-container white'>
         <h2 className='arvo title white'>what we <span className="green">offer</span></h2>
         <div
          onMouseMove={ this.hoverHandler }

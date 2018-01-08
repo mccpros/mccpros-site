@@ -72,7 +72,7 @@ class MeetTheTeam extends Component {
             <Link to={`/the-team/${this.state.selectedHero.id}`}>
               <img
                 className='col-xs-8 col-lg-9'
-                src={this.state.selectedHero.acf.close_up} alt=""/>
+                src={this.state.selectedHero.acf.close_up} alt='Merino Computer Concepts Logo'/>
             </Link>
 
           </div>

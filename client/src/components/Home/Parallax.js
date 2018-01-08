@@ -71,7 +71,7 @@ class Parallax extends Component {
              } }>
           <img
             className={ this.props.imgClass ? `${this.props.imgClass}` : 'default' }
-            src={this.props.imgSrc} alt=""/>
+            src={this.props.imgSrc} alt='MCC Superhero'/>
         </div>
       </div>
     );

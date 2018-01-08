@@ -17,12 +17,13 @@ class MessageController {
 
   sendMessage(req, res) {
     const msg = {
-      to: 'dwells@mccpros.com',
+      to: 'tech@mccpros.com',
       from: req.body.email,
       subject: 'Message from mccpros.com',
       text: `From ${req.body.name},
             ${req.body.message}
-            Phone: ${req.body.phone}`
+            Phone: ${req.body.phone}
+            Company: ${req.body.company}`
     };
 
     this.sendGrid.send(msg)
@@ -30,7 +31,7 @@ class MessageController {
         res.send({ success: true });
       })
       .catch(err => {
-        console.error(error.toString());
+        console.error(err.toString());
         res.status(400).send(err.message);
       })
   }
