@@ -1,18 +1,10 @@
-// import PropTypes from 'prop-types';
+/* Home page
+    What We Offer Item */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-// We should probably check prop types
-// const propTypes = {
-//
-// };
-
 class OfferItem extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
+  
   renderOfferDetails() {
     let { data } = this.props;
 
@@ -53,7 +45,5 @@ class OfferItem extends Component {
     );
   }
 }
-
-// OfferItem.propTypes = propTypes;
 
 export default OfferItem;

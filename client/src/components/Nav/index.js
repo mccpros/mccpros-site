@@ -1,15 +1,11 @@
-// import PropTypes from 'prop-types';
+/* Meet-the-Team/Hero page
+    Hero Row */
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { elastic as Menu } from 'react-burger-menu';
 import Swipeable from 'react-swipeable';
 
 import NavItem from './NavItem';
-
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class Nav extends Component {
   constructor(props) {
@@ -304,7 +300,5 @@ class Nav extends Component {
     );
   }
 }
-
-// Nav.propTypes = propTypes;
-
+ 
 export default withRouter(props => <Nav {...props}/>);

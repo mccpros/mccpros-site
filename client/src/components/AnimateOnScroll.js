@@ -1,3 +1,5 @@
+// Check if wrapped component has been scrolled into view
+
 import React, { Component } from 'react';
 import VisibilitySensor from 'react-visibility-sensor';
 

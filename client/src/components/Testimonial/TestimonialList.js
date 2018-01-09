@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+/* Tesimonial Page */
 import React, { Component } from 'react';
 import { animateScroll as Scroll } from 'react-scroll';
 
@@ -9,10 +9,6 @@ import TransitionWrapper from '../Transitions/TransitionWrapper';
 import Content from '../Page/Content';
 import Loader from '../Loader';
 import Testimonial from './Testimonial';
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class TestimonialList extends Component {
   componentWillMount() {

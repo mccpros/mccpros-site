@@ -1,14 +1,9 @@
-
-
-// import PropTypes from 'prop-types';
+/* Home page
+    What We're Different section */
 import React, { Component } from 'react';
 
 import Parallax from './Parallax';
 import CoverAnimation from '../CoverAnimation';
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class WhyWereDifferent extends Component {
   constructor(props) {
@@ -96,7 +91,5 @@ class WhyWereDifferent extends Component {
     );
   }
 }
-
-// WhyWereDifferent.propTypes = propTypes;
 
 export default WhyWereDifferent;

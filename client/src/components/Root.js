@@ -1,16 +1,19 @@
-// import PropTypes from 'prop-types';
+/*
+  Root of whole App
+
+  Go to './components/Router'
+  to follow the heirarchy
+*/
+
 import React, { Component } from 'react';
 import { BrowserRouter, Router } from 'react-router-dom';
 
 import RouterComponent from '../components/Router';
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class Root extends Component {
   componentWillMount() {
-    // Start with an action
+    // Call all the actions
+    
     this.props.fetchInfo();
     this.props.fetchPages();
     this.props.fetchHeroes();
@@ -28,7 +31,5 @@ class Root extends Component {
     );
   }
 }
-
-// Root.propTypes = propTypes;
 
 export default Root;

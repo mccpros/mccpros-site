@@ -1,13 +1,9 @@
-// import PropTypes from 'prop-types';
+/* Page
+  Content Component */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import JsxParser from 'react-jsx-parser'
-
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class Content extends Component {
   constructor(props) {
@@ -21,13 +17,14 @@ class Content extends Component {
       show: false
     }
 
-    this.checkFixed = this.checkFixed.bind(this);
-    this.setData = this.setData.bind(this);
+    this.checkFixed  = this.checkFixed.bind(this);
+    this.setData     = this.setData.bind(this);
     this.renderLinks = this.renderLinks.bind(this);
   }
 
   componentDidMount() {
     document.addEventListener('scroll', this.checkFixed);
+
     this.initData();
     setTimeout(() => this.setState({ show: true }), 400);
 
@@ -39,6 +36,7 @@ class Content extends Component {
     document.removeEventListener('scroll', this.checkFixed);
   }
 
+  // Sets column height
   initData() {
     let fixedCols   = document.getElementsByClassName('fixed-col');
     let pageContent = document.getElementById('page-length');
@@ -70,6 +68,7 @@ class Content extends Component {
     }
   }
 
+  // Sets top of scroll
   setData() {
     this.margin = 30;
 
@@ -81,11 +80,10 @@ class Content extends Component {
 
     let fixedEls   = document.getElementsByClassName('fixed-social')[0];
     this.fixedData = fixedEls.getBoundingClientRect();
-
-    // this.checkFixed();
   }
 
   checkFixed(e) {
+    // Sets <div> from relative to fixed
     let fixedCol = document.getElementsByClassName('fixed-col')[0];
     let colData  = fixedCol.getBoundingClientRect();
 
@@ -198,7 +196,5 @@ class Content extends Component {
     );
   }
 }
-
-// Content.propTypes = propTypes;
 
 export default Content;

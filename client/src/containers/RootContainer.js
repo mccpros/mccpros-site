@@ -1,3 +1,13 @@
+/*
+  On first load, grab the important stuff
+  Fetch heroes,
+        pages,
+        and WPInfo (i.e. site name, author and stuff)
+
+        Go to './components/Root'
+        to follow the heirarchy
+*/
+
 import React from 'react';
 import { connect } from 'react-redux';
 

@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+/* Get Support Page */
 import React, { Component } from 'react';
 import Recaptcha from 'react-google-invisible-recaptcha';
 import { animateScroll as Scroll } from 'react-scroll';
@@ -51,6 +51,7 @@ class GetSupport extends Component {
   }
 
   handleChange(e) {
+    // Track input values in state
     let name = e.target.name;
     let value = e.target.value;
 
@@ -59,11 +60,13 @@ class GetSupport extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
     this.setState({
       messageSent: true,
       sending: true
     });
 
+    // Captcha, if haven't catpcha'd already
     if(!this.state.gresponse) {
       this.recaptcha.execute();
     } else {
@@ -80,16 +83,17 @@ class GetSupport extends Component {
   googleCallback() {
    let data = {
      gresponse: this.state.gresponse,
-     name: this.state.name,
-     email: this.state.email,
-     phone: this.state.phone,
-     message: this.state.message,
-     company: this.state.company,
+     name:      this.state.name,
+     email:     this.state.email,
+     phone:     this.state.phone,
+     message:   this.state.message,
+     company:   this.state.company,
    }
 
    let valid = this.validateForm(data);
 
    if(valid) {
+     // Send to api
      this.props.postMessage(data);
    } else {
      this.setState({ sending: false });

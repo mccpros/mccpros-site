@@ -1,3 +1,5 @@
+/* Parallax Container */
+
 import React, { Component } from 'react';
 import AnimateOnScroll from '../AnimateOnScroll';
 

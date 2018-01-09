@@ -1,4 +1,5 @@
-// import PropTypes from 'prop-types';
+/* Hero page
+    /meet-the-team/:id */
 import React, { Component } from 'react';
 import { animateScroll as Scroll } from 'react-scroll';
 
@@ -9,10 +10,7 @@ import TransitionWrapper from './Transitions/TransitionWrapper';
 import Loader from './Loader';
 import HeroRow from './HeroRow';
 import Parallax from './Home/Parallax';
-// We should probably check prop types
-// const propTypes = {
-//
-// };
+
 
 class HeroPage extends Component {
   constructor(props) {

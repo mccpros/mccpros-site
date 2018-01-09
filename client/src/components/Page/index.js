@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+/* Page */
 import React, { Component } from 'react';
 import { animateScroll as Scroll } from 'react-scroll';
 
@@ -8,11 +8,6 @@ import FooterContainer  from '../../containers/FooterContainer';
 import TransitionWrapper from '../Transitions/TransitionWrapper';
 import Loader from '../Loader';
 import Content from './Content';
-
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class Page extends Component {
   constructor(props) {

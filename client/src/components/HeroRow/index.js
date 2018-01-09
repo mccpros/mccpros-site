@@ -1,13 +1,10 @@
-// import PropTypes from 'prop-types';
+/* Meet-the-Team/Hero page
+    Hero Row */
 import React, { Component } from 'react';
 import * as Animated from 'react-dom-animated';
 import Easing from '../../../../node_modules/animated/lib/Easing';
 
 import HeroCard from './HeroCard';
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class HeroRow extends Component {
   constructor(props) {
@@ -79,6 +76,7 @@ class HeroRow extends Component {
     this.state.anim.stopAnimation();
   }
 
+  // Auto scroll start
   startSideScroll() {
     this.setScrollLocation();
 
@@ -89,6 +87,7 @@ class HeroRow extends Component {
     });
   }
 
+  // Stop auto scroll
   stopSideScroll() {
     if(!this.state.manual) {
       this.setState({ manual: true });
@@ -98,10 +97,12 @@ class HeroRow extends Component {
   }
 
   sideScroll() {
+    // Sets scroll limit for scrolling right
     if(this.scrollLimit < this.scrollContainer.scrollWidth) {
       this.scrollLimit = this.scrollContainer.scrollWidth - window.innerWidth;
     }
 
+    // Decides direction
     if(this.scrollLimit <= this.state.scrollLocation) {
       this.setState({ left: false });
     }
@@ -110,20 +111,19 @@ class HeroRow extends Component {
     }
 
     if(this.state.left) {
+      // Scroll left
       this.setState({ scrollLocation: this.state.scrollLocation + 1 }, () => {
         this.scrollContainer.scrollLeft = this.state.scrollLocation;
       });
     } else {
+      // Scroll right
       this.setState({ scrollLocation: this.state.scrollLocation - 1 }, () => {
         this.scrollContainer.scrollLeft = this.state.scrollLocation;
       });
     }
   }
 
-  scrolling() {
-    this.stopSideScroll();
-  }
-
+  // Grabs location after manual scroll
   setScrollLocation() {
      let location = this.scrollContainer.scrollLeft;
      this.setState({ scrollLocation: location });
@@ -169,7 +169,7 @@ class HeroRow extends Component {
           <div
             ref={(scrollContainer) => { this.scrollContainer = scrollContainer }}
             onTouchStart={ this.stopSideScroll }
-            onTouchMove={ this.scrolling }
+            onTouchMove={ this.stopSideScroll }
             onTouchEnd={ this.setEndTouch }
             className='hero-row-container'
             id='hero-scroll'
@@ -195,7 +195,5 @@ class HeroRow extends Component {
     );
   }
 }
-
-// HeroRow.propTypes = propTypes;
 
 export default HeroRow;

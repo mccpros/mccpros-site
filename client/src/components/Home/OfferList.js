@@ -1,13 +1,9 @@
-// import PropTypes from 'prop-types';
+/* Home page
+    What We List section */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import OfferItem from './OfferItem';
-
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class OfferList extends Component {
   constructor(props) {
@@ -164,7 +160,5 @@ class OfferList extends Component {
     );
   }
 }
-
-// OfferList.propTypes = propTypes;
 
 export default OfferList;

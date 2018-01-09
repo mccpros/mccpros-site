@@ -1,12 +1,9 @@
-// import PropTypes from 'prop-types';
+/* Home page
+    What We Offer section */
 import React, { Component } from 'react';
 
 import OfferList from './OfferList';
 import Parallax from './Parallax';
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class WhatWeOffer extends Component {
   render() {
@@ -33,7 +30,5 @@ class WhatWeOffer extends Component {
     );
   }
 }
-
-// WhatWeOffer.propTypes = propTypes;
 
 export default WhatWeOffer;

@@ -1,18 +1,11 @@
-// import PropTypes from 'prop-types';
+/* Home page
+    Who We Work With section */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import Slider from 'react-slick';
 
-// We should probably check prop types
-// const propTypes = {
-//
-// };
-
 class WhoWeWorkWith extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   renderSlides() {
     let { testimonials } = this.props.home.acf;
@@ -81,7 +74,5 @@ class ArrowButton extends Component {
     )
   }
 }
-
-// WhoWeWorkWith.propTypes = propTypes;
 
 export default WhoWeWorkWith;

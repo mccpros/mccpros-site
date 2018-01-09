@@ -1,16 +1,9 @@
-// import PropTypes from 'prop-types';
+/* Meet-the-Team/Hero page
+    Hero Card */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-// We should probably check prop types
-// const propTypes = {
-//
-// };
-
 class HeroCard extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     let { hero } = this.props;
@@ -41,7 +34,5 @@ class HeroCard extends Component {
     );
   }
 }
-
-// HeroCard.propTypes = propTypes;
 
 export default HeroCard;

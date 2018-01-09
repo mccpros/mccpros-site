@@ -1,4 +1,5 @@
-// import PropTypes from 'prop-types';
+/* Meet the Team page */
+
 import React, { Component } from 'react';
 import { animateScroll as Scroll } from 'react-scroll';
 
@@ -9,11 +10,6 @@ import TransitionWrapper from '../Transitions/TransitionWrapper';
 import Loader from '../Loader';
 import Content from '../Page/Content';
 import HeroRow from '../HeroRow';
-
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class MeetTheTeam extends Component {
   constructor(props) {
@@ -41,6 +37,7 @@ class MeetTheTeam extends Component {
                         newProps.page.acf.mobile_header;
       delete newProps.page.acf.hero_image;
 
+      // Preload Header Image
       this.preloadImg(headerImg)
         .then(() => {
           this.setState({
@@ -55,6 +52,7 @@ class MeetTheTeam extends Component {
   }
 
   preloadImg(url) {
+    // Basic JS asset preloader func
     return new Promise(function(resolve, reject) {
       let loader = new Image();
 
@@ -144,7 +142,5 @@ class MeetTheTeam extends Component {
     );
   }
 }
-
-// MeetTheTeam.propTypes = propTypes;
 
 export default MeetTheTeam;

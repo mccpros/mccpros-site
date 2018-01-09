@@ -1,19 +1,11 @@
-// import PropTypes from 'prop-types';
+/* 404 page */
+
 import React, { Component } from 'react';
 
 import NavContainer     from '../../containers/NavContainer';
 import FooterContainer  from '../../containers/FooterContainer';
 
 import PageTranstion from '../Transitions/PageTransition';
-import TransitionWrapper from '../Transitions/TransitionWrapper';
-import Loader from '../Loader';
-import Content from '../Page/Content';
-import HeroRow from '../HeroRow';
-
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class PageNotFound extends Component {
   constructor(props) {
@@ -63,7 +55,5 @@ class PageNotFound extends Component {
     );
   }
 }
-
-// PageNotFound.propTypes = propTypes;
 
 export default PageTranstion(PageNotFound);

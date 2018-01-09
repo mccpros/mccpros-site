@@ -1,16 +1,9 @@
-// import PropTypes from 'prop-types';
+/* Reveal Animation
+    Starts on scrolled into view */
 import React, { Component } from 'react';
 import AnimateOnScroll from './AnimateOnScroll';
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class CoverAnimation extends Component {
-  constructor(props) {
-    super(props);
-
-  }
 
   render() {
     return (
@@ -21,7 +14,5 @@ class CoverAnimation extends Component {
     );
   }
 }
-
-// CoverAnimation.propTypes = propTypes;
 
 export default AnimateOnScroll(CoverAnimation);

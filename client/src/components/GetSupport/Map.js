@@ -1,16 +1,11 @@
-// import PropTypes from 'prop-types';
+/* Map Component */
+
 import React, { Component } from 'react';
 import {
   withGoogleMap,
   GoogleMap,
   Marker,
 } from 'react-google-maps';
-
-// We should probably check prop types
-// const propTypes = {
-//
-// };
-
 
 const MapComponent = withGoogleMap(props =>
   <GoogleMap
@@ -25,8 +20,5 @@ const MapComponent = withGoogleMap(props =>
 
   </GoogleMap>
 );
-
-
-// Map.propTypes = propTypes;
 
 export default MapComponent;

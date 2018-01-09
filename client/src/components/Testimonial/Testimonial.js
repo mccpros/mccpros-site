@@ -1,11 +1,7 @@
-// import PropTypes from 'prop-types';
+/* Testimonial Page
+    Testimonial */
 import React, { Component } from 'react';
 import { decode } from 'he';
-
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class Testimonial extends Component {
 
@@ -25,6 +21,7 @@ class Testimonial extends Component {
             { data.acf.quote }
             <span className='testimonial-quote bottom'>{ decode('&#8222;') }</span>
           </p>
+          <p className='lato black'>{ data.acf.employee_name }</p>
         </div>
 
       </div>

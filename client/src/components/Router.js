@@ -1,29 +1,28 @@
-// import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Switch }    from 'react-router';
 
-import HomeContainer from '../containers/HomeContainer';
-import PageContainer from '../containers/PageContainer';
+// All Containers( controls data ) in app
+import HomeContainer        from '../containers/HomeContainer';
+import PageContainer        from '../containers/PageContainer';
 import MeetTheTeamContainer from '../containers/MeetTheTeamContainer';
-import HeroContainer from '../containers/HeroContainer';
+import HeroContainer        from '../containers/HeroContainer';
 import TestimonialContainer from '../containers/TestimonialContainer';
-import SupportContainer from '../containers/SupportContainer';
+import SupportContainer     from '../containers/SupportContainer';
 
+// All top layer components
+import PageNotFound      from './404';
+import Loader            from './Loader';
+
+// Allows animations
 import TransitionWrapper from './Transitions/TransitionWrapper';
-import PageNotFound from './404';
-import Loader from './Loader';
-// We should probably check prop types
-// const propTypes = {
-//
-// };
 
 class Router extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      initialLoading: true,
-      componentsLoading: true
+      initialLoading: true,    // Loading flag for this components
+      componentsLoading: true  // Loading flag for chosen route
     }
 
     this.loadComplete = this.loadComplete.bind(this);
@@ -31,6 +30,7 @@ class Router extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    // Remove loader when top layer is loaded
     if(newProps && newProps.wpInfo && newProps.heroes && newProps.pages) {
       this.loadComplete();
     }
@@ -41,6 +41,7 @@ class Router extends Component {
   }
 
   componentLoadComplete() {
+    // When child component loads
     this.setState({ componentsLoading: false });
   }
 
@@ -49,6 +50,8 @@ class Router extends Component {
 
     return pages.map((page, idx) => {
       switch (page.acf.url) {
+        // Meet-the-team page
+        // Go to '../containers/MeetTheTeamContainer'
         case '/meet-the-team':
           return (
             <Route
@@ -63,6 +66,8 @@ class Router extends Component {
                 </TransitionWrapper>
               )} />
           );
+        // Testimonial page
+        // Go to '../containers/TestimonialContainer'
         case '/testimonials':
           return (
             <Route
@@ -77,6 +82,8 @@ class Router extends Component {
                 </TransitionWrapper>
               )} />
           );
+        // Support page
+        // Go to '../containers/SupportContainer'
         case '/support':
           return (
             <Route
@@ -91,6 +98,8 @@ class Router extends Component {
                 </TransitionWrapper>
               )} />
           );
+        // Every Other page
+        // Go to '../containers/PageContainer'
         default:
           return (
             <Route
@@ -123,6 +132,8 @@ class Router extends Component {
         </TransitionWrapper>
 
         <Switch>
+      {/* Home page
+          Go to '../containers/HomeContainer' */}
           <Route
             path='/'
             exact={ true }
@@ -135,7 +146,8 @@ class Router extends Component {
               }
             </TransitionWrapper>
           )} />
-
+        {/* Superhero page
+            Go to '../containers/HeroContainer' */}
           <Route
             path='/the-team/:id'
             render={ (props) => {
@@ -150,6 +162,8 @@ class Router extends Component {
 
           { this.props.pages && this.renderRoutes() }
 
+        {/* 404 page
+            Go to '../components/404' */}
           <Route
             children={({ match, ...rest }) => (
               <TransitionWrapper>
@@ -166,7 +180,5 @@ class Router extends Component {
     );
   }
 }
-
-// Router.propTypes = propTypes;
 
 export default Router;

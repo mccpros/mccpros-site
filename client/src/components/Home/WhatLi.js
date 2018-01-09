@@ -1,18 +1,11 @@
-// import PropTypes from 'prop-types';
+/*
+  <li> from what we do section
+*/
 import React, { Component } from 'react';
+
 import AnimateOnScroll from '../AnimateOnScroll';
 
-// We should probably check prop types
-// const propTypes = {
-//
-// };
-
 class WhatLi extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   render() {
     return (
       <div className='relative'>
@@ -23,7 +16,5 @@ class WhatLi extends Component {
     );
   }
 }
-
-// WhatLi.propTypes = propTypes;
 
 export default AnimateOnScroll(WhatLi);

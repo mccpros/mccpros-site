@@ -1,22 +1,13 @@
-// import PropTypes from 'prop-types';
+/* Home page
+    What We Do section */
 import React, { Component } from 'react';
-import CoverAnimation from '../CoverAnimation';
 
-import WhatLi from './WhatLi';
-import PieChart from './PieChart';
-import Legend from './Legend';
-// We should probably check prop types
-// const propTypes = {
-//
-// };
+import WhatLi         from './WhatLi';
 
 class WhatWeDo extends Component {
-  constructor(props) {
-    super(props);
-
-  }
 
   renderWhats(whats) {
+    // Maps <li>'s from wordpress
     let dividedWhats = [];
     whats = whats.split('|');
     while(whats.length) dividedWhats.push(whats.splice(0,4));
@@ -62,7 +53,5 @@ class WhatWeDo extends Component {
     );
   }
 }
-
-// WhatWeDo.propTypes = propTypes;
 
 export default WhatWeDo;

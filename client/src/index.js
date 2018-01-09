@@ -1,3 +1,12 @@
+/*
+  - The beginning of the React app
+  - Wraps the app in Redux's Provider
+  - Some basic config and dev stuff
+
+  Go to './containers/RootContainer'
+  to follow the heirarchy
+*/
+
 require('react-hot-loader/patch'); // I forgot why but dont remove! this will break HMR!
 
 import React from 'react';
