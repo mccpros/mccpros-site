@@ -29,7 +29,6 @@ class HeroRow extends Component {
     this.startSideScroll = this.startSideScroll.bind(this);
     this.stopSideScroll = this.stopSideScroll.bind(this);
     this.sideScroll = this.sideScroll.bind(this);
-    this.scrolling = this.scrolling.bind(this);
     this.setScrollLocation = this.setScrollLocation.bind(this);
     this.setEndTouch = this.setEndTouch.bind(this);
   }

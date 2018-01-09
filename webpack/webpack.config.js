@@ -4,7 +4,7 @@ let webpack = require('webpack');
 let path    = require('path');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-let BUILD_DIR = path.resolve(__dirname, '../client/public/build/');
+let BUILD_DIR = path.resolve(__dirname, '../client/build/');
 let APP_DIR   = path.resolve(__dirname, '../client/src/');
 
 

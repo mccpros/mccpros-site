@@ -9,7 +9,10 @@ import path       from 'path';
 import morgan     from 'morgan';
 import bodyParser from 'body-parser';
 import domain     from 'forcedomain';
+import forceSSL   from 'express-force-ssl';
+import force      from 'express-force-domain';
 import secure     from './middleware/secure';
+import detect     from 'browser-detect';
 import express, { Router } from 'express';
 
 // Webpack Stuff
@@ -28,6 +31,7 @@ const apiRouter = Router();
 // const server    = http.createServer(app);
 
 const PORT = production ? 80 : 3000;
+const browser = detect();
 
 // Webpack Dev Setup
 if(!production) {
@@ -42,16 +46,11 @@ if(!production) {
 }
 
 // Express options/middlewares
-app.get('*.js', function (req, res, next) {
-  req.url = req.url + '.gz';
-  res.set('Content-Encoding', 'gzip');
-  next();
-});
-
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../client/public')));
+app.use(forceSSL);
 
 // Init api
 app.use('/api', apiRouter);
@@ -65,9 +64,19 @@ const domainOpts = {
                    };
 
 // Client Side Rendering
-app.use('*', secure(), (req, res) => {
-  console.log('yo0');
-  res.sendFile(path.join(__dirname, '../client/public/index.html'));
+app.get('*.js', (req, res) => {
+  console.log(browser.name);
+  if(browser.name === 'firefox') {
+    return res.sendFile(path.join(__dirname, '../client/build/bundle.js'));
+  }
+
+  res.set('Content-Encoding', 'gzip');
+  return res.sendFile(path.join(__dirname, '../client/build/bundle.js.gz'));
+});
+
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/src/index.html'));
 });
 
 // HTTPS Setup (PRODUCTION ONLY)

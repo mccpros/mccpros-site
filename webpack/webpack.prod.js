@@ -15,7 +15,7 @@ module.exports = merge(common, {
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new CompressionPlugin({
-      asset: "[path].gz[query]",
+      asset: "gzip_[path]",
       algorithm: "gzip",
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
