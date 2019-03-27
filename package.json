@@ -6,7 +6,7 @@
   "scripts": {
     "start": "babel-node ./server/app.js",
     "deploy": "NODE_ENV=production && pm2 start ./server/app.js --interpreter babel-node",
-    "build-dev": "webpack --config ./webpack/webpack.dev.js",
+    "build-dev": "webpack --watch --config ./webpack/webpack.dev.js",
     "build-prod": "webpack --config ./webpack/webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
