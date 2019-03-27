@@ -1,4 +1,3 @@
-import axios from 'axios';
 import sendGrid from '@sendgrid/mail';
 
 class MessageController {
@@ -26,14 +25,15 @@ class MessageController {
             Company: ${req.body.company}`
     };
 
-    this.sendGrid.send(msg)
+    this.sendGrid
+      .send(msg)
       .then(() => {
         res.send({ success: true });
       })
       .catch(err => {
         console.error(err.toString());
         res.status(400).send(err.message);
-      })
+      });
   }
 }
 

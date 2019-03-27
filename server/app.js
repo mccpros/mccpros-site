@@ -19,6 +19,7 @@ const compiler = webpack(webpackConfig);
 
 // Uncomment and add controller for API
 import MessageController from './controllers/Message';
+import ContentController from './controllers/Content';
 
 const production = process.env.NODE_ENV === 'production';
 
@@ -59,7 +60,8 @@ if (production) {
 app.use('/api', apiRouter);
 
 // Install Controllers
-const controller = new MessageController(apiRouter);
+const messageController = new MessageController(apiRouter);
+const contentController = new ContentController(apiRouter);
 
 // Client Side Rendering
 app.get('*.js', (req, res) => {
