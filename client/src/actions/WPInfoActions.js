@@ -106,8 +106,9 @@ export function fetchHeroes() {
   return dispatch => {
     // API Call
     axios
-      .get(url('/wp/v2/superhero?per_page=15'))
+      .get(cpurl('/superhero'))
       .then(res => {
+        console.log('res.data:', res.data);
         dispatch(receiveHeroes(res.data)); // Got em
       })
       .catch(err => {
@@ -120,7 +121,7 @@ export function fetchPartners() {
   return dispatch => {
     // API Call
     axios
-      .get(url('/wp/v2/partners'))
+      .get(cpurl('/partners'))
       .then(res => {
         dispatch(receivePartners(res.data)); // Got em
       })
@@ -153,7 +154,6 @@ export function fetchOnePage(id) {
       axios
         .get(cpurl(`/pages/${id}`))
         .then(res => {
-          console.log('res.data:', res.data);
           dispatch(receiveOnePage(res.data)); // Got em
         })
         .catch(err => {
