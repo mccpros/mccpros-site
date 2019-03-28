@@ -5,6 +5,10 @@ function url(path) {
   return `https://mccpros.com:8443/wp-json${path}`;
 }
 
+function cpurl(path) {
+  return `/api/content${path}`;
+}
+
 export function fetchingInfo(data) {
   return { type: types.FETCHING_INFO }; // Send 'Loading'
 }
@@ -50,13 +54,14 @@ export function fetchInfo(data) {
     dispatch(fetchingInfo()); // 'Loading...'
 
     // API Call
-    axios.get(url('/'))
+    axios
+      .get(url('/'))
       .then(res => {
         dispatch(receiveInfo(res.data)); // Got em
       })
       .catch(err => {
         console.log('err', err);
-      })
+      });
   };
 }
 
@@ -67,74 +72,75 @@ export function fetchHome(data) {
     dispatch(fetchingHome()); // 'Loading...'
 
     // API Call
-    axios.get(url('/wp/v2/home'))
+    axios
+      .get(url('/wp/v2/home'))
       .then(res => {
         returnObj = res.data[0];
         return axios.get(url('/wp/v2/testimonial'));
       })
       .then(res => {
-        returnObj.acf = { ...returnObj.acf, testimonials: res.data }
+        returnObj.acf = { ...returnObj.acf, testimonials: res.data };
         dispatch(receiveHome(returnObj));
       })
       .catch(err => {
         console.log('err', err);
-      })
+      });
   };
 }
 
 export function fetchTestimonials() {
   return dispatch => {
     // API Call
-    axios.get(url('/wp/v2/testimonial'))
+    axios
+      .get(url('/wp/v2/testimonial'))
       .then(res => {
         dispatch(receiveTestimonials(res.data)); // Got em
       })
       .catch(err => {
         console.log('err', err);
-      })
-  }
+      });
+  };
 }
 
 export function fetchHeroes() {
   return dispatch => {
     // API Call
-    axios.get(url('/wp/v2/superhero?per_page=15'))
+    axios
+      .get(url('/wp/v2/superhero?per_page=15'))
       .then(res => {
         dispatch(receiveHeroes(res.data)); // Got em
       })
       .catch(err => {
         console.log('err', err);
-      })
+      });
   };
 }
 
 export function fetchPartners() {
   return dispatch => {
     // API Call
-    axios.get(url('/wp/v2/partners'))
+    axios
+      .get(url('/wp/v2/partners'))
       .then(res => {
         dispatch(receivePartners(res.data)); // Got em
       })
       .catch(err => {
         console.log('err', err);
-      })
+      });
   };
 }
 
 export function fetchPages() {
   return dispatch => {
     // API Call
-    axios.get(url('/wp/v2/pages?per_page=50'), {
-      params: {
-        fields: 'id,acf,title',
-      }
-    })
+    axios
+      .get(cpurl('/pages'))
       .then(res => {
         dispatch(receivePages(res.data)); // Got em
       })
       .catch(err => {
         console.log('err', err);
-      })
+      });
   };
 }
 
@@ -144,14 +150,15 @@ export function fetchOnePage(id) {
 
     // API Call
     setTimeout(() => {
-      axios.get(url(`/wp/v2/pages/${id}`))
-      .then(res => {
-        dispatch(receiveOnePage(res.data)); // Got em
-      })
-      .catch(err => {
-        console.log('err', err);
-      })
-
+      axios
+        .get(cpurl(`/pages/${id}`))
+        .then(res => {
+          console.log('res.data:', res.data);
+          dispatch(receiveOnePage(res.data)); // Got em
+        })
+        .catch(err => {
+          console.log('err', err);
+        });
     }, 1900);
   };
 }

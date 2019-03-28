@@ -8,31 +8,22 @@ import { Link } from 'react-router-dom';
 // };
 
 class NavItem extends Component {
-  constructor(props) {
-    super(props);
-
-
-  }
-
   render() {
     return (
       <li
         key={this.props.index}
         data-index={this.props.index}
-        className={`nav-item ${this.props.className}`}>
+        className={`nav-item ${this.props.className}`}
+      >
         <Link
-          style={{ color: this.props.color === 'rgb(244, 244, 244)' ?
-                             '' :
-                             '#fcfcfc' }}
+          style={{ color: this.props.color === 'rgb(244, 244, 244)' ? '' : '#fcfcfc' }}
           className={`lato black ${this.props.className}-a`}
-          to={ this.props.page.acf.url }>
-
-          { this.props.page.title.rendered }
-
+          to={this.props.page.url}
+        >
+          {this.props.page.title}
         </Link>
 
-        { this.props.children ? this.props.children : '' }
-
+        {this.props.children ? this.props.children : ''}
       </li>
     );
   }

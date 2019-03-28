@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import { animateScroll as Scroll } from 'react-scroll';
 
-import NavContainer     from '../../containers/NavContainer';
-import FooterContainer  from '../../containers/FooterContainer';
+import NavContainer from '../../containers/NavContainer';
+import FooterContainer from '../../containers/FooterContainer';
 
 import TransitionWrapper from '../Transitions/TransitionWrapper';
 import Loader from '../Loader';
@@ -15,7 +15,7 @@ class Page extends Component {
 
     this.state = {
       loading: true
-    }
+    };
   }
 
   componentWillMount() {
@@ -25,7 +25,7 @@ class Page extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if(newProps.page && newProps.page.id && newProps.page.title.rendered) {
+    if (newProps.page && newProps.page.content_id && newProps.page.title) {
       this.props.loadComplete();
       this.setState({ loading: false });
     }
@@ -33,26 +33,21 @@ class Page extends Component {
 
   render() {
     return (
-      <div className='page-container'>
-        <NavContainer
-          {...this.props} />
+      <div className="page-container">
+        <NavContainer {...this.props} />
 
-        <div id='pageWrapper'>
-          <div
-            className='page-parent'
-            style={{ minHeight: this.state.loading ? '100vh' : '0vh' }}>
-
-            { this.props.page && this.props.page.id && !this.state.loading ?
-              <Content
-                loadComplete={ this.loadComplete }
-                {...this.props} /> :
-                <TransitionWrapper><Loader /></TransitionWrapper> }
-
+        <div id="pageWrapper">
+          <div className="page-parent" style={{ minHeight: this.state.loading ? '100vh' : '0vh' }}>
+            {this.props.page && this.props.page.content_id && !this.state.loading ? (
+              <Content loadComplete={this.loadComplete} {...this.props} />
+            ) : (
+              <TransitionWrapper>
+                <Loader />
+              </TransitionWrapper>
+            )}
           </div>
 
-          <FooterContainer
-            {...this.props} />
-
+          <FooterContainer {...this.props} />
         </div>
       </div>
     );

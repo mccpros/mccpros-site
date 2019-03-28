@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { Route, Switch }    from 'react-router';
+import { Route, Switch } from 'react-router';
 
 // All Containers( controls data ) in app
-import HomeContainer        from '../containers/HomeContainer';
-import PageContainer        from '../containers/PageContainer';
+import HomeContainer from '../containers/HomeContainer';
+import PageContainer from '../containers/PageContainer';
 import MeetTheTeamContainer from '../containers/MeetTheTeamContainer';
-import HeroContainer        from '../containers/HeroContainer';
+import HeroContainer from '../containers/HeroContainer';
 import TestimonialContainer from '../containers/TestimonialContainer';
-import SupportContainer     from '../containers/SupportContainer';
+import SupportContainer from '../containers/SupportContainer';
 
 // All top layer components
-import PageNotFound      from './404';
-import Loader            from './Loader';
+import PageNotFound from './404';
+import Loader from './Loader';
 
 // Allows animations
 import TransitionWrapper from './Transitions/TransitionWrapper';
@@ -21,9 +21,9 @@ class Router extends Component {
     super(props);
 
     this.state = {
-      initialLoading: true,    // Loading flag for this components
-      componentsLoading: true  // Loading flag for chosen route
-    }
+      initialLoading: true, // Loading flag for this components
+      componentsLoading: true // Loading flag for chosen route
+    };
 
     this.loadComplete = this.loadComplete.bind(this);
     this.componentLoadComplete = this.componentLoadComplete.bind(this);
@@ -31,7 +31,7 @@ class Router extends Component {
 
   componentWillReceiveProps(newProps) {
     // Remove loader when top layer is loaded
-    if(newProps && newProps.wpInfo && newProps.heroes && newProps.pages) {
+    if (newProps && newProps.wpInfo && newProps.heroes && newProps.pages) {
       this.loadComplete();
     }
   }
@@ -49,22 +49,26 @@ class Router extends Component {
     let { pages } = this.props;
 
     return pages.map((page, idx) => {
-      switch (page.acf.url) {
+      switch (page.url) {
         // Meet-the-team page
         // Go to '../containers/MeetTheTeamContainer'
         case '/meet-the-team':
           return (
             <Route
               key={idx}
-              path={page.acf.url}
-              children={({ match, ...rest}) => (
+              path={page.url}
+              children={({ match, ...rest }) => (
                 <TransitionWrapper>
-                  { match && <MeetTheTeamContainer
-                                pageId={ page.id }
-                                loadComplete={ this.componentLoadComplete }
-                                {...this.props} /> }
+                  {match && (
+                    <MeetTheTeamContainer
+                      pageId={page.content_id}
+                      loadComplete={this.componentLoadComplete}
+                      {...this.props}
+                    />
+                  )}
                 </TransitionWrapper>
-              )} />
+              )}
+            />
           );
         // Testimonial page
         // Go to '../containers/TestimonialContainer'
@@ -72,15 +76,19 @@ class Router extends Component {
           return (
             <Route
               key={idx}
-              path={page.acf.url}
-              children={({ match, ...rest}) => (
+              path={page.url}
+              children={({ match, ...rest }) => (
                 <TransitionWrapper>
-                  { match && <TestimonialContainer
-                                pageId={ page.id }
-                                loadComplete={ this.componentLoadComplete }
-                                {...this.props} /> }
+                  {match && (
+                    <TestimonialContainer
+                      pageId={page.content_id}
+                      loadComplete={this.componentLoadComplete}
+                      {...this.props}
+                    />
+                  )}
                 </TransitionWrapper>
-              )} />
+              )}
+            />
           );
         // Support page
         // Go to '../containers/SupportContainer'
@@ -88,15 +96,19 @@ class Router extends Component {
           return (
             <Route
               key={idx}
-              path={page.acf.url}
-              children={({ match, ...rest}) => (
+              path={page.url}
+              children={({ match, ...rest }) => (
                 <TransitionWrapper>
-                  { match && <SupportContainer
-                                pageId={ page.id }
-                                loadComplete={ this.componentLoadComplete }
-                                {...this.props} /> }
+                  {match && (
+                    <SupportContainer
+                      pageId={page.content_id}
+                      loadComplete={this.componentLoadComplete}
+                      {...this.props}
+                    />
+                  )}
                 </TransitionWrapper>
-              )} />
+              )}
+            />
           );
         // Every Other page
         // Go to '../containers/PageContainer'
@@ -104,17 +116,21 @@ class Router extends Component {
           return (
             <Route
               key={idx}
-              path={page.acf.url}
+              path={page.url}
               children={({ match, ...rest }) => (
-                  <TransitionWrapper>
-                    {match && <PageContainer
-                                pageId={page.id}
-                                loadComplete={ this.componentLoadComplete }
-                                {...this.props}
-                                {...this.state}
-                                {...rest} />}
-                  </TransitionWrapper>
-              )} />
+                <TransitionWrapper>
+                  {match && (
+                    <PageContainer
+                      pageId={page.content_id}
+                      loadComplete={this.componentLoadComplete}
+                      {...this.props}
+                      {...this.state}
+                      {...rest}
+                    />
+                  )}
+                </TransitionWrapper>
+              )}
+            />
           );
       }
     });
@@ -122,60 +138,60 @@ class Router extends Component {
 
   render() {
     return (
-      <div className='body-wrapper'>
-
-        <TransitionWrapper
-          className='load-transition'>
-          { this.state.initialLoading || this.state.componentsLoading ?
-            <Loader reversed={ true } /> :
-            null }
+      <div className="body-wrapper">
+        <TransitionWrapper className="load-transition">
+          {this.state.initialLoading || this.state.componentsLoading ? (
+            <Loader reversed={true} />
+          ) : null}
         </TransitionWrapper>
 
         <Switch>
-      {/* Home page
+          {/* Home page
           Go to '../containers/HomeContainer' */}
           <Route
-            path='/'
-            exact={ true }
+            path="/"
+            exact={true}
             children={({ match, ...rest }) => (
               <TransitionWrapper>
-                { match && <HomeContainer
-                            loadComplete={ this.componentLoadComplete }
-                            title='Home'
-                            {...this.props} />
-              }
-            </TransitionWrapper>
-          )} />
-        {/* Superhero page
+                {match && (
+                  <HomeContainer
+                    loadComplete={this.componentLoadComplete}
+                    title="Home"
+                    {...this.props}
+                  />
+                )}
+              </TransitionWrapper>
+            )}
+          />
+          {/* Superhero page
             Go to '../containers/HeroContainer' */}
           <Route
-            path='/the-team/:id'
-            render={ (props) => {
+            path="/the-team/:id"
+            render={props => {
               return (
                 <HeroContainer
-                  loadComplete={ this.componentLoadComplete }
+                  loadComplete={this.componentLoadComplete}
                   {...props}
-                  {...this.props} />
+                  {...this.props}
+                />
               );
-            }}>
-          </Route>
+            }}
+          />
 
-          { this.props.pages && this.renderRoutes() }
+          {this.props.pages && this.renderRoutes()}
 
-        {/* 404 page
+          {/* 404 page
             Go to '../components/404' */}
           <Route
             children={({ match, ...rest }) => (
               <TransitionWrapper>
-                { match && <PageNotFound
-                            loadComplete={ this.componentLoadComplete }
-                            {...this.props} />
-                }
-            </TransitionWrapper>
-          )} />
-
+                {match && (
+                  <PageNotFound loadComplete={this.componentLoadComplete} {...this.props} />
+                )}
+              </TransitionWrapper>
+            )}
+          />
         </Switch>
-
       </div>
     );
   }

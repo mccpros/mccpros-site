@@ -32,7 +32,10 @@ class ContentController {
 
         res.send(formattedData);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        res.status(400).send(err.message);
+      });
   }
 
   getContentByID(req, res) {
@@ -45,7 +48,10 @@ class ContentController {
 
         res.send(formattedData);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        res.status(400).send(err.message);
+      });
   }
 }
 
