@@ -31,7 +31,7 @@ class Router extends Component {
 
   componentWillReceiveProps(newProps) {
     // Remove loader when top layer is loaded
-    if (newProps && newProps.wpInfo && newProps.heroes && newProps.pages) {
+    if (newProps && newProps.heroes && newProps.pages) {
       this.loadComplete();
     }
   }

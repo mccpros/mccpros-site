@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import { animateScroll as Scroll } from 'react-scroll';
 
-import NavContainer     from '../../containers/NavContainer';
-import FooterContainer  from '../../containers/FooterContainer';
+import NavContainer from '../../containers/NavContainer';
+import FooterContainer from '../../containers/FooterContainer';
 
 import TransitionWrapper from '../Transitions/TransitionWrapper';
 import Content from '../Page/Content';
@@ -15,7 +15,7 @@ class TestimonialList extends Component {
     // Start with an action
     this.props.fetchOnePage(this.props.pageId);
 
-    if(!this.props.testimonials || this.props.testimonials.length <= 0) {
+    if (!this.props.testimonials || this.props.testimonials.length <= 0) {
       this.props.fetchTestimonials();
     }
 
@@ -23,7 +23,7 @@ class TestimonialList extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if(newProps.testimonials && newProps.testimonials.length > 0) {
+    if (newProps.testimonials && newProps.testimonials.length > 0) {
       this.props.loadComplete();
     }
   }
@@ -33,9 +33,9 @@ class TestimonialList extends Component {
 
     return (
       <Content {...this.props}>
-        <div className='testimonial-list'>
-          { testimonials.map((t, idx) => {
-            return <Testimonial key={ idx } data={ t } />
+        <div className="testimonial-list">
+          {testimonials.map((t, idx) => {
+            return <Testimonial key={idx} data={t} />;
           })}
         </div>
       </Content>
@@ -45,28 +45,24 @@ class TestimonialList extends Component {
   render() {
     return (
       <div>
+        <NavContainer loadComplete={this.loadComplete} {...this.props} />
 
-        <NavContainer
-          loadComplete={ this.loadComplete }
-          {...this.props} />
-
-        <div id='pageWrapper'>
-          <div className='page-container'>
-
-            <div className='page-parent' style={{ minHeight: '100vh' }}>
-
-              { this.props.testimonials && this.props.testimonials.length > 0 &&
-                  this.props.page && this.props.page.id ?
-                    this.renderTestimonials() :
-                    <TransitionWrapper><Loader /></TransitionWrapper> }
-
+        <div id="pageWrapper">
+          <div className="page-container">
+            <div className="page-parent" style={{ minHeight: '100vh' }}>
+              {this.props.testimonials &&
+              this.props.testimonials.length > 0 &&
+              this.props.page &&
+              this.props.page.content_id ? (
+                this.renderTestimonials()
+              ) : (
+                <TransitionWrapper>
+                  <Loader />
+                </TransitionWrapper>
+              )}
             </div>
 
-
-          <FooterContainer
-            loadComplete={ this.loadComplete }
-            {...this.props} />
-
+            <FooterContainer loadComplete={this.loadComplete} {...this.props} />
           </div>
         </div>
       </div>

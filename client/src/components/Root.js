@@ -13,21 +13,17 @@ import RouterComponent from '../components/Router';
 class Root extends Component {
   componentWillMount() {
     // Call all the actions
-    
-    this.props.fetchInfo();
     this.props.fetchPages();
     this.props.fetchHeroes();
   }
 
   render() {
     return (
-        <BrowserRouter>
-          <div>
-
-            <RouterComponent {...this.props} />
-
-          </div>
-        </BrowserRouter>
+      <BrowserRouter>
+        <div>
+          <RouterComponent {...this.props} />
+        </div>
+      </BrowserRouter>
     );
   }
 }

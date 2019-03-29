@@ -33,7 +33,7 @@ class WhatWeDo extends Component {
               <span className="green">what</span> we do
             </h2>
 
-            <ul className="what-list">{this.renderWhats(home.acf.what_we_do)}</ul>
+            <ul className="what-list">{this.renderWhats(home.what_we_do)}</ul>
           </div>
         </div>
       </div>

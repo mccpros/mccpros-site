@@ -49,22 +49,6 @@ export function receiveOnePage(data) {
   return { type: types.RECEIVE_ONE_PAGE, page: data }; // Send info
 }
 
-export function fetchInfo(data) {
-  return dispatch => {
-    dispatch(fetchingInfo()); // 'Loading...'
-
-    // API Call
-    axios
-      .get(url('/'))
-      .then(res => {
-        dispatch(receiveInfo(res.data)); // Got em
-      })
-      .catch(err => {
-        console.log('err', err);
-      });
-  };
-}
-
 export function fetchHome(data) {
   let returnObj = {};
 
@@ -73,13 +57,13 @@ export function fetchHome(data) {
 
     // API Call
     axios
-      .get(url('/wp/v2/home'))
+      .get(cpurl('/homePage'))
       .then(res => {
         returnObj = res.data[0];
-        return axios.get(url('/wp/v2/testimonial'));
+        return axios.get(cpurl('/testimonials'));
       })
       .then(res => {
-        returnObj.acf = { ...returnObj.acf, testimonials: res.data };
+        returnObj = { ...returnObj, testimonials: res.data };
         dispatch(receiveHome(returnObj));
       })
       .catch(err => {
@@ -92,7 +76,7 @@ export function fetchTestimonials() {
   return dispatch => {
     // API Call
     axios
-      .get(url('/wp/v2/testimonial'))
+      .get(cpurl('/testimonials'))
       .then(res => {
         dispatch(receiveTestimonials(res.data)); // Got em
       })
@@ -108,7 +92,6 @@ export function fetchHeroes() {
     axios
       .get(cpurl('/superhero'))
       .then(res => {
-        console.log('res.data:', res.data);
         dispatch(receiveHeroes(res.data)); // Got em
       })
       .catch(err => {

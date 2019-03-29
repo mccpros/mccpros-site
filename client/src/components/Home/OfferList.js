@@ -10,8 +10,8 @@ class OfferList extends Component {
     super(props);
 
     this.state = {
-      buttonPos: '0',         // Current Position <- this is what will change
-      href: '/',              // Current Link
+      buttonPos: '0', // Current Position <- this is what will change
+      href: '/', // Current Link
       positionName: 'center', // Track Position by Name
       center: {
         href: '/',
@@ -25,7 +25,7 @@ class OfferList extends Component {
         href: '/procare',
         pos: '0'
       }
-    }
+    };
 
     this.getPositions = this.getPositions.bind(this);
     this.sortData = this.sortData.bind(this);
@@ -34,15 +34,18 @@ class OfferList extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      left: this.sortData('left'),
-      right: this.sortData('right'),
-    }, () => {
-      if(window.innerWidth < 768) return;
+    this.setState(
+      {
+        left: this.sortData('left'),
+        right: this.sortData('right')
+      },
+      () => {
+        if (window.innerWidth < 768) return;
 
-      this.getPositions();                                  // Set Variables
-      window.addEventListener('resize', this.getPositions);  // Changes Variables
-    });
+        this.getPositions(); // Set Variables
+        window.addEventListener('resize', this.getPositions); // Changes Variables
+      }
+    );
   }
 
   componentWillUnmount() {
@@ -50,8 +53,8 @@ class OfferList extends Component {
   }
 
   sortData(side) {
-    let { acf } = this.props.home;
-    let dataStr = acf[`what_we_offer_${side}`];
+    let { home } = this.props;
+    let dataStr = home[`what_we_offer_${side}`];
     let dataArr = dataStr.split('|');
     let dataObj = { ...this.state[side] };
 
@@ -70,32 +73,31 @@ class OfferList extends Component {
     // Grab width of container
     let fullWidth = this.buttonWrapper.clientWidth || this.buttonWrapper.offsetWidth;
 
-    let centerPos = (fullWidth - buttonWidth) * .5;    // When this button is centered
-    let leftPos   = (fullWidth - buttonWidth / 2) * .2;  // When the button should be left
-    let rightPos  = (fullWidth - buttonWidth / 2) * .74;// When the button should be right
+    let centerPos = (fullWidth - buttonWidth) * 0.5; // When this button is centered
+    let leftPos = (fullWidth - buttonWidth / 2) * 0.2; // When the button should be left
+    let rightPos = (fullWidth - buttonWidth / 2) * 0.74; // When the button should be right
 
     this.setState({
       buttonPos: centerPos,
       center: { ...this.state.center, pos: centerPos },
-      left:   { ...this.state.left,   pos: leftPos },
-      right:  { ...this.state.right,  pos: rightPos }
-    })
+      left: { ...this.state.left, pos: leftPos },
+      right: { ...this.state.right, pos: rightPos }
+    });
   }
 
   hoverHandler(e) {
-    if(window.innerWidth < 991) return;
+    if (window.innerWidth < 991) return;
 
     let containerWidth = this.container.offsetWidth || this.container.clientWidth;
     let threshold = containerWidth / 2; // Grab the middle of container
 
-    if(e.pageX < threshold) {
+    if (e.pageX < threshold) {
       // If left
       this.setState({
         buttonPos: this.state.left.pos,
         href: this.state.left.href,
         positionName: 'left'
       });
-
     } else {
       // If right
       this.setState({
@@ -103,8 +105,7 @@ class OfferList extends Component {
         href: this.state.right.href,
         positionName: 'right'
       });
-
-    };
+    }
   }
 
   resetButtonPos() {
@@ -118,43 +119,45 @@ class OfferList extends Component {
 
   render() {
     return (
-      <div className='col-xs-12 col-lg-9 offer-container white'>
-        <h2 className='arvo title white'>what we <span className="green">offer</span></h2>
+      <div className="col-xs-12 col-lg-9 offer-container white">
+        <h2 className="arvo title white">
+          what we <span className="green">offer</span>
+        </h2>
         <div
-         onMouseMove={ this.hoverHandler }
-         onMouseLeave={ this.resetButtonPos }
-         className='what_we_offer'
-         id='what_we_offer'
-         ref={ ref => this.container = ref }>
+          onMouseMove={this.hoverHandler}
+          onMouseLeave={this.resetButtonPos}
+          className="what_we_offer"
+          id="what_we_offer"
+          ref={ref => (this.container = ref)}
+        >
+          {this.state.left.name && (
+            <OfferItem {...this.state} oppPosition="right" data={this.state.left} />
+          )}
 
-         { this.state.left.name && <OfferItem
-                                {...this.state}
-                                oppPosition='right'
-                                data={ this.state.left } /> }
+          <hr className="offer-break" />
 
-          <hr className='offer-break'/>
-
-          { this.state.right.name && <OfferItem
-                                  {...this.state}
-                                  oppPosition='left'
-                                  data={ this.state.right } /> }
+          {this.state.right.name && (
+            <OfferItem {...this.state} oppPosition="left" data={this.state.right} />
+          )}
 
           <div
-            ref={ ref => this.buttonWrapper = ref }
-            id='buttonWrapper'
-            className='offer-button-wrapper relative'>
-            <Link to={ this.state.href }>
+            ref={ref => (this.buttonWrapper = ref)}
+            id="buttonWrapper"
+            className="offer-button-wrapper relative"
+          >
+            <Link to={this.state.href}>
               <button
-                ref={ ref => this.button = ref }
-                id='learnButton'
-                className='btn arvo white'
-                style={ {
+                ref={ref => (this.button = ref)}
+                id="learnButton"
+                className="btn arvo white"
+                style={{
                   left: `${this.state.buttonPos}px`
-                } }
-                >Learn More</button>
+                }}
+              >
+                Learn More
+              </button>
             </Link>
           </div>
-
         </div>
       </div>
     );
