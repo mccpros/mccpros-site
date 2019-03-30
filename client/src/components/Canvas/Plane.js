@@ -9,28 +9,20 @@ class Canvas extends Component {
     let pos = new THREE.Vector3(x, y, z);
 
     return (
-
       <mesh
-        position={ pos }
-        lookAt={ this.props.lookAt && this.props.lookAt.x ?
-          new THREE.Vector3(this.props.lookAt.x / 16, this.props.lookAt.y / 16, 3) :
-          new THREE.Vector3(0, 0, 1000)
-         }
-        >
+        position={pos}
+        lookAt={
+          this.props.lookAt && this.props.lookAt.x
+            ? new THREE.Vector3(this.props.lookAt.x / 16, this.props.lookAt.y / 16, 3)
+            : new THREE.Vector3(0, 0, 1000)
+        }
+      >
+        <planeGeometry width={this.props.width} height={this.props.height} />
 
-          <planeGeometry
-            width={ this.props.width }
-            height={ this.props.height } />
-
-          <meshBasicMaterial
-            transparent={true}
-            opacity={1}>
-
-            { this.props.loaded &&
-              <texture url={ this.props.src }></texture> }
-
-          </meshBasicMaterial>
-        </mesh>
+        <meshBasicMaterial transparent={true} opacity={1}>
+          {this.props.loaded && <texture url={this.props.src} />}
+        </meshBasicMaterial>
+      </mesh>
     );
   }
 }
