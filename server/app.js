@@ -23,7 +23,7 @@ const HEROKU_BUILD = process.env.HEROKU_BUILD === 'heroku_build';
 const app = express();
 const apiRouter = Router();
 
-const PORT = PRODUCTION ? 80 : 8888;
+const PORT = HEROKU_BUILD ? process.env.PORT : PRODUCTION ? 80 : 8888;
 const browser = detect();
 
 // Webpack Dev Setup
