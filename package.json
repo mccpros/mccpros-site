@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "babel-node ./server/app.js",
-    "start": "node server-build/app.js",
+    "start": "NODE_ENV=production && node server-build/app.js",
     "deploy": "yarn build-prod && NODE_ENV=production && pm2 start ./server/app.js --interpreter babel-node",
     "build-client": "webpack --watch --config ./webpack/webpack.dev.js",
     "build-server": "./node_modules/.bin/babel ./server --out-dir ./server-build",

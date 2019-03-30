@@ -12,11 +12,6 @@ import forceSSL from 'express-force-ssl';
 import detect from 'browser-detect';
 import express, { Router } from 'express';
 
-// Webpack Stuff
-import webpack from 'webpack';
-import webpackConfig from '../webpack/webpack.dev';
-const compiler = webpack(webpackConfig);
-
 // Uncomment and add controller for API
 import MessageController from './controllers/Message';
 import ContentController from './controllers/Content';
@@ -32,6 +27,11 @@ const browser = detect();
 
 // Webpack Dev Setup
 if (!production) {
+  // Webpack Stuff
+  const webpack = require('webpack');
+  const webpackConfig = require('../webpack/webpack.dev');
+  const compiler = webpack(webpackConfig);
+
   app.use(
     require('webpack-dev-middleware')(compiler, {
       noInfo: true,
