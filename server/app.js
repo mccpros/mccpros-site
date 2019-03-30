@@ -53,7 +53,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../client/public')));
-if (PRODUCTION) {
+if (PRODUCTION && !HEROKU_BUILD) {
   app.use(forceSSL);
 }
 
