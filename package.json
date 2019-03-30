@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "babel-node ./server/app.js",
-    "start": "build-prod && NODE_ENV=production && pm2 start ./server/app.js --interpreter babel-node",
+    "start": "yarn build-prod && NODE_ENV=production && pm2 start ./server/app.js --interpreter babel-node",
     "build-dev": "webpack --watch --config ./webpack/webpack.dev.js",
     "build-prod": "webpack --config ./webpack/webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
