@@ -16,17 +16,18 @@ import express, { Router } from 'express';
 import MessageController from './controllers/Message';
 import ContentController from './controllers/Content';
 
-const production = process.env.NODE_ENV === 'production';
+const PRODUCTION = process.env.NODE_ENV === 'production';
+const HEROKU_BUILD = process.env.HEROKU_BUILD === 'heroku_build';
 
 // Express server setup
 const app = express();
 const apiRouter = Router();
 
-const PORT = production ? 80 : 8888;
+const PORT = PRODUCTION ? 80 : 8888;
 const browser = detect();
 
 // Webpack Dev Setup
-if (!production) {
+if (!PRODUCTION) {
   // Webpack Stuff
   const webpack = require('webpack');
   const webpackConfig = require('../webpack/webpack.dev');
@@ -52,7 +53,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../client/public')));
-if (production) {
+if (PRODUCTION) {
   app.use(forceSSL);
 }
 
@@ -66,7 +67,7 @@ const contentController = new ContentController(apiRouter);
 // Client Side Rendering
 app.get('*.js', (req, res) => {
   const isFireFox = browser.name === 'firefox';
-  const useGzip = production && !isFireFox;
+  const useGzip = PRODUCTION && !isFireFox;
   const filePath = useGzip ? '../client/build/bundle.js.gz' : '../client/build/bundle.js';
 
   if (useGzip) {
@@ -80,7 +81,7 @@ app.get('*', (req, res) => {
 });
 
 // HTTPS Setup (PRODUCTION ONLY)
-if (production) {
+if (PRODUCTION && !HEROKU_BUILD) {
   const options = {
     key: fs.readFileSync(process.env.KEY_PATH),
     cert: fs.readFileSync(process.env.CRT_PATH)
