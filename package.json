@@ -31,7 +31,6 @@
     "express-force-domain": "^0.0.6",
     "express-force-ssl": "^0.3.2",
     "forcedomain": "^0.8.1",
-    "fsevents": "1.1.2",
     "he": "^1.1.1",
     "mongoose": "^4.12.6",
     "morgan": "^1.9.0",
