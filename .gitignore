@@ -7,6 +7,7 @@
 /client/public/favicons/*
 /client/public/font/*
 /client/public/threejs/*
+/server-build/*
 
 # misc
 .DS_Store

@@ -8,9 +8,12 @@
   },
   "scripts": {
     "dev": "babel-node ./server/app.js",
-    "start": "yarn build-prod && NODE_ENV=production && pm2 start ./server/app.js --interpreter babel-node",
-    "build-dev": "webpack --watch --config ./webpack/webpack.dev.js",
+    "start": "node server-build/app.js",
+    "deploy": "yarn build-prod && NODE_ENV=production && pm2 start ./server/app.js --interpreter babel-node",
+    "build-client": "webpack --watch --config ./webpack/webpack.dev.js",
+    "build-server": "./node_modules/.bin/babel ./server --out-dir ./server-build",
     "build-prod": "webpack --config ./webpack/webpack.prod.js",
+    "build": "yarn build-prod && yarn build-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
