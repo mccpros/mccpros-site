@@ -1,7 +1,7 @@
 {
   "presets" : [
-    "react",
-    ["env", {
+    "@babel/preset-react",
+    ["@babel/preset-env", {
       "targets": {
         "node": "current",
         "browsers": ["last 2 versions"]
@@ -10,6 +10,5 @@
   ],
   "plugins": [
     "react-hot-loader/babel",
-    "transform-object-rest-spread"
   ]
 }
