@@ -106,7 +106,6 @@ class Canvas extends Component {
     for (let key in this.textures) {
       if (this.textures.hasOwnProperty(key)) {
         let url = this.textures[key].url;
-        console.log('url:', url);
         texturePromises.push(this.loaderPromise(url));
       }
     }

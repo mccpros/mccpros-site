@@ -13,7 +13,7 @@ class MeetTheTeam extends Component {
 
     this.state = {
       heroIndex: null,
-      selectedHero: null
+      selectedHero: null,
     };
   }
 
@@ -56,19 +56,19 @@ class MeetTheTeam extends Component {
           <div id="getHeight" className="col-xs-12 col-lg-6 relative">
             <div className="col-xs-offset-1 col-xs-3 col-lg-offset-0 col-lg-3 hero-label white relative">
               <div>
-                <Link to={`/the-team/${this.state.selectedHero.id}`}>
+                <Link to={`/the-team/${this.state.selectedHero.content_id}`}>
                   <p className="arvo">{this.state.selectedHero.name}</p>
                 </Link>
 
                 <hr />
 
-                <Link to={`/the-team/${this.state.selectedHero.id}`}>
+                <Link to={`/the-team/${this.state.selectedHero.content_id}`}>
                   <p className="lato">{this.state.selectedHero.title}</p>
                 </Link>
               </div>
             </div>
 
-            <Link to={`/the-team/${this.state.selectedHero.id}`}>
+            <Link to={`/the-team/${this.state.selectedHero.content_id}`}>
               <img
                 className="col-xs-8 col-lg-9"
                 src={this.state.selectedHero.close_up}
