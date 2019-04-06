@@ -29,7 +29,7 @@ class Canvas extends Component {
         url: '/threejs/header.jpg',
       },
       nick: {
-        url: '/threejs/Nick.png',
+        url: '/threejs/Mark.png',
       },
       maxine: {
         url: '/threejs/Maxine.png',
@@ -130,6 +130,7 @@ class Canvas extends Component {
   renderPlanes() {
     let scaleWidth1 = this.state.width > 768 ? 250 : 175;
     let scaleWidth2 = this.state.width > 768 ? 260 : 185;
+    let scaleWidth3 = this.state.width > 768 ? 265 : 175;
 
     let scaleHeight1 = this.state.width > 768 ? 130 : 87.5;
     let scaleHeight2 = this.state.width > 768 ? 125 : 92.5;
@@ -155,13 +156,13 @@ class Canvas extends Component {
         <Plane
           {...this.state}
           pos={{
-            x: this.state.width > 1500 ? 4 : this.state.width * nickSpacing,
-            y: this.state.width > 1500 ? -1 : this.state.width * nickHeight,
+            x: this.state.width > 1500 ? 3.5 : this.state.width * nickSpacing,
+            y: this.state.width > 1500 ? -1.1 : this.state.width * nickHeight,
             z: -0.3,
           }}
-          width={this.state.width > 1500 ? 6 : this.state.width / scaleWidth1}
-          height={this.state.width > 1500 ? 12 : this.state.width / scaleHeight1}
-          src="/threejs/Nick.png"
+          width={this.state.width > 1500 ? 5.7 : this.state.width / scaleWidth3}
+          height={this.state.width > 1500 ? 11.5 : this.state.width / scaleHeight1}
+          src="/threejs/Mark_Shadow.png"
         />
 
         <Plane
@@ -171,21 +172,21 @@ class Canvas extends Component {
             y: this.state.width > 1500 ? -2.4 : this.state.width * maxineHeight,
             z: -1,
           }}
-          width={this.state.width > 1500 ? 5.8 : this.state.width / scaleWidth2}
-          height={this.state.width > 1500 ? 12 : this.state.width / scaleHeight2}
-          src="/threejs/Maxine.png"
+          width={this.state.width > 1500 ? 5.3 : this.state.width / scaleWidth2}
+          height={this.state.width > 1500 ? 11.5 : this.state.width / scaleHeight2}
+          src="/threejs/Maxine_Shadow.png"
         />
 
         <Plane
           {...this.state}
           pos={{
             x: this.state.width > 1500 ? 7 : this.state.width * shaneSpacing,
-            y: this.state.width > 1500 ? -2.2 : this.state.width * shaneHeight,
+            y: this.state.width > 1500 ? -2.4 : this.state.width * shaneHeight,
             z: -1,
           }}
-          width={this.state.width > 1500 ? 6 : this.state.width / scaleWidth1}
-          height={this.state.width > 1500 ? 12 : this.state.width / scaleHeight2}
-          src="/threejs/Shane.png"
+          width={this.state.width > 1500 ? 5.8 : this.state.width / scaleWidth1}
+          height={this.state.width > 1500 ? 11.8 : this.state.width / scaleHeight2}
+          src="/threejs/Shane_Shadow.png"
         />
       </group>
     );
