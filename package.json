@@ -43,7 +43,6 @@
     "react-dom-animated": "^1.0.3",
     "react-google-invisible-recaptcha": "^0.2.1",
     "react-google-maps": "^9.4.3",
-    "react-hot-loader": "^4.8.1",
     "react-jsx-parser": "^1.1.6",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
