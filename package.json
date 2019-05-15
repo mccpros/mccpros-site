@@ -73,6 +73,7 @@
     "file-loader": "^1.1.5",
     "node-sass": "^4.11.0",
     "postcss-loader": "^2.0.8",
+    "react-hot-loader": "^4.8.4",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
     "uglifyjs-webpack-plugin": "^1.0.1",
