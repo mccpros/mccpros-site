@@ -844,7 +844,7 @@ i.icon-left-open-mini:hover {
     top: 800px;
     right: 10px;
     z-index: 100;
-    max-width: 180px;
+    max-width: 160px;
   }
   img.healthcare-badge {
     right: 200px
@@ -894,6 +894,10 @@ and (orientation : portrait)
 and (-webkit-min-device-pixel-ratio: 1.5){
   img.announcement {
     top: 37vh;
+    max-width: 150px;
+  }
+  img.healthcare-badge {
+    right: 240px;
   }
   .device-header-img {
     top: -55px;
@@ -924,7 +928,11 @@ and (-webkit-min-device-pixel-ratio: 1.5){
 }
 @media screen and (max-width: 320px) {
   img.announcement {
-    top: 103vh;
+    top: 108vh;
+    max-width: 120px;
+  }
+  img.healthcare-badge {
+    right: 140px;
   }
   .home-header-title {
     left: 0;
