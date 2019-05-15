@@ -18,7 +18,7 @@ class Home extends Component {
       windowHeight: '',
       windowWidth: '',
       show: false,
-      canvasLoaded: false
+      canvasLoaded: false,
     };
 
     // Mobile check
@@ -83,7 +83,7 @@ class Home extends Component {
   setWindowSize() {
     this.setState({
       windowHeight: window.innerHeight,
-      windowWidth: window.innerWidth
+      windowWidth: window.innerWidth,
     });
   }
 
@@ -103,6 +103,11 @@ class Home extends Component {
               alt="20 years of business"
             />
           )}
+          <img
+            className="announcement healthcare-badge"
+            src="assets/healthcare-badge.png"
+            alt="Healthcare Specialists"
+          />
 
           <Canvas homeLoad={this.homeLoad} isMobile={this.isMobile} {...this.props} />
 
@@ -111,7 +116,7 @@ class Home extends Component {
               style={{
                 transform:
                   this.state.show || this.isMobile ? 'translateY(0px)' : 'translateY(800px)',
-                opacity: this.state.show || this.isMobile ? 1 : 0
+                opacity: this.state.show || this.isMobile ? 1 : 0,
               }}
               className="home-header-title"
             >

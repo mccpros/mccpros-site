@@ -4,6 +4,10 @@ body, #root, #canvas-wrapper {
   background-color: white;
 }
 
+img.healthcare-badge {
+  right: 300px
+}
+
 #canvas-wrapper {
   position: absolute;
   top: 0;
@@ -776,9 +780,13 @@ i.icon-left-open-mini:hover {
     height: 850px;
   }
   img.announcement {
-    top: 780px;
+    top: 800px;
     right: 10px;
     z-index: 100;
+    max-width: 180px;
+  }
+  img.healthcare-badge {
+    right: 200px
   }
   .home-content {
     padding-top: 12em;
