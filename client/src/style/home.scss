@@ -8,6 +8,54 @@ img.healthcare-badge {
   right: 300px
 }
 
+.relative {
+  position: relative;
+}
+
+.health-red {
+ color: #eb3776;
+}
+
+.highlight-green {
+ color: #20b789;
+}
+
+.right {
+  text-align: right;
+}
+
+.what-we-do-separator {
+  border: 1px solid;
+  border-color: #20b789;
+  width: 100%;
+  left: 0;
+  position: absolute;
+  margin-top: 1em;
+}
+
+.what-we-do-separator:after{
+  content: "";
+  position: absolute;
+  right: 0;
+  border-top: 2px solid #20b789;
+  width: 40px;
+  transform: rotate(225deg);
+  transform-origin: 100% 10%;
+}
+
+.what-we-do-separator.healthcare-separator{
+  border-color:#eb3776;
+  right: 0;
+  left: auto;
+}
+
+.what-we-do-separator.healthcare-separator:after{
+  left: 0;
+  border-color: #eb3776;
+  transform: rotate(125deg);
+  transform-origin: 0% 0%;
+}
+
 #canvas-wrapper {
   position: absolute;
   top: 0;
@@ -103,7 +151,7 @@ svg.cta text#h2 {
 }
 
 .what-list {
-  margin: 3em 0 0 4em;
+  margin: 2.5em 0 0 4em;
   font-size: 1.25em;
   list-style: none;
 }
@@ -118,6 +166,16 @@ svg.cta text#h2 {
   font-family: fontello;
   margin-left: -1.3em;
   color: #20b789;
+  position: absolute;
+  left: 0px;
+  top: 11px;
+}
+
+.what-list-healthcare li:before {
+  content: "\E801";
+  font-family: fontello;
+  margin-left: -1.3em;
+  color: #eb3776;
   position: absolute;
   left: 0px;
   top: 11px;
@@ -559,6 +617,9 @@ i.icon-left-open-mini:hover {
     padding-bottom: 1em !important;
     padding-right: 5em !important;
     padding-left: 5em !important;
+  }
+  .what-we-do-separator {
+    width: 90%;
   }
 }
 

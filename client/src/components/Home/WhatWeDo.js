@@ -24,16 +24,32 @@ class WhatWeDo extends Component {
 
   render() {
     let { home } = this.props;
+    console.log('home:', home);
 
     return (
       <div className="what-container container-fluid">
         <div className="row">
           <div className="col-xs-12 col-md-10 col-md-offset-1">
-            <h2 className="arvo title black">
+            <h2 className="arvo title black relative">
               <span className="green">what</span> we do
+              <div className="what-we-do-separator" />
             </h2>
 
             <ul className="what-list">{this.renderWhats(home.what_we_do)}</ul>
+          </div>
+        </div>
+        <br />
+        <br />
+        <div className="row">
+          <div className="col-xs-12 col-md-10 col-md-offset-1">
+            <h2 className="arvo title black right relative">
+              <span className="health-red">healthcare</span> i.t.
+              <div className="what-we-do-separator healthcare-separator" />
+            </h2>
+
+            <ul className="what-list what-list-healthcare">
+              {this.renderWhats(home.what_we_do_healthcare)}
+            </ul>
           </div>
         </div>
       </div>
