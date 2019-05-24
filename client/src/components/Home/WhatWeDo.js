@@ -24,7 +24,6 @@ class WhatWeDo extends Component {
 
   render() {
     let { home } = this.props;
-    console.log('home:', home);
 
     return (
       <div className="what-container container-fluid">

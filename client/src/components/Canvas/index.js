@@ -95,7 +95,6 @@ class Canvas extends Component {
     let img = new Image();
     img.onload = () => {
       this.props.homeLoad(true);
-      console.log('homeLoad!!!');
     };
 
     img.src = src;
