@@ -58,7 +58,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "slick-carousel": "^1.8.1",
-    "three": "0.86.0"
+    "three": "0.125.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
